@@ -7,7 +7,7 @@
                     <header><h1>Log in</h1></header>
                     <section>
                         <form action="my_profile" id="contact-form" class="form-horizontal" method="post">
-                            <fieldset>
+                            <fieldset style="padding-top: .5cm">
 
                                 <div class="control-group">
                                     <label class="control-label" for="inputUsername">Username</label>

@@ -12,6 +12,8 @@
                             <li><a href="removed_ads">Removed Ads</a></li>
                             <li><a href="my_favorites">My favorites</a></li>
                             <li   class="active" ><a href="my_wishlist">My wishlist</a></li>
+                            <li><a href="my_messages">My Messages</a></li>
+                            <li><a href="settings">Settings</a></li>
                         </ul>
                     </div>
                 </div>

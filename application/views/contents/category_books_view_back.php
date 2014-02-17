@@ -52,7 +52,7 @@
 			</ul>
 		</div>
 		<!-- End Sidebar -->
-                <div id="see_more" style=" width: 75%; margin-left: 25%;">
+                <div id="see_more" style="height: 1000px; width: 75%; margin-left: 25%;">
                     <a href="show_category" id="backButton">Back</a>
                     <form method="post">
                     <table style="padding-left: 5%; width: 100%">
@@ -63,31 +63,27 @@
                         </tr>
                     </table>
                     </form>
-                    <div style="width: 100%; padding-left: 72%">
-                        <p style="font-size: 16px; float:left; clear:none; display:block; padding: 8px 1em 0 0;">page <b>1</b> of <b>3</b></p>
-                        <input style="float:left; clear:none; margin: 0px 0 0 2px; width: 30px; font-weight:bold; font-size: 24px" type="button" value="<"/>
-                        <input style="float:left; clear:none; margin: 0px 0 0 2px; width: 30px; font-weight:bold; font-size: 24px" type="button" value=">"/>
-                        <br/>
+                    <div id="modal">
+                        <header><h1>1-4 of 16</h1></header>
                     </div>
-                    <div id="modal" >
-                        <header><a href="#" style="padding-left: 72%">Price</a><a href="#" style="padding-left: 18%">Date</a></header>
+                    <div id="modal">
+                        <header><a href="#" style="padding-left: 0">Date</a><a href="#" style="padding-left: 90%">Price</a></header>
                     </div>
-                   <!-- <div id="modal" >
-                        <header><a href="#" style="padding-left: 72%">Price</a><span><img src="<?php echo base_url() ?>assets/images/upper_arrow.png" /></span><a href="#" style="padding-left: 18%">Date</a><span><img src="<?php echo base_url() ?>assets/images/upper_arrow.png" /></span></header>
-                    </div> -->
                     <!-- book details -->
                     <div>
-                        <?php for($i=0; $i<8; $i++) {?>
+                        <?php for($i=0; $i<4; $i++) {?>
                         <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
                             <tr>
                                 <td style="width: 15%"><img src="<?php echo base_url() ?>assets/images/image02.jpg" alt="" /></td>
-                                <td style="width: 50%; text-align: center">
-                                    <h2 style="font-size: 24px"><a href="ad_details">The Shepherd</a></h2>
+                                <td style="width: 55%; text-align: center">
+                                    <h2 style="font-size: 24px"><a>The Shepherd</a></h2>
                                     <h3 style="font-size: 20px !important; margin-bottom: 1cm"><a>Ethan Cross</a></h3>
-                                    <p style="font-size: 16px">Dhaka - Buet</p>
+                                    <p style="font-size: 16px">Dhaka - Buet<br/>Today, 8:30pm</p>
                                 </td>
-                                <td style="width: 15%"><p style="font-size: 16px"><b>৳ 1 320</b></p></td>
-                                <td style="width: 20%"><p style="font-size: 12px">Today, 9:47am</p></td>
+                                <td style="30%"><button style="margin-bottom: .5cm; width: 88% !important; padding-right: 12%; font-size: 16px">Add to my favorite</button>
+                                    <button style="margin-bottom: .5cm; width: 88% !important; padding-right: 12%; font-size: 16px">Share this ad</button>
+                                    <button style="margin-bottom: .5cm; width: 88% !important; padding-right: 12%; font-size: 16px">Send an Email</button>
+                                </td>
                             </tr>
                         </table>
                         <hr style="margin-bottom: .5cm"></hr>

@@ -3,7 +3,7 @@ article, aside, figure, footer, header, hgroup,
                 label.valid {
                     width: 24px;
                     height: 24px;
-                    background: url(http://localhost/Forum_bootstrap/assets/img/valid.png) center center no-repeat;
+                    background: url(http://localhost/book_exchange/assets/img/valid.png) center center no-repeat;
                     display: inline-block;
                     text-indent: -9999px;
                 }

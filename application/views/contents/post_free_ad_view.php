@@ -7,7 +7,7 @@
                 <header><h1>Post a free Ad</h1></header>
                 <section>
                     <form action="#" class="form-horizontal" method="post">
-                        <fieldset>
+                        <fieldset style="padding-top: .5cm">
                             <div class="control-group">
                                 <label class="control-label">Ad title</label>
                                 <div class="controls">
