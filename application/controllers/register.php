@@ -6,6 +6,7 @@ class Register extends CI_Controller {
                            $data['option'] = "";
                            $data['page'] = "";
                            $this->load->view('includes/header', $data);
+                           $this->load->view('includes/ad_portion');
 		 $this->load->view('contents/register_view');
                            $this->load->view('includes/footer');
 	}

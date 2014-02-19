@@ -3,7 +3,7 @@
 <body>
 	<!-- Slider -->
 	<div id="slider">
-		<div class="shell">
+            <div class="shell">
 			<ul>
 				<li>
 					<div class="image">
@@ -11,9 +11,9 @@
 					</div>
 					<div class="details">
                                                                             <h2 style="font-family: 'Georgia', Arial, serif; font-style: italic; font-size: 65px; line-height: 70px; color: #fff;">Book Exchange</h2>
-						<h3>Special Offers</h3>
-						<p class="title">Pellentesque congue lorem quis massa </p>
-						<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing eli</p>
+						
+						<p class="title">Do you have any book to exchange ?</p>
+						<p class="description">Post your ad FOR FREE on BookExchange</p>
 						<a href="post_free_ad" class="add-free-ad">Post a free Ad</a>
 					</div>
 				</li>
@@ -23,9 +23,8 @@
 					</div>
 					<div class="details">
 						<h2 style="font-family: 'Georgia', Arial, serif; font-style: italic; font-size: 65px; line-height: 70px; color: #fff;">Book Exchange</h2>
-						<h3>Special Offers</h3>
-						<p class="title">Pellentesque congue lorem quis </p>
-						<p class="description"> varius sem sit amet metus volutpat vel vehicula nunc lacinia.</p>
+						<p class="title">Do you have any book to exchange ?</p>
+						<p class="description">Post your ad FOR FREE on BookExchange</p>
 						<a href="post_free_ad" class="add-free-ad">Post a free Ad</a>
 					</div>
 				</li>
@@ -35,9 +34,8 @@
 					</div>
 					<div class="details">
 						<h2 style="font-family: 'Georgia', Arial, serif; font-style: italic; font-size: 65px; line-height: 70px; color: #fff;">Book Exchange</h2>
-						<h3>Special Offers</h3>
-						<p class="title">Pellentesque congue lorem q</p>
-						<p class="description">Lorasellus varius sem sit amet metus volutpat vel vehic lacinia.</p>
+						<p class="title">Do you have any book to exchange ?</p>
+						<p class="description">Post your ad FOR FREE on BookExchange</p>
 						<a href="post_free_ad" class="add-free-ad">Post a free Ad</a>
 					</div>
 				</li>
@@ -47,9 +45,8 @@
 					</div>
 					<div class="details">
 						<h2 style="font-family: 'Georgia', Arial, serif; font-style: italic; font-size: 65px; line-height: 70px; color: #fff;">Book Exchange</h2>
-						<h3>Special Offers</h3>
-						<p class="title">Pellentesque congue lorem qu</p>
-						<p class="description">Lorellus varius sem sit amet metus volutpanunc lacinia.</p>
+						<p class="title">Do you have any book to exchange ?</p>
+						<p class="description">Post your ad FOR FREE on BookExchange</p>
 						<a href="post_free_ad" class="add-free-ad">Post a free Ad</a>
 					</div>
 				</li>

@@ -6,6 +6,7 @@ class Home extends CI_Controller {
                            $data['option'] = "";
                            $data['page'] = "home";
                            $this->load->view('includes/header', $data);
+                     //      $this->load->view('includes/ad_portion');
 		 $this->load->view('contents/home_view');
                            $this->load->view('includes/footer');
 	}

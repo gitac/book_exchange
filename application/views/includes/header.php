@@ -74,12 +74,12 @@
                     </tr>
                 </table>
             </div>
-            <div id="post-ad" style="padding: 0; height: 75%; margin-top: 10px">
+         <!--   <div id="post-ad" style="padding: 0; height: 75%; margin-top: 10px">
                 <h1 style="text-align: center; margin-bottom: .5cm;">Do you have any book to exchange ?</h1>
                        <h2 style="text-align: center; margin-bottom: .75cm;">Post your ad FOR FREE on BookExchange</h2>
                        <a href="post_free_ad" class="add-free-ad" style="margin-left: 350px">Post a free Ad</a>
                         </div>
-                        
+                        -->
 	</div>
 	<!-- End Header -->
         

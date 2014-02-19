@@ -46,7 +46,7 @@ textarea { overflow: auto; }
 #backButton:hover { color: #0f173a; text-decoration: none; }
 
 .shell { width: 884px; margin: 0 auto; background: url('http://localhost/book_exchange/assets/images/shell.png') repeat-y 0 0; padding: 0 57px 0 57px; position: relative; }
-.ad { width: 884px; height: 200px; margin: 0 auto; background: url('http://localhost/book_exchange/assets/images/shell.png') repeat-y 0 0; padding: 0 57px 0 57px; position: relative; }
+.ad { width: 884px; margin: 0 auto; background: url('http://localhost/book_exchange/assets/images/shell.png') repeat-y 0 0; padding: 0 57px .5cm 57px; position: relative; }
 .ad .add-free-ad { display: block; width: 115px; height: 48px; line-height: 48px; background: url('http://localhost/book_exchange/assets/images/slider-btn.png'); padding: 0 5px 0 59px; color: #fff; font-size: 16px; font-family: 'Georgia', Arial, serif; font-style: italic; font-weight: bold; margin-left: 1px; }
 .ad .add-free-ad:hover { color: #0f173a; text-decoration: none; }
 

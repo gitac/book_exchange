@@ -29,13 +29,13 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Second name</label>
+                                <label class="control-label">Last name</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge" placeholder="Second name" name="s_name"/>
+                                    <input type="text" class="input-xlarge" placeholder="Last name" name="l_name"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Book name</label>
+                                <label class="control-label">Gender</label>
                                 <div class="controls">
                                     <div style="float:left; clear:none;">
                                         <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="male" value="male" id="male" checked />

@@ -9,21 +9,21 @@
                     <form action="#" class="form-horizontal" method="post">
                         <fieldset style="padding-top: .5cm">
                             <div class="control-group">
-                                <label class="control-label">Ad title</label>
-                                <div class="controls">
-                                    <input type="text" class="input-xlarge" placeholder="Ad title" name="title"/>
-                                </div>
-                            </div>
-                            <div class="control-group">
                                 <label class="control-label">Book name</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge" placeholder="Ad title" name="title"/>
+                                    <input type="text" class="input-xlarge" placeholder="Book name" name="title"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Author name</label>
+                                <label class="control-label">Author name (Comma separated)</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge" placeholder="Ad title" name="title"/>
+                                    <input type="text" class="input-xlarge" placeholder="Example: Jacob Milman, Good Rich" name="title"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Edition</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge" placeholder="Edition" name="title"/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -55,7 +55,7 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label">Price</label>
+                                <label class="control-label">Price (Optional)</label>
                                 <div class="controls">
                                     <input type="text" class="input-xlarge" placeholder="Bangladeshi Taka"/>
                                 </div>
@@ -118,6 +118,17 @@
                                 <label class="control-label">Add address</label>
                                 <div class="controls">
                                     <input type="text" class="input-xlarge" placeholder="Ad title" name="title"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Occupation</label>
+                                <div class="controls">
+                                    <div style="float:left; clear:none;">
+                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="student" value="student" id="student" checked />
+                                        <label for="student" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">Student</label>
+                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="service_holder" value="service_holder" id="service_holder" />
+                                        <label for="service_holder" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">Service Holder</label>
+                                      </div>
                                 </div>
                             </div>
                             <div class="control-group">
