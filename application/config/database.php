@@ -46,10 +46,10 @@ $tns="(DESCRIPTION =
 (SERVER = DEDICATED)
 (SERVICE_NAME = orcl)
 )";
-$db['default']['hostname'] = $tns;
-$db['default']['username'] = '';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
 $db['default']['password'] = '';
-$db['default']['database'] = '';
+$db['default']['database'] = 'book_exchange';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
