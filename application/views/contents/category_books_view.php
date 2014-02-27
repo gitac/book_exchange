@@ -1,5 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+    <head>
+        <style>
+</style>
+    </head>
 <body>
 	<!-- Main -->
 	<div id="main" class="shell">
@@ -72,24 +76,21 @@
                     <div id="modal" >
                         <header><a href="#" style="padding-left: 72%">Price</a><a href="#" style="padding-left: 18%">Date</a></header>
                     </div>
-                   <!-- <div id="modal" >
-                        <header><a href="#" style="padding-left: 72%">Price</a><span><img src="<?php echo base_url() ?>assets/images/upper_arrow.png" /></span><a href="#" style="padding-left: 18%">Date</a><span><img src="<?php echo base_url() ?>assets/images/upper_arrow.png" /></span></header>
-                    </div> -->
-                    <!-- book details -->
                     <div>
                         <?php for($i=0; $i<8; $i++) {?>
-                        <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
+                        <a href="#">
+                            <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
                             <tr>
                                 <td style="width: 15%"><img src="<?php echo base_url() ?>assets/images/image02.jpg" alt="" /></td>
                                 <td style="width: 50%; text-align: center">
                                     <h2 style="font-size: 24px"><a href="ad_details">The Shepherd</a></h2>
                                     <h3 style="font-size: 20px !important; margin-bottom: 1cm"><a>Ethan Cross</a></h3>
-                                    <p style="font-size: 16px">Dhaka - Buet</p>
+                                    <p style="font-size: 16px"><a href="#">Dhaka - Buet</a></p>
                                 </td>
                                 <td style="width: 15%"><p style="font-size: 16px"><b>৳ 1 320</b></p></td>
                                 <td style="width: 20%"><p style="font-size: 12px">Today, 9:47am</p></td>
                             </tr>
-                        </table>
+                        </table></a>
                         <hr style="margin-bottom: .5cm"></hr>
                         <?php }?>
                         

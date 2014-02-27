@@ -19,7 +19,7 @@
 </head>
     <body>
         <!-- Header -->
-	<div id="header" class="shell">
+        <div id="header" class="shell">
             <div id="logo"><h1><a href="home">Book Exchange</a></h1><span>Give books away. Get books you want.</span></div>
 		<!-- Navigation -->
 		<div id="navigation">
@@ -30,7 +30,10 @@
                                                     </li>
 				<li><a href="#">All ads</a></li>
 				<li><a href="#">About Us</a></li>
-				<li><a href="#">Contacts</a></li>
+				<li>
+                                                            <?php if ($page == "contact") { ?><a href="contact" class="active">Contacts</a>
+                                                            <?php } else { ?> <a href="contact">Contacts</a> <?php } ?>
+                                    </li>
                                                    <li><a href="#">FAQ</a></li>
 			</ul>
 		</div>
@@ -49,7 +52,7 @@
 		<!-- End Login-details -->
 	</div>
 
-	<div id="header" class="ad">
+        <div id="header" class="ad">
             <div id="search" style="padding: 0; height: 25%">
                 <table border="1" bgcolor="#dddddd">
                     <tr>

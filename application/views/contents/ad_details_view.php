@@ -52,11 +52,8 @@
                             <input type="submit" value="Send" style="width: 80%; margin-left: 10%; margin-bottom: .5cm"/>
                         </div></td>
                 </tr>
-            </table>
-
-            
+            </table>         
 	</div>
-	<!-- End Main -->
-	
+	<!-- End Main -->	
 </body>
 </html>

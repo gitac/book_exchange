@@ -60,12 +60,17 @@
                                     <input type="text" class="input-xlarge" placeholder="Bangladeshi Taka"/>
                                 </div>
                             </div>
-                        
+                        </fieldset>
+                    </form>
+                </section>
+            </div>
             
-            
-                            <header><h1>Seller information</h1></header>
-                
-                            <div class="control-group" style="padding-top: .5cm">
+            <div id="modal">
+                <header><h1>Seller information</h1></header>
+                <section>
+                    <form action="#" class="form-horizontal" method="post">
+                        <fieldset>
+                            <div class="control-group">
                                 <label class="control-label" for="inputEmail">Email</label>
                                 <div class="controls">
                                     <input type="text" class="input-xlarge" id="inputEmail" placeholder="Email" name="email">
