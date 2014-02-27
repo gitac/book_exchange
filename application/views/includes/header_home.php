@@ -20,19 +20,19 @@
     <body>
         <!-- Header -->
         <div id="header" class="shell">
-            <div id="logo"><h1><a href="<?php echo base_url() ?>index.php/home">Book Exchange</a></h1><span>Give books away. Get books you want.</span></div>
+            <div id="logo"><h1><a href="home">Book Exchange</a></h1><span>Give books away. Get books you want.</span></div>
 		<!-- Navigation -->
 		<div id="navigation">
 			<ul>
 				<li>
-                                                            <?php if ($page == "home") { ?><a href="<?php echo base_url() ?>index.php/home" class="active">Home</a>
-                                                            <?php } else { ?> <a href="<?php echo base_url() ?>index.php/home">Home</a> <?php } ?>
+                                                            <?php if ($page == "home") { ?><a href="home" class="active">Home</a>
+                                                            <?php } else { ?> <a href="home">Home</a> <?php } ?>
                                                     </li>
 				<li><a href="#">All ads</a></li>
 				<li><a href="#">About Us</a></li>
 				<li>
-                                                            <?php if ($page == "contact") { ?><a href="<?php echo base_url() ?>index.php/contact" class="active">Contacts</a>
-                                                            <?php } else { ?> <a href="<?php echo base_url() ?>index.php/contact">Contacts</a> <?php } ?>
+                                                            <?php if ($page == "contact") { ?><a href="contact" class="active">Contacts</a>
+                                                            <?php } else { ?> <a href="contact">Contacts</a> <?php } ?>
                                     </li>
                                                    <li><a href="#">FAQ</a></li>
 			</ul>
@@ -43,9 +43,9 @@
 		<div id="login-details">
 			<p>
                                                 <?php if($option == "my_profile") { ?>
-                                                Welcome <a href="<?php echo base_url() ?>index.php/my_profile" id="login">My Profile</a> </p> <p><a href="#" id="reg">Log out</a> </p>
+                                                Welcome <a href="my_profile" id="login">My Profile</a> </p> <p><a href="#" id="reg">Log out</a> </p>
                                                 <?php } else {?>
-                                                <a href="<?php echo base_url() ?>index.php/login" id="login">Log in</a> </p> <p><a href="<?php echo base_url() ?>index.php/register" id="reg">Registration</a> </p>
+                                                <a href="login" id="login">Log in</a> </p> <p><a href="register" id="reg">Registration</a> </p>
                                                 <?php } ?>
 		</div>
                           <div></div>

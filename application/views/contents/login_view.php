@@ -4,20 +4,20 @@
 	<!-- Main -->
 	<div id="main" class="shell">
             <div id="modal">
-                    <header><h1>Log in</h1></header>
+                <header><h1><b>Login</b></h1></header>
                     <section>
-                        <form action="my_profile" id="contact-form" class="form-horizontal" method="post">
+                        <form action="<?php echo base_url() ?>index.php/my_profile" id="contact-form" class="form-horizontal" method="post">
                             <fieldset style="padding-top: .5cm">
 
                                 <div class="control-group">
-                                    <label class="control-label" for="inputUsername">Username</label>
+                                    <label class="control-label" for="inputUsername"><b>Username</b></label>
                                     <div class="controls">
                                         <input type="text" class="input-xlarge" id="inputUsername" placeholder="Username" name="un">
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="inputPassword">Password</label>
+                                    <label class="control-label" for="inputPassword"><b>Password</b></label>
                                     <div class="controls">
                                         <input type="password" class="input-xlarge" id="inputPassword" placeholder="Password" name="pw">
                                     </div>
@@ -28,14 +28,15 @@
                                         <label class="checkbox">
                                             <input type="checkbox"/>Remember me
                                         </label>
+                                        <button class="button_style" style="width: 200px; margin-top: .5cm; margin-bottom: .2cm">Login</button>
+                                        <a href="lost_password" style="margin-left: 30px">Forgot your password?</a>
                                       <!--  <input type="submit" value="Login"/> -->
-                                        <input type="submit" value="Login" style="width: 200px"/>
+                                      <!--  <input type="submit" value="Login" style="width: 200px"/> -->
                                     </div>
                                     </div>
                             </fieldset>
                         </form>
-                        <p  class="text-center"><a href="#">Forget password</a>
-                            </br>In order to login you must be <a href="register">register</a>ed</p>
+                        <p style="text-align: center"><br/>In order to login you must be <a href="register">register</a>ed</p>
                     </section>
                 </div>
 	</div>

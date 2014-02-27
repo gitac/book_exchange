@@ -664,7 +664,7 @@ legend + .control-group {
 }
 
 .form-horizontal .control-group {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   *zoom: 1;
 }
 
@@ -2341,3 +2341,4 @@ section {
   opacity: 1;
   filter: alpha(opacity=100);
 }
+
