@@ -2,10 +2,20 @@
 $count = 0;
 $d_count = 0;
 $l_count = 0;
+$a_count = 0;
 foreach ($division as $r) {
     $d_ids[] = $r['division_id'];
     $d_names[] = $r['division_name'];
     $d_count++;
+}
+
+foreach ($author as $r) {
+    $a_ids[] = $r['author_id'];
+    $a_names[] = $r['author_name'];
+    $a_count++;
+}
+if ($a_count > 5) {
+    $a = 5;
 }
 
 foreach ($category as $r) {
@@ -15,7 +25,7 @@ foreach ($category as $r) {
 }
 if ($count > 5)
     $c = 5;
-if ($type != "categories") {
+if ($type != "categories" && $type != "authors") {
     foreach ($list as $r) {
         $l_ids[] = $r['institute_id'];
         $l_types[] = $r['institute_type'];
@@ -50,12 +60,15 @@ if ($type != "categories") {
                     <li>
                         <h4>Authors</h4>
                         <ul>
-                            <li><a href="#">Jacob Millman</a></li>
-                            <li><a href="#">Goodrich</a></li>
-                            <li><a href="#">Jahanara Imam</a></li>
-                            <li><a href="#">Jasim Uddin</a></li>
-                            <li><a href="#">Kazi Nazrul Islam</a></li>
-                            <li><a href="#" style="color: #0182B5 !important; font-style: italic !important" >+See more..</a></li>
+                            <?php
+                            for ($i = 0; $i < $a; $i++) {
+                                ?>
+                                <li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $a_names[$i]; ?></a></li>
+                                <?php
+                            }
+                            ?>
+
+                            <li><a href="<?php echo base_url() ?>index.php/show_category/authors" style="color: #0182B5 !important; font-style: italic !important" >+See more..</a></li>
                         </ul>
                     </li>
                     <li>
@@ -83,32 +96,45 @@ if ($type != "categories") {
             </div>
             <!-- End Sidebar -->
             <div id="see_more" style="height: 1000px; width: 75%; margin-left: 25%;">
-                <a href="<?php echo $agent; ?>" id="backButton">Back</a>
+                <a href="<?php echo base_url() ?>index.php/home" id="backButton">Back</a>
                 <h1 style="color: #0871b3; text-align: center; margin-bottom: 1cm;"><b>All <?php echo $type; ?></b></h1>    
                 <table style="width: 100%">
                     <?php
                     if ($type == "categories") {
                         ?>
-    <?php for ($i = 0; $i < $count; $i = $i + 2) { ?>
+                        <?php for ($i = 0; $i < $count; $i = $i + 2) { ?>
                             <tr>
                                 <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $names[$i]; ?></a></li></ul></td>
                                 <?php if ($i % 2 == 0 && $i < $count - 1) { ?>
                                     <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $names[$i + 1]; ?></a></li></ul></td>
-                            <?php } ?>
+                                <?php } ?>
                             </tr>
-                        <?php }
+                            <?php
+                        }
+                    }else if($type == "authors"){
+                        ?>
+                        <?php for ($i = 0; $i < $a_count; $i = $i + 2) { ?>
+                            <tr>
+                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $a_names[$i]; ?></a></li></ul></td>
+                                <?php if ($i % 2 == 0 && $i < $count - 1) { ?>
+                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $a_names[$i + 1]; ?></a></li></ul></td>
+                                <?php } ?>
+                            </tr>
+                            <?php
+                        }
                     } else {
                         ?>
-                            <?php for ($i = 0; $i < $l_count; $i = $i + 2) { ?>
+                        <?php for ($i = 0; $i < $l_count; $i = $i + 2) { ?>
                             <tr>
                                 <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $l_names[$i]; ?></a></li></ul></td>
                                 <?php if ($i % 2 == 0 && $i < $l_count - 1) { ?>
                                     <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $l_names[$i + 1]; ?></a></li></ul></td>
-                            <?php } ?>
+                                <?php } ?>
                             </tr>
-    <?php }
-}
-?>
+                            <?php
+                        }
+                    }
+                    ?>
                 </table>
             </div>
         </div>

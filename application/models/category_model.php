@@ -26,6 +26,9 @@ class Category_model extends CI_Model{
         } else if($type == "division"){
             $this -> db -> from('DIVISION');
             $this->db->order_by("DIVISION_NAME");
+        } else if($type == "author"){
+            $this -> db -> from('AUTHOR');
+            $this->db->order_by("AUTHOR_NAME");
         }else {
             $this -> db -> from('INSTITUTE');
             $this->db->where('INSTITUTE_TYPE', $type);

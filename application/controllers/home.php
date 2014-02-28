@@ -24,6 +24,7 @@ class Home extends CI_Controller {
         $this->load->database();
         $data['category'] = $this->category_model->getFullList("category");
         $data['division'] = $this->category_model->getFullList("division");
+        $data['author'] = $this->category_model->getFullList("author");
         $this->load->view('contents/home_view', $data);
         
         $this->db->close();
