@@ -49,7 +49,7 @@ if ($count > 5)
                             <li><a href="#">Jahanara Imam</a></li>
                             <li><a href="#">Jasim Uddin</a></li>
                             <li><a href="#">Kazi Nazrul Islam</a></li>
-                            <li><a href="<?php echo base_url() ?>index.php/test/test" style="color: #0182B5 !important; font-style: italic !important" >+See more..</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/test/test3/<?php echo $count;?>/<?php echo $c;?>" style="color: #0182B5 !important; font-style: italic !important" >+See more..</a></li>
                         </ul>
                     </li>
                     <li>

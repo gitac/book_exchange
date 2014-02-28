@@ -27,8 +27,9 @@ class Test extends CI_Controller {
         }
         
     }
-    public function test(){
-       
+    public function test3($d, $s){
+        echo $s;
+     
     }
 
 }

@@ -28,8 +28,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding-left: .5cm; padding-bottom: .5cm"> <input type="button" value="Add to my favorite"></input></td>
-                        <td style="padding-left: .5cm; padding-bottom: .5cm"> <input type="button" value="Share this Ad"></input></td>
+                        <td style="padding-left: .5cm; padding-bottom: .5cm"> <button class="button_style" style="margin-left: 2%; margin-bottom: .2cm">Add to my favorite</button></td>
+                        <td style="padding-left: .5cm; padding-bottom: .5cm"> <button class="button_style" style="margin-bottom: .2cm">Share this Ad</button></td>
                     </tr>
                 </table>
                 </div></td>
@@ -49,7 +49,7 @@
                             <input type="text" class="input-xlarge" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"/>
                             <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm;">Mobile no (optional)</p>
                             <input type="text" class="input-xlarge" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .5cm"/>
-                            <input type="submit" value="Send" style="width: 80%; margin-left: 10%; margin-bottom: .5cm"/>
+                            <button class="button_style" style="width: 80%; margin-left: 10%; margin-bottom: .5cm">Send</button>
                         </div></td>
                 </tr>
             </table>         
