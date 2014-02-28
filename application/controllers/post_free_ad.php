@@ -1,13 +1,55 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Post_free_ad extends CI_Controller {
-	public function index()
-	{
-                           $data['option'] = "";
-                           $data['page'] = "";
-                           $this->load->view('includes/header', $data);
-                           $this->load->view('includes/ad_portion');
-		 $this->load->view('contents/post_free_ad_view');
-                           $this->load->view('includes/footer');
-	}
+
+    function __construct() {
+        parent::__construct();
+        $this->load->model('category_model');
+        $this->load->library('user_agent');
+    }
+
+    public function index() {
+        if ($this->agent->is_referral()) {
+            $data['agent'] = $this->agent->referrer();
+        } else {
+            $data['agent'] = NULL;
+        }
+        $data['book_error'] = NULL;
+        $data['option'] = "";
+        $data['page'] = "";
+        $this->load->view('includes/header', $data);
+        $this->load->view('includes/ad_portion');
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['division'] = $this->category_model->getFullList("division");
+        $data['author'] = $this->category_model->getFullList("author");
+        $this->load->view('contents/post_free_ad_view', $data);
+
+        $this->db->close();
+        $this->load->view('includes/footer');
+    }
+    public function check($error){
+        if ($this->agent->is_referral()) {
+            $data['agent'] = $this->agent->referrer();
+        } else {
+            $data['agent'] = NULL;
+        }
+        $data['book_error'] = $error;
+        $data['option'] = "";
+        $data['page'] = "";
+        $this->load->view('includes/header', $data);
+        $this->load->view('includes/ad_portion');
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['division'] = $this->category_model->getFullList("division");
+        $data['author'] = $this->category_model->getFullList("author");
+        $this->load->view('contents/post_free_ad_view', $data);
+
+        $this->db->close();
+        $this->load->view('includes/footer');
+    }
+
 }

@@ -86,6 +86,29 @@ $(document).ready(function(){
             .closest('.control-group').removeClass('error').addClass('success');
         }
     });
+    $('#form_post_ad').validate({
+        rules: {
+            book_name: {
+	        required: true
+            },
+            book_des: {
+                required: true
+            }
+        },
+        messages: {
+            book_name:{
+                remote: "plzz"
+            }
+        },
+        highlight: function(element) {
+            $(element).closest('.control-group').removeClass('success').addClass('error');
+        },
+        success: function(element) {
+            element
+            .text('OK!').addClass('valid')
+            .closest('.control-group').removeClass('error').addClass('success');
+        }
+    });
     
     $('#contact-form-reg').validate({
         rules: {

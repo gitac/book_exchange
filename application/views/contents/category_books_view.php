@@ -1,11 +1,20 @@
 <?php
 $count = 0;
 $d_count = 0;
+$a_count = 0;
     foreach ($division as $r) {
         $d_ids[] = $r['division_id'];
         $d_names[] = $r['division_name'];
         $d_count++;
     }
+foreach ($author as $r) {
+    $a_ids[] = $r['author_id'];
+    $a_names[] = $r['author_name'];
+    $a_count++;
+}
+if ($a_count > 5) {
+    $a = 5;
+}
 
 foreach ($category as $r) {
     $ids[] = $r['category_id'];
@@ -44,12 +53,15 @@ if ($count > 5)
                     <li>
                         <h4>Authors</h4>
                         <ul>
-                            <li><a href="#">Jacob Millman</a></li>
-                            <li><a href="#">Goodrich</a></li>
-                            <li><a href="#">Jahanara Imam</a></li>
-                            <li><a href="#">Jasim Uddin</a></li>
-                            <li><a href="#">Kazi Nazrul Islam</a></li>
-                            <li><a href="<?php echo base_url() ?>index.php/test/test3/<?php echo $count;?>/<?php echo $c;?>" style="color: #0182B5 !important; font-style: italic !important" >+See more..</a></li>
+                            <?php
+                            for ($i = 0; $i < $a; $i++) {
+                                ?>
+                                <li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $a_names[$i]; ?></a></li>
+                                <?php
+                            }
+                            ?>
+
+                            <li><a href="<?php echo base_url() ?>index.php/show_category/authors" style="color: #0182B5 !important; font-style: italic !important" >+See more..</a></li>
                         </ul>
                     </li>
                     <li>

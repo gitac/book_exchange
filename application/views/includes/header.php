@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="js/png-fix.js"></script>
 	<![endif]-->
 	<script type="text/javascript" src="<?php echo base_url() ?>assets/js/functions.js"></script>
-        
+        <script src="<?php echo base_url() ?>assets/js/script.js"></script>
              <!-- bootstrap-->
             <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/my_css.css"  media/>
            

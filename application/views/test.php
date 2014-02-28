@@ -1,24 +1,13 @@
-<?php
+<html>
+    <body>
 
+        <form action="test/test3" method="post"
+              enctype="multipart/form-data">
+            <label for="file">Filename:</label>
+            <input type="file" name="file" id="file" /> 
+            <br />
+            <input type="submit" name="submit" value="Submit" />
+        </form>
 
-$count = 0;
-foreach ($list as $r) {
-        $ids[] = $r['institute_type'];
-        $count++;
-    }
-    echo $count;
-
-for ($i = 0; $i < $count; $i++) {
-                   echo $id = $ids[$i];
-                    
-}
-/*
-$c = 0;
-foreach ($list as $l){
-    $ids[] = $l['INSTITUTE_NAME'];
-}
-for($i = 0; $i < $c; $i++){
-    $id = $ids[$i];
-    echo $id;
-}*/
-?>
+    </body>
+</html>
