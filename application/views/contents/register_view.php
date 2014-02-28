@@ -8,7 +8,7 @@
                 <section>
                     <p  class="text-center">In order to <a href="login">login</a> you must be registered</p>
 
-                    <form action="#" id="contact-form-reg" class="form-horizontal" method="post">
+                    <form action="" id="contact-form-reg" class="form-horizontal" method="post">
                         <fieldset style="padding-top: .5cm">
                             <div class="control-group">
                                 <label class="control-label" for="inputUsername">Username</label>

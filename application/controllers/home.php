@@ -1,13 +1,33 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Home extends CI_Controller {
-	public function index()
-	{
-                           $data['option'] = "";
-                           $data['page'] = "home";
-                           $this->load->view('includes/header', $data);
-                     //      $this->load->view('includes/ad_portion');
-		           $this->load->view('contents/home_view');
-                           $this->load->view('includes/footer');
-	}
+
+    function __construct() {
+        parent::__construct();
+        $this->load->model('category_model');
+        $this->load->library('user_agent');
+    }
+
+    public function index() {
+        if ($this->agent->is_referral())
+        {
+            $data['agent'] = $this->agent->referrer();
+        } else {
+            $data['agent'] = NULL;
+        }
+        $data['option'] = "";
+        $data['page'] = "home";
+        $this->load->view('includes/header', $data);
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['division'] = $this->category_model->getFullList("division");
+        $this->load->view('contents/home_view', $data);
+        
+        $this->db->close();
+        $this->load->view('includes/footer');
+    }
+
 }

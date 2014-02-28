@@ -11,3 +11,4 @@ class Ad_details extends CI_Controller {
                            $this->load->view('includes/footer');
 	}
 }
+?>

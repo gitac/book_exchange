@@ -18,18 +18,27 @@ class Category_model extends CI_Model{
     
    */ 
     function getFullList($type){
-            $this -> db -> select('*');
+        $this -> db -> select('*');
+        
+        if($type == "category"){
+            $this -> db -> from('CATEGORY');
+            $this->db->order_by("CATEGORY_NAME");
+        } else if($type == "division"){
+            $this -> db -> from('DIVISION');
+            $this->db->order_by("DIVISION_NAME");
+        }else {
             $this -> db -> from('INSTITUTE');
             $this->db->where('INSTITUTE_TYPE', $type);
-            $query = $this->db->get();
-            if ($query->num_rows >= 1){
-                foreach($query->result_array() as $row){
-                    $data[] = $row;
-                }
-                return $data;
+        } 
+        $query = $this->db->get();
+        if ($query->num_rows >= 1){
+            foreach($query->result_array() as $row){
+                $data[] = $row;
             }
-            else
-                return null;
+            return $data;
+        }
+        else
+            return null;
     }   
     
     

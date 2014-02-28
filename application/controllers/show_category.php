@@ -7,56 +7,98 @@ class Show_category extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('category_model');
+        $this->load->library('user_agent');
     }
     public function categories() {
+        if ($this->agent->is_referral())
+        {
+            $data['agent'] = $this->agent->referrer();
+        } else {
+            $data['agent'] = NULL;
+        }
         $data['option'] = "";
         $data['page'] = "home";
         $data['type'] = "categories";
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
-        $this->load->view('contents/show_category_view');
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['division'] = $this->category_model->getFullList("division");
+        $this->load->view('contents/show_category_view', $data);
+        
+        $this->db->close();
         $this->load->view('includes/footer');
     }
     public function schools() {
-        $this->load->database();
-        $d['list'] = $this->category_model->getFullList("school");
-        $c = 0;
-foreach ($d['list'] as $l){
-    $ids[] = $l['INSTITUTE_NAME'];
-}
-for($i = 0; $i < $c; $i++){
-    $id = $ids[$i];
-    echo $id;
-}
-        $this->db->close();
-       /* foreach($d as $l){
-            echo $l->INSTITUTE_NAME;
-        }*/
-   //  $this->load->view('test', $d);
-       /* $data['option'] = "";
+        if ($this->agent->is_referral())
+        {
+            $data['agent'] = $this->agent->referrer();
+        } else {
+            $data['agent'] = NULL;
+        }
+        $data['option'] = "";
         $data['page'] = "home";
         $data['type'] = "schools";
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
+        
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['list'] = $this->category_model->getFullList("school");
+        $data['division'] = $this->category_model->getFullList("division");
         $this->load->view('contents/show_category_view', $data);
-        $this->load->view('includes/footer');*/
+        
+        $this->db->close();
+        
+        $this->load->view('includes/footer');
+        
     }
     public function colleges() {
+        if ($this->agent->is_referral())
+        {
+            $data['agent'] = $this->agent->referrer();
+        } else {
+            $data['agent'] = NULL;
+        }
         $data['option'] = "";
         $data['page'] = "home";
         $data['type'] = "colleges";
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
+        
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['list'] = $this->category_model->getFullList("college");
+        $data['division'] = $this->category_model->getFullList("division");
+        
         $this->load->view('contents/show_category_view', $data);
+        
+        $this->db->close();
+        
         $this->load->view('includes/footer');
     }   
     public function varsities() {
+        if ($this->agent->is_referral())
+        {
+            $data['agent'] = $this->agent->referrer();
+        } else {
+            $data['agent'] = NULL;
+        }
         $data['option'] = "";
         $data['page'] = "home";
         $data['type'] = "varsities";
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
+        
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['list'] = $this->category_model->getFullList("varsity");
+        $data['division'] = $this->category_model->getFullList("division");
+        
         $this->load->view('contents/show_category_view', $data);
+        
+        $this->db->close();
+        
         $this->load->view('includes/footer');
     }
 }
