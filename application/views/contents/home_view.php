@@ -134,7 +134,7 @@ foreach ($mostly_viewed_book as $r) {
                             <?php
                             for ($i = 0; $i < $a_count; $i++) {
                                 ?>
-                                <li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $a_names[$i]; ?></a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/category_books/author/<?php echo $a_ids[$i]; ?>"><?php echo $a_names[$i]; ?></a></li>
                                 <?php
                             }
                             ?>
@@ -176,7 +176,7 @@ foreach ($mostly_viewed_book as $r) {
                             ?>
                             <li>
                                 <div class="product">
-                                    <a href="<?php echo base_url() ?>index.php/ad_details" target="_blank" class="info">
+                                    <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $book_ids[$i]?>" target="_blank" class="info">
                                         <span class="holder" style="height: 300px">
                                             <img src="<?php echo base_url() ?><?php echo $book_images[$i]; ?>" alt="" />
                                             <span class="book-name"><?php echo $book_names[$i]; ?></span>
@@ -184,6 +184,7 @@ foreach ($mostly_viewed_book as $r) {
                                             <!--<span class="description"<br/><br/><br/><br/><br/><br/></span>-->
                                         </span>
                                     </a>
+                                    <!--<a href="#" class="buy-btn" style="margin-bottom: 1cm">ADD TO FAVORITE</a>-->
                                     <a href="#" class="buy-btn">BUY NOW <span class="price"><span class="low">৳</span><?php echo $book_prices[$i] ?></span></a>
                                 </div>
                             </li>
@@ -201,7 +202,7 @@ foreach ($mostly_viewed_book as $r) {
                             ?>
                             <li>
                                 <div class="product">
-                                    <a href="<?php echo base_url() ?>index.php/ad_details" target="_blank" class="info">
+                                    <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $m_v_book_ids[$i]?>" target="_blank" class="info">
 
                                         <img src="<?php echo base_url() ?><?php echo $m_v_book_images[$i]; ?>" alt="" />
                                         <span class="book-name"><?php echo $m_v_book_names[$i]; ?></span>

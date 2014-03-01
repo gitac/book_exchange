@@ -39,8 +39,18 @@ class Test extends CI_Controller {
             echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
             echo "Stored in: " . $_FILES["file"]["tmp_name"];
         }
-        $the_directory_i_want = base_url()."assets/book_image";
-        move_uploaded_file($_FILES["file"]["tmp_name"], $the_directory_i_want);
+        $allowedExts = array("gif", "jpeg", "jpg", "png", "JPG", "JPEG", "GIF", "PNG");
+        $extension = end(explode(".", $_FILES["file"]["name"]));
+        $image_name = $_FILES["file"]["name"];
+       
+        $image_path = base_url()."assets/book_image/" . $image_name;
+        if( $_FILES["file"]["name"] != ""){
+            if (($_FILES["file"]["size"] < 999999999999) && in_array($extension, $allowedExts)) 
+                    {
+                        move_uploaded_file($_FILES["file"]["tmp_name"], $image_path);
+                    } 
+        }
+       
     }
 
 }

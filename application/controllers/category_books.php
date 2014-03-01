@@ -39,6 +39,7 @@ class Category_books extends CI_Controller {
         }
         $data['option'] = "";
         $data['page'] = "home";
+        $data['criteria'] = "category";
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
         $this->load->database();
@@ -52,5 +53,26 @@ class Category_books extends CI_Controller {
         $this->db->close();
         $this->load->view('includes/footer');
     }
+    public function author($aid){
+        if ($this->agent->is_referral()) {
+            $data['agent'] = $this->agent->referrer();
+        } else {
+            $data['agent'] = NULL;
+        }
+        $data['option'] = "";
+        $data['page'] = "home";
+        $data['criteria'] = "author";
+        $this->load->view('includes/header', $data);
+        $this->load->view('includes/ad_portion');
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['division'] = $this->category_model->getFullList("division");
+        $data['author'] = $this->category_model->getFullList("author");
+        $data['c_name'] = $this->category_model->getAuthorName($aid);
+        $data['author_book'] = $this->book_model->getAuthorAllBookList($aid);
+        $this->load->view('contents/category_books_view', $data);
 
+        $this->db->close();
+        $this->load->view('includes/footer');
+    }
 }

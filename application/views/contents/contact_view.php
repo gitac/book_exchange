@@ -36,20 +36,21 @@
                                         <textarea class="xxlarge" rows="3" style="width: 77%"></textarea>
                                     </div>
                                 </div>
-                                
+                                <!--
                                 <div class="control-group">
                                     <label class="control-label" for="code"><b>Verification code</b></label>
                                     <div class="controls">
                                         <!-- add img for code
-                                        verify code and button will show at same row-->
+                                        verify code and button will show at same row
                                         <input type="button" value="Reset"style="margin-bottom: .5cm"/>
                                         <input type="text" class="input-xlarge" id="code" name="code"/>
                                     </div>
                                 </div>
+-->
 
                                 <div class="control-group">
                                     <div class="controls">
-                                        <input type="submit" value="Login" style="width: 200px"/>
+                                        <input type="submit" value="Send" style="width: 200px"/>
                                     </div>
                                     </div>
                             </fieldset>

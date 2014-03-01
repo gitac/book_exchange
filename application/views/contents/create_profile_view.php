@@ -60,7 +60,7 @@
                             <div class="control-group">
                                 <label class="control-label">Photo</label>
                                 <div class="controls">
-                                    <input type="submit" value="Add photo" style="width: 200px"/>
+                                    <input type="file"></input>
                                 </div>
                             </div>
                             <div class="control-group">

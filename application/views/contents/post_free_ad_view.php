@@ -99,8 +99,13 @@ foreach ($category as $r) {
 
 
                             <header><h1>Seller information</h1></header>
-
                             <div class="control-group" style="padding-top: .5cm">
+                                <label class="control-label" for="name">Name</label>
+                                <div class="controls">
+                                    <input type="text" class="input-xlarge" id="inputName" placeholder="Name" name="name"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <label class="control-label" for="inputEmail">Email</label>
                                 <div class="controls">
                                     <input type="text" class="input-xlarge" id="inputEmail" placeholder="Email" name="email">
@@ -117,7 +122,6 @@ foreach ($category as $r) {
                                 <div class="controls">
                                     <div class="input">
                                         <select  style="text-align: center">
-                                            <option value="0">--Division--</option>
                                             <?php for ($i = 0; $i < $d_count; $i++) {
                                                 ?>
                                                 <option value="<?php echo $d_ids[$i]; ?>"><?php echo $d_names[$i]; ?></option>
@@ -148,9 +152,10 @@ foreach ($category as $r) {
                             <div class="control-group">
                                 <label class="control-label">Add address</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge" placeholder="Ad title" name="title"/>
+                                    <input type="text" class="input-xlarge" placeholder="Address" name="address"/>
                                 </div>
                             </div>
+                            <!--
                             <div class="control-group">
                                 <label class="control-label">Occupation</label>
                                 <div class="controls">
@@ -162,6 +167,7 @@ foreach ($category as $r) {
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="control-group">
                                 <label class="control-label" >Institutes</label>
                                 <div class="controls">
@@ -174,6 +180,7 @@ foreach ($category as $r) {
                                     </div>
                                 </div>
                             </div>
+                            -->
                             <div class="control-group">
                                 <div class="controls">
                                     <button type="submit" class="button_style" style="width: 200px; margin-top: .2cm; margin-bottom: .2cm">Post</button>

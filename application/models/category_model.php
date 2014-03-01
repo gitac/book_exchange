@@ -29,6 +29,18 @@ class Category_model extends CI_Model{
         }
         return $title;
     }
+    function getAuthorName($aid){
+        $this -> db -> select('author_name');
+        $this->db->from('author');
+        $this->db->where('author_id', $aid);
+        $query = $this->db->get();
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $title = $row->author_name;
+            }
+        }
+        return $title;
+    }
     function getFullList($type){
         $this -> db -> select('*');
         

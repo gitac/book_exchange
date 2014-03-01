@@ -25,23 +25,40 @@ if ($count > 5)
     $c = 5;
 
 $book_count = 0;
-if ($category_book != NULL) {
-    foreach ($category_book as $r) {
-        $book_ids[] = $r['book_id'];
-        $book_names[] = $r['book_name'];
-        $book_prices[] = $r['book_price'];
-        $book_images[] = $r['book_image'];
-        $book_des[] = $r['book_description'];
-        $book_authors[] = $r['author_name'];
-        //$book_category[] = $r['category_name'];
-        $c_id[] = $r['b_category_id'];
-        $book_post_time[] = $r['date_time'];
-        $book_count++;
+if ($criteria == "category") {
+    if ($category_book != NULL) {
+        foreach ($category_book as $r) {
+            $book_ids[] = $r['book_id'];
+            $book_names[] = $r['book_name'];
+            $book_prices[] = $r['book_price'];
+            $book_images[] = $r['book_image'];
+            $book_des[] = $r['book_description'];
+            $book_authors[] = $r['author_name'];
+            $book_post_time[] = $r['date_time'];
+            $book_count++;
+        }
+        $page = 1;
+        $res = $book_count / 5;
+        $res = intval($res);
+        $mod = $book_count % 5;
     }
-    $page = 1;
-    $res = $book_count / 5;
-    $res = intval($res);
-    $mod = $book_count % 5;
+} else if ($criteria == "author") {
+    if ($author_book != NULL) {
+        foreach ($author_book as $r) {
+            $book_ids[] = $r['book_id'];
+            $book_names[] = $r['book_name'];
+            $book_prices[] = $r['book_price'];
+            $book_images[] = $r['book_image'];
+            $book_des[] = $r['book_description'];
+            $book_authors[] = $r['author_name'];
+            $book_post_time[] = $r['date_time'];
+            $book_count++;
+        }
+        $page = 1;
+        $res = $book_count / 5;
+        $res = intval($res);
+        $mod = $book_count % 5;
+    }
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -76,7 +93,7 @@ if ($category_book != NULL) {
                             <?php
                             for ($i = 0; $i < $a; $i++) {
                                 ?>
-                                <li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $a_names[$i]; ?></a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/category_books/author/<?php echo $a_ids[$i]; ?>"><?php echo $a_names[$i]; ?></a></li>
                                 <?php
                             }
                             ?>
@@ -118,7 +135,7 @@ if ($category_book != NULL) {
                     <form method="post">
                         <table style="padding-left: 5%; width: 100%">
                             <tr>
-                                <td style="color: #0871b3; font-size: 16px; width: 60%">Search in <?php echo $c_name; ?> books &nbsp; &nbsp;</td>
+                                <td style="color: #0871b3; font-size: 16px; width: 60%">Search in <?php echo $c_name; ?><?php if($criteria == "author") echo "'s"?> books &nbsp; &nbsp;</td>
                                 <td style="width: 30%"><input type="text" place placeholder="search"></input></td>
                                 <td style="width: 10%"><input type="button" value="" id="searchButton" /></td>
                             </tr>
@@ -150,7 +167,7 @@ if ($category_book != NULL) {
                                     <tr>
                                         <td style="width: 15%"><img src="<?php echo base_url() ?><?php echo $book_images[$i] ?>" alt="" /></td>
                                         <td style="width: 45%; text-align: center">
-                                            <h2 style="font-size: 24px"><a href="<?php echo base_url() ?>index.php/ad_details"><?php echo $book_names[$i] ?></a></h2>
+                                            <h2 style="font-size: 24px"><a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $book_ids[$i]?>"><?php echo $book_names[$i] ?></a></h2>
                                             <h3 style="font-size: 20px !important; margin-bottom: 1cm"><a><?php echo $book_authors[$i] ?></a></h3>
                                             <!--<p style="font-size: 16px"><a href="#">Dhaka - Buet</a></p> -->
                                         </td>

@@ -63,7 +63,7 @@ if ($type != "categories" && $type != "authors") {
                             <?php
                             for ($i = 0; $i < $a; $i++) {
                                 ?>
-                                <li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $a_names[$i]; ?></a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/category_books/author/<?php echo $a_ids[$i]; ?>"><?php echo $a_names[$i]; ?></a></li>
                                 <?php
                             }
                             ?>
@@ -115,9 +115,9 @@ if ($type != "categories" && $type != "authors") {
                         ?>
                         <?php for ($i = 0; $i < $a_count; $i = $i + 2) { ?>
                             <tr>
-                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $a_names[$i]; ?></a></li></ul></td>
-                                <?php if ($i % 2 == 0 && $i < $count - 1) { ?>
-                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $a_names[$i + 1]; ?></a></li></ul></td>
+                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/author/<?php echo $a_ids[$i]; ?>"><?php echo $a_names[$i]; ?></a></li></ul></td>
+                                <?php if ($i % 2 == 0 && $i < $a_count - 1) { ?>
+                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/author/<?php echo $a_ids[$i + 1]; ?>"><?php echo $a_names[$i + 1]; ?></a></li></ul></td>
                                 <?php } ?>
                             </tr>
                             <?php
@@ -126,9 +126,9 @@ if ($type != "categories" && $type != "authors") {
                         ?>
                         <?php for ($i = 0; $i < $l_count; $i = $i + 2) { ?>
                             <tr>
-                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $l_names[$i]; ?></a></li></ul></td>
+                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="#"><?php echo $l_names[$i]; ?></a></li></ul></td>
                                 <?php if ($i % 2 == 0 && $i < $l_count - 1) { ?>
-                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books"><?php echo $l_names[$i + 1]; ?></a></li></ul></td>
+                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="#"><?php echo $l_names[$i + 1]; ?></a></li></ul></td>
                                 <?php } ?>
                             </tr>
                             <?php
