@@ -2,7 +2,8 @@
 $count = 0;
 $d_count = 0;
 $a_count = 0;
-
+$book_count = 0;
+$mostly_viewed_book_count = 0;
     foreach ($division as $r) {
         $d_ids[] = $r['division_id'];
         $d_names[] = $r['division_name'];
@@ -25,6 +26,23 @@ foreach ($category as $r) {
     }
     if($count > 5){
         $count = 5;
+    }
+    
+    foreach ($book as $r) {
+        $book_ids[] = $r['book_id'];
+        $book_names[] = $r['book_name'];
+        $book_prices[] = $r['book_price'];
+        $book_images[] = $r['book_image'];
+        $book_des[] = $r['book_description'];
+        $book_count++;
+    }
+    foreach ($mostly_viewed_book as $r) {
+        $m_v_book_ids[] = $r['book_id'];
+        $m_v_book_names[] = $r['book_name'];
+        $m_v_book_prices[] = $r['book_price'];
+        $m_v_book_images[] = $r['book_image'];
+        $m_v_book_des[] = $r['book_description'];
+        $mostly_viewed_book_count++;
     }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -152,110 +170,23 @@ foreach ($category as $r) {
                 <div class="products">
                     <h3>Recently added books</h3>
                     <ul>
+                       <?php for($i = 0; $i < 8; $i++){
+                           ?>
                         <li>
                             <div class="product">
                                 <a href="#" class="info">
                                     <span class="holder">
-                                        <img src="<?php echo base_url() ?>assets/images/image01.jpg" alt="" />
-                                        <span class="book-name">Book Name</span>
-                                        <span class="author">by John Smith</span>
-                                        <span class="description">Maecenas vehicula ante eu enim pharetra<br />scelerisque dignissim <br />sollicitudin nisi</span>
+                                        <img src="<?php echo base_url() ?><?php echo $book_images[$i];?>" alt="" />
+                                        <span class="book-name"><?php echo $book_names[$i];?></span>
+                                        <span class="author">by Raymond Khoury</span>
+                                        <span class="description"<br/><br/><br/><br/><br/></span>
                                     </span>
                                 </a>
-                                <a href="#" class="buy-btn">BUY NOW <span class="price"><span class="low">$</span>22<span class="high">00</span></span></a>
+                                <a href="#" class="buy-btn">BUY NOW <span class="price"><span class="low">৳</span><?php echo $book_prices[$i]?></span></a>
                             </div>
                         </li>
-                        <li>
-                            <div class="product">
-                                <a href="#" class="info">
-                                    <span class="holder">
-                                        <img src="<?php echo base_url() ?>assets/images/image02.jpg" alt="" />
-                                        <span class="book-name">Book Name</span>
-                                        <span class="author">by John Smith</span>
-                                        <span class="description">Maecenas vehicula ante eu enim pharetra<br />scelerisque dignissim <br />sollicitudin nisi</span>
-                                    </span>
-                                </a>
-                                <a href="#" class="buy-btn">BUY NOW <span class="price"><span class="low">$</span>22<span class="high">00</span></span></a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#" class="info">
-                                    <span class="holder">
-                                        <img src="<?php echo base_url() ?>assets/images/image03.jpg" alt="" />
-                                        <span class="book-name">Book Name</span>
-                                        <span class="author">by John Smith</span>
-                                        <span class="description">Maecenas vehicula ante eu enim pharetra<br />scelerisque dignissim <br />sollicitudin nisi</span>
-                                    </span>
-                                </a>
-                                <a href="#" class="buy-btn">BUY NOW <span class="price"><span class="low">$</span>22<span class="high">00</span></span></a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#" class="info">
-                                    <span class="holder">
-                                        <img src="<?php echo base_url() ?>assets/images/image04.jpg" alt="" />
-                                        <span class="book-name">Book Name</span>
-                                        <span class="author">by John Smith</span>
-                                        <span class="description">Maecenas vehicula ante eu enim pharetra<br />scelerisque dignissim <br />sollicitudin nisi</span>
-                                    </span>
-                                </a>
-                                <a href="#" class="buy-btn">BUY NOW <span class="price"><span class="low">$</span>22<span class="high">00</span></span></a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#" class="info">
-                                    <span class="holder">
-                                        <img src="<?php echo base_url() ?>assets/images/image05.jpg" alt="" />
-                                        <span class="book-name">Book Name</span>
-                                        <span class="author">by John Smith</span>
-                                        <span class="description">Maecenas vehicula ante eu enim pharetra<br />scelerisque dignissim <br />sollicitudin nisi</span>
-                                    </span>
-                                </a>
-                                <a href="#" class="buy-btn">BUY NOW <span class="price"><span class="low">$</span>22<span class="high">00</span></span></a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#" class="info">
-                                    <span class="holder">
-                                        <img src="<?php echo base_url() ?>assets/images/image06.jpg" alt="" />
-                                        <span class="book-name">Book Name</span>
-                                        <span class="author">by John Smith</span>
-                                        <span class="description">Maecenas vehicula ante eu enim pharetra<br />scelerisque dignissim <br />sollicitudin nisi</span>
-                                    </span>
-                                </a>
-                                <a href="#" class="buy-btn">BUY NOW <span class="price"><span class="low">$</span>22<span class="high">00</span></span></a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#" class="info">
-                                    <span class="holder">
-                                        <img src="<?php echo base_url() ?>assets/images/image07.jpg" alt="" />
-                                        <span class="book-name">Book Name</span>
-                                        <span class="author">by John Smith</span>
-                                        <span class="description">Maecenas vehicula ante eu enim pharetra<br />scelerisque dignissim <br />sollicitudin nisi</span>
-                                    </span>
-                                </a>
-                                <a href="#" class="buy-btn">BUY NOW <span class="price"><span class="low">$</span>22<span class="high">00</span></span></a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#" class="info">
-                                    <span class="holder">
-                                        <img src="<?php echo base_url() ?>assets/images/image08.jpg" alt="" />
-                                        <span class="book-name">Book Name</span>
-                                        <span class="author">by John Smith</span>
-                                        <span class="description">Maecenas vehicula ante eu enim pharetra<br />scelerisque dignissim <br />sollicitudin nisi</span>
-                                    </span>
-                                </a>
-                                <a href="#" class="buy-btn">BUY NOW <span class="price"><span class="low">$</span>22<span class="high">00</span></span></a>
-                            </div>
-                        </li>
+                        <?php
+                       }?>
                     </ul>
                     <!-- End Products -->
                 </div>
@@ -264,86 +195,37 @@ foreach ($category as $r) {
                 <div id="best-sellers">
                     <h3 style="color: #0182B5 !important">Mostly viewed books</h3>
                     <ul>
+                        <?php for($i = 0; $i < 4; $i++){
+                           ?>
                         <li>
                             <div class="product">
-                                <a href="#">
-                                    <img src="<?php echo base_url() ?>assets/images/image-best01.jpg" alt="" />
-                                    <span class="book-name">Book Name </span>
-                                    <span class="author">by John Smith</span>
-                                    <span class="price"><span class="low">$</span>35<span class="high">00</span></span>
+                                <a href="#" class="info">
+                                    <span class="holder">
+                                        <img src="<?php echo base_url() ?><?php echo $m_v_book_images[$i];?>" alt="" />
+                                        <span class="book-name"><?php echo $m_v_book_names[$i];?></span>
+                                    </span>
                                 </a>
+                                <span class="price"><span class="low">৳</span><?php echo $m_v_book_prices[$i]?></span>
                             </div>
                         </li>
+                        <?php
+                       }?>
+                        
+                        <?php for($i = 0; $i < 4; $i++){
+                           ?>
                         <li>
                             <div class="product">
-                                <a href="#">
-                                    <img src="<?php echo base_url() ?>assets/images/image-best02.jpg" alt="" />
-                                    <span class="book-name">Book Name </span>
-                                    <span class="author">by John Smith</span>
-                                    <span class="price"><span class="low">$</span>45<span class="high">00</span></span>
+                                <a href="#" class="info">
+                                    <span class="holder">
+                                        <img src="<?php echo base_url() ?><?php echo $m_v_book_images[$i];?>" alt="" />
+                                        <span class="book-name"><?php echo $m_v_book_names[$i];?></span>
+                                    </span>
                                 </a>
+                                <span class="price"><span class="low">৳</span><?php echo $m_v_book_prices[$i]?></span>
                             </div>
                         </li>
-                        <li>
-                            <div class="product">
-                                <a href="#">
-                                    <img src="<?php echo base_url() ?>assets/images/image-best03.jpg" alt="" />
-                                    <span class="book-name">Book Name </span>
-                                    <span class="author">by John Smith</span>
-                                    <span class="price"><span class="low">$</span>15<span class="high">00</span></span>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#">
-                                    <img src="<?php echo base_url() ?>assets/images/image-best04.jpg" alt="" />
-                                    <span class="book-name">Book Name </span>
-                                    <span class="author">by John Smith</span>
-                                    <span class="price"><span class="low">$</span>27<span class="high">99</span></span>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#">
-                                    <img src="<?php echo base_url() ?>assets/images/image-best01.jpg" alt="" />
-                                    <span class="book-name">Book Name </span>
-                                    <span class="author">by John Smith</span>
-                                    <span class="price"><span class="low">$</span>35<span class="high">00</span></span>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#">
-                                    <img src="<?php echo base_url() ?>assets/images/image-best02.jpg" alt="" />
-                                    <span class="book-name">Book Name </span>
-                                    <span class="author">by John Smith</span>
-                                    <span class="price"><span class="low">$</span>45<span class="high">00</span></span>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#">
-                                    <img src="<?php echo base_url() ?>assets/images/image-best03.jpg" alt="" />
-                                    <span class="book-name">Book Name </span>
-                                    <span class="author">by John Smith</span>
-                                    <span class="price"><span class="low">$</span>15<span class="high">00</span></span>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="product">
-                                <a href="#">
-                                    <img src="<?php echo base_url() ?>assets/images/image-best04.jpg" alt="" />
-                                    <span class="book-name">Book Name </span>
-                                    <span class="author">by John Smith</span>
-                                    <span class="price"><span class="low">$</span>27<span class="high">99</span></span>
-                                </a>
-                            </div>
-                        </li>
+                        <?php
+                       }?>
                     </ul>
                 </div>
                 <!-- End Best-sellers -->

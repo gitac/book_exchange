@@ -83,7 +83,7 @@ foreach ($category as $r) {
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" >Describe what makes your ad unique:</label>
+                                <label class="control-label" >Describe what makes your ad unique within 1000 characters</label>
                                 <div class="controls">
                                     <textarea style="width: 50%" class="xxlarge" rows="3" name="book_des"></textarea>
                                 </div>
