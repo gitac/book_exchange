@@ -17,6 +17,18 @@ class Category_model extends CI_Model{
     }
     
    */ 
+    function getCategoryName($cid){
+        $this -> db -> select('category_name');
+        $this->db->from('category');
+        $this->db->where('category_id', $cid);
+        $query = $this->db->get();
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $title = $row->category_name;
+            }
+        }
+        return $title;
+    }
     function getFullList($type){
         $this -> db -> select('*');
         

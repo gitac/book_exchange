@@ -26,7 +26,7 @@ class Home extends CI_Controller {
         $data['category'] = $this->category_model->getFullList("category");
         $data['division'] = $this->category_model->getFullList("division");
         $data['author'] = $this->category_model->getFullList("author");
-        $data['book'] = $this->book_model->getFullBookList();
+        $data['recently_added_book'] = $this->book_model->getFullRecentlyAddedBookList();
         $data['mostly_viewed_book'] = $this->book_model->getMostlyViewedBookList();
         $this->load->view('contents/home_view', $data);
         
