@@ -148,7 +148,7 @@ foreach ($mostly_viewed_book as $r) {
                             <?php
                             for ($i = 0; $i < $d_count; $i++) {
                                 ?>
-                                <li><a href="#"><?php echo $d_names[$i]; ?></a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/category_books/location/<?php echo $d_ids[$i]; ?>"><?php echo $d_names[$i]; ?></a></li>
                                 <?php
                             }
                             ?>
@@ -219,7 +219,7 @@ foreach ($mostly_viewed_book as $r) {
                             ?>
                             <li>
                                 <div class="product" style="height: 100% !important ">
-                                    <a href="<?php echo base_url() ?>index.php/ad_details" target="_blank" class="info">
+                                    <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $m_v_book_ids[$i]?>" target="_blank" class="info">
 
                                         <img src="<?php echo base_url() ?><?php echo $m_v_book_images[$i]; ?>" alt="" />
                                         <span class="book-name"><?php echo $m_v_book_names[$i]; ?></span>

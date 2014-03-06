@@ -24,7 +24,7 @@ if ($book_info != NULL) {
         <!-- Main -->
         <div id="main" class="shell">
             <p><a href="<?php echo $agent;?>" style="font-size: 16px !important; float:left; clear:none; display:block; padding: 8px 1em 0 0;">< Back</a>
-                <a href="#" style="font-size: 16px !important; float:left; clear:none; display:block; padding: 8px 1em 0 78%;">Next ></a></p>
+                <a href="#" style="font-size: 16px !important; float:left; clear:none; display:block; padding: 8px 1em 0 85%;">Next ></a></p>
             <table style="width: 100%; height: 800px">
                 <tr>
                     <td style="width: 65%; height: 100%">            <div id="modal" style="margin-left: 0 !important; height: 100% !important">

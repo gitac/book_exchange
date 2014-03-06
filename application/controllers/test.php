@@ -31,7 +31,7 @@ class Test extends CI_Controller {
     }
 
     public function test3() {
-        if ($_FILES["file"]["error"] > 0) {
+     /*   if ($_FILES["file"]["error"] > 0) {
             echo "Error: " . $_FILES["file"]["error"] . "<br />";
         } else {
             echo "Upload: " . $_FILES["file"]["name"] . "<br />";
@@ -43,14 +43,17 @@ class Test extends CI_Controller {
         $extension = end(explode(".", $_FILES["file"]["name"]));
         $image_name = $_FILES["file"]["name"];
        
-        $image_path = base_url()."assets/book_image/" . $image_name;
+        $image_path = "assets/book_image/" . $image_name;
         if( $_FILES["file"]["name"] != ""){
             if (($_FILES["file"]["size"] < 999999999999) && in_array($extension, $allowedExts)) 
                     {
                         move_uploaded_file($_FILES["file"]["tmp_name"], $image_path);
                     } 
         }
-       
+       */
+        $target_Path = "assets/book_image/";
+        $target_Path = $target_Path.basename( $_FILES['file']['name'] );
+        move_uploaded_file( $_FILES['file']['tmp_name'], $target_Path );
     }
 
 }

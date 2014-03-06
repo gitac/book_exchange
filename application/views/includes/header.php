@@ -61,6 +61,10 @@
                             <option>--All category--</option>
                             <option>-----</option>
                         </select></td>
+                        <td><select style="width: 150px !important">
+                            <option>--All Authors--</option>
+                            <option>----</option>
+                        </select></td>
                         <td><select style="width: 170px !important">
                             <option>--All of Bangladesh--</option>
                             <option>----</option>
@@ -69,10 +73,7 @@
                             <option>--All Campus--</option>
                             <option>----</option>
                         </select></td>
-                        <td><select style="width: 150px !important">
-                            <option>--Mostly viewed--</option>
-                            <option>----</option>
-                        </select></td>
+                        
                         <td><input type="button" value="" id="searchButton" /></td>
                     </tr>
                 </table>

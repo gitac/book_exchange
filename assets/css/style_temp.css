@@ -31,6 +31,14 @@ textarea { overflow: auto; }
     border: 0px;
     padding: 5px 5px 5px 5px;
 }
+
+#add_Button
+{
+    background:url('http://localhost/book_exchange/assets/images/add_button.png') no-repeat  no-repeat;
+    width: 35px;
+    border: 0px;
+    padding: 5px 5px 5px 5px;
+}
 /*
 #backButton
 {

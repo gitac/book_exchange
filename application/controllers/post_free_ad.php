@@ -8,15 +8,16 @@ class Post_free_ad extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('category_model');
-        $this->load->library('user_agent');
+        $this->load->model('book_model');
+       // $this->load->library('user_agent');
     }
 
     public function index() {
-        if ($this->agent->is_referral()) {
+       /* if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
         } else {
             $data['agent'] = NULL;
-        }
+        }*/
         $data['book_error'] = NULL;
         $data['option'] = "";
         $data['page'] = "";
@@ -26,17 +27,21 @@ class Post_free_ad extends CI_Controller {
         $data['category'] = $this->category_model->getFullList("category");
         $data['division'] = $this->category_model->getFullList("division");
         $data['author'] = $this->category_model->getFullList("author");
+        $data['book'] = $this->book_model->getAllBooks();
+        $data['school'] = $this->category_model->getFullList('school');
+        $data['college'] = $this->category_model->getFullList('college');
+        $data['varsity'] = $this->category_model->getFullList('varsity');
         $this->load->view('contents/post_free_ad_view', $data);
 
         $this->db->close();
         $this->load->view('includes/footer');
     }
     public function check($error){
-        if ($this->agent->is_referral()) {
+       /* if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
         } else {
             $data['agent'] = NULL;
-        }
+        }*/
         $data['book_error'] = $error;
         $data['option'] = "";
         $data['page'] = "";

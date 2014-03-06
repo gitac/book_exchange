@@ -89,6 +89,20 @@ class Book_model extends CI_Model {
         else
             return null;
     }
+    function getAllBooks(){
+        $this->db->select('*');
+        $this->db->from('book');
+        $this->db->order_by("book_name");
+        $query = $this->db->get();
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
 
 }
 
