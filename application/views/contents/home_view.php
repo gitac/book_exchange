@@ -29,21 +29,21 @@ if ($count > 5) {
 }
 
 foreach ($recently_added_book as $r) {
-    $book_ids[] = $r['book_id'];
+    $book_ids[] = $r['post_id'];
     $book_names[] = $r['book_name'];
-    $book_prices[] = $r['book_price'];
-    $book_images[] = $r['book_image'];
-    $book_des[] = $r['book_description'];
-    $book_authors[] = $r['author_name'];
+    $book_prices[] = $r['post_book_price'];
+    $book_images[] = $r['post_image'];
+    $book_des[] = $r['post_description'];
+    //$book_authors[] = $r['author_name'];
     $book_count++;
 }
 foreach ($mostly_viewed_book as $r) {
-    $m_v_book_ids[] = $r['book_id'];
+    $m_v_book_ids[] = $r['post_id'];
     $m_v_book_names[] = $r['book_name'];
-    $m_v_book_prices[] = $r['book_price'];
-    $m_v_book_images[] = $r['book_image'];
-    $m_v_book_des[] = $r['book_description'];
-    $m_v_book_authors[] = $r['author_name'];
+    $m_v_book_prices[] = $r['post_book_price'];
+    $m_v_book_images[] = $r['post_image'];
+    $m_v_book_des[] = $r['post_description'];
+    //$m_v_book_authors[] = $r['author_name'];
     $mostly_viewed_book_count++;
 }
 ?>
@@ -120,7 +120,7 @@ foreach ($mostly_viewed_book as $r) {
                             <?php
                             for ($i = 0; $i < $count; $i++) {
                                 ?>
-                                <li><a href="<?php echo base_url() ?>index.php/category_books/category/<?php echo $ids[$i];?>"><?php echo $names[$i]; ?></a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/category_books/category/<?php echo $ids[$i]; ?>"><?php echo $names[$i]; ?></a></li>
                                 <?php
                             }
                             ?>
@@ -176,11 +176,30 @@ foreach ($mostly_viewed_book as $r) {
                             ?>
                             <li>
                                 <div class="product">
-                                    <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $book_ids[$i]?>" target="_blank" class="info">
+                                    <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $book_ids[$i] ?>" target="_blank" class="info">
                                         <span class="holder" style="height: 300px">
                                             <img src="<?php echo base_url() ?><?php echo $book_images[$i]; ?>" alt="" />
                                             <span class="book-name"><?php echo $book_names[$i]; ?></span>
-                                            <span class="author">by <?php echo $book_authors[$i]; ?></span>
+                                            <span class="author">by <?php
+                        $con = mysqli_connect("localhost", "root", "", "book_exchange");
+// Check connection
+                        if (mysqli_connect_errno()) {
+                            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                        }
+
+                        $result = mysqli_query($con, "SELECT * FROM post, book_info, author_book, author 
+    WHERE post_book_id = book_id
+    AND book_id = b_id
+    AND a_id = author_id
+    AND post_id = " . $book_ids[$i]);
+
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo $row['author_name'];
+                            echo "<br>";
+                        }
+
+                        mysqli_close($con);
+                            ?></span>
                                             <!--<span class="description"<br/><br/><br/><br/><br/><br/></span>-->
                                         </span>
                                     </a>
@@ -202,11 +221,32 @@ foreach ($mostly_viewed_book as $r) {
                             ?>
                             <li>
                                 <div class="product">
-                                    <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $m_v_book_ids[$i]?>" target="_blank" class="info">
+                                    <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $m_v_book_ids[$i] ?>" target="_blank" class="info">
 
                                         <img src="<?php echo base_url() ?><?php echo $m_v_book_images[$i]; ?>" alt="" />
                                         <span class="book-name"><?php echo $m_v_book_names[$i]; ?></span>
-                                        <span class="author">by <?php echo $m_v_book_authors[$i]; ?></span>
+                                        <span class="author">by
+                                            <?php
+                                            $con = mysqli_connect("localhost", "root", "", "book_exchange");
+// Check connection
+                                            if (mysqli_connect_errno()) {
+                                                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                            }
+
+                                            $result = mysqli_query($con, "SELECT * FROM post, book_info, author_book, author 
+    WHERE post_book_id = book_id
+    AND book_id = b_id
+    AND a_id = author_id
+    AND post_id = " . $m_v_book_ids[$i]);
+
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo $row['author_name'];
+                                                echo "<br>";
+                                            }
+
+                                            mysqli_close($con);
+                                            ?>
+                                            ?></span>
                                         <span class="price"><span class="low">৳</span><?php echo $m_v_book_prices[$i] ?></span>
                                     </a>
 
@@ -219,11 +259,32 @@ foreach ($mostly_viewed_book as $r) {
                             ?>
                             <li>
                                 <div class="product" style="height: 100% !important ">
-                                    <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $m_v_book_ids[$i]?>" target="_blank" class="info">
+                                    <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $m_v_book_ids[$i] ?>" target="_blank" class="info">
 
                                         <img src="<?php echo base_url() ?><?php echo $m_v_book_images[$i]; ?>" alt="" />
                                         <span class="book-name"><?php echo $m_v_book_names[$i]; ?></span>
-                                        <span class="author">by <?php echo $m_v_book_authors[$i]; ?></span>
+                                        <span class="author">by 
+                                            <?php
+                                            $con = mysqli_connect("localhost", "root", "", "book_exchange");
+// Check connection
+                                            if (mysqli_connect_errno()) {
+                                                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                            }
+
+                                            $result = mysqli_query($con, "SELECT * FROM post, book_info, author_book, author 
+    WHERE post_book_id = book_id
+    AND book_id = b_id
+    AND a_id = author_id
+    AND post_id = " . $m_v_book_ids[$i]);
+
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo $row['author_name'];
+                                                echo "<br>";
+                                            }
+
+                                            mysqli_close($con);
+                                            ?>
+                                        </span>
                                         <span class="price"><span class="low">৳</span><?php echo $m_v_book_prices[$i] ?></span>
                                     </a>
                                 </div>
@@ -238,10 +299,5 @@ foreach ($mostly_viewed_book as $r) {
             <div class="cl">&nbsp;</div>
         </div>
         <!-- End Main -->
-
-
-
-
-
     </body>
 </html>

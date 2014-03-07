@@ -27,7 +27,7 @@ class Test extends CI_Controller {
           }
          * */
 
-        $this->load->view('test');
+        $this->load->view('test_2');
     }
     public function page(){
         
