@@ -48,7 +48,7 @@ if ($book_info != NULL) {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left: .5cm; padding-bottom: .5cm"> <button class="button_style" style="margin-left: 1%; margin-bottom: .2cm">Add to my favorite</button></td>
+                                    <td style="padding-left: .5cm; padding-bottom: .5cm"> <button class="button_style" style="margin-left: 1%; margin-bottom: .2cm">Add to my wishlist</button></td>
                                     <td style="padding-left: .0cm; padding-bottom: .5cm"> <button class="button_style" style="margin-bottom: .2cm">Ad for this book</button></td>
                                 </tr>
                             </table>

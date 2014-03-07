@@ -8,7 +8,7 @@
                 <section>
                     <form action="#" class="form-horizontal" method="post">
                         <fieldset style="overflow:hidden; padding-top: .5cm">
-                            <div class="control-group">
+                            <!--<div class="control-group">
                                 <label class="control-label" >Location</label>
                                 <div class="controls">
                                     <div class="input">
@@ -21,7 +21,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="control-group">
                                 <label class="control-label">First name</label>
                                 <div class="controls">
