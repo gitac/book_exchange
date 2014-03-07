@@ -29,6 +29,27 @@ class Test extends CI_Controller {
 
         $this->load->view('test');
     }
+    public function page(){
+        
+        $this->load->library('pagination');
+        $this->load->library('table');
+        
+        $this->table->set_heading('Id','The Title','The Content');
+        
+        $config['base_url'] = 'http://localhost/book_exchange/index.php/test';
+        $config['total_rows'] = 50;//$this->db->get('data')->num_rows();
+        $config['per_page'] = 10;
+        $config['num_links'] = 20;
+        $config['full_tag_open'] = '<div id="pagination">';
+        $config['full_tag_close'] = '</div>';
+        
+        $this->pagination->initialize($config);
+        
+        //$data['records'] = $this->db->get('data', $config['per_page'], $this->uri->segment(3));
+        
+        $this->load->view('site_view', $data);
+    
+    }
 
     public function test3() {
      /*   if ($_FILES["file"]["error"] > 0) {

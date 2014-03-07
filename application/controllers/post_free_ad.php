@@ -21,22 +21,25 @@ class Post_free_ad extends CI_Controller {
         $data['book_error'] = NULL;
         $data['option'] = "";
         $data['page'] = "";
-        $this->load->view('includes/header', $data);
-        $this->load->view('includes/ad_portion');
+        
         $this->load->database();
-        $data['category'] = $this->category_model->getFullList("category");
         $data['division'] = $this->category_model->getFullList("division");
+        $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
+        $data['district'] = $this->category_model->getFullList("district");
+        $data['institute'] = $this->category_model->getFullList("institute");
         $data['book'] = $this->book_model->getAllBooks();
         $data['school'] = $this->category_model->getFullList('school');
         $data['college'] = $this->category_model->getFullList('college');
         $data['varsity'] = $this->category_model->getFullList('varsity');
+        $this->load->view('includes/header', $data);
+        $this->load->view('includes/ad_portion');
         $this->load->view('contents/post_free_ad_view', $data);
 
         $this->db->close();
         $this->load->view('includes/footer');
     }
-    public function check($error){
+    public function check($error){ //complete it
        /* if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
         } else {
@@ -45,12 +48,18 @@ class Post_free_ad extends CI_Controller {
         $data['book_error'] = $error;
         $data['option'] = "";
         $data['page'] = "";
+        $this->load->database();
+        $data['division'] = $this->category_model->getFullList("division");
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['author'] = $this->category_model->getFullList("author");
+        $data['district'] = $this->category_model->getFullList("district");
+        $data['institute'] = $this->category_model->getFullList("institute");
+        $data['book'] = $this->book_model->getAllBooks();
+        $data['school'] = $this->category_model->getFullList('school');
+        $data['college'] = $this->category_model->getFullList('college');
+        $data['varsity'] = $this->category_model->getFullList('varsity');
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
-        $this->load->database();
-        $data['category'] = $this->category_model->getFullList("category");
-        $data['division'] = $this->category_model->getFullList("division");
-        $data['author'] = $this->category_model->getFullList("author");
         $this->load->view('contents/post_free_ad_view', $data);
 
         $this->db->close();

@@ -20,12 +20,16 @@ class Category_books extends CI_Controller {
         }
         $data['option'] = "";
         $data['page'] = "home";
+        $this->load->database();
+        $data['division'] = $this->category_model->getFullList("division");
+        
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['author'] = $this->category_model->getFullList("author");
+        $data['district'] = $this->category_model->getFullList("district");
+        $data['institute'] = $this->category_model->getFullList("institute");
+        $data['book'] = $this->book_model->getAllBooks();
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
-        $this->load->database();
-        $data['category'] = $this->category_model->getFullList("category");
-        $data['division'] = $this->category_model->getFullList("division");
-        $data['author'] = $this->category_model->getFullList("author");
         $this->load->view('contents/category_books_view', $data);
 
         $this->db->close();
@@ -40,14 +44,18 @@ class Category_books extends CI_Controller {
         $data['option'] = "";
         $data['page'] = "home";
         $data['criteria'] = "category";
-        $this->load->view('includes/header', $data);
-        $this->load->view('includes/ad_portion');
         $this->load->database();
-        $data['category'] = $this->category_model->getFullList("category");
         $data['division'] = $this->category_model->getFullList("division");
+        
+        $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
+        $data['district'] = $this->category_model->getFullList("district");
+        $data['institute'] = $this->category_model->getFullList("institute");
+        $data['book'] = $this->book_model->getAllBooks();
         $data['c_name'] = $this->category_model->getCategoryName($cid);
         $data['category_book'] = $this->book_model->getAllBookList($cid);
+        $this->load->view('includes/header', $data);
+        $this->load->view('includes/ad_portion');
         $this->load->view('contents/category_books_view', $data);
 
         $this->db->close();
@@ -62,38 +70,44 @@ class Category_books extends CI_Controller {
         $data['option'] = "";
         $data['page'] = "home";
         $data['criteria'] = "author";
-        $this->load->view('includes/header', $data);
-        $this->load->view('includes/ad_portion');
+        
         $this->load->database();
-        $data['category'] = $this->category_model->getFullList("category");
         $data['division'] = $this->category_model->getFullList("division");
+        
+        $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
+        $data['district'] = $this->category_model->getFullList("district");
+        $data['institute'] = $this->category_model->getFullList("institute");
+        $data['book'] = $this->book_model->getAllBooks();
         $data['c_name'] = $this->category_model->getAuthorName($aid);
         $data['author_book'] = $this->book_model->getAuthorAllBookList($aid);
+        $this->load->view('includes/header', $data);
+        $this->load->view('includes/ad_portion');
         $this->load->view('contents/category_books_view', $data);
 
         $this->db->close();
         $this->load->view('includes/footer');
     }
-        public function location($did){
-        if ($this->agent->is_referral()) {
+    public function district($did){//complete it
+       /* if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
         } else {
             $data['agent'] = NULL;
         }
         $data['option'] = "";
         $data['page'] = "home";
-        $data['criteria'] = "location";
+        $data['criteria'] = "district";
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
         $this->load->database();
         $data['category'] = $this->category_model->getFullList("category");
         $data['division'] = $this->category_model->getFullList("division");
         $data['author'] = $this->category_model->getFullList("author");
-        $data['author_book'] = $this->category_model->getAllDistrictList($did);
+        $data['c_name'] = $this->category_model->getDistrictName($aid);
+        $data['district_book'] = $this->book_model->getDistrictAllBookList($aid);
         $this->load->view('contents/category_books_view', $data);
 
         $this->db->close();
-        $this->load->view('includes/footer');
-        }
+        $this->load->view('includes/footer'); */
+    }  
     }

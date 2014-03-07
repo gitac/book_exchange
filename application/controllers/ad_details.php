@@ -8,13 +8,21 @@ class Ad_details extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('book_model');
+        $this->load->model('category_model');
         $this->load->library('user_agent');
     }
 
     public function index() {
         $data['option'] = "";
         $data['page'] = "home";
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['author'] = $this->category_model->getFullList("author");
+        $data['district'] = $this->category_model->getFullList("district");
+        $data['institute'] = $this->category_model->getFullList("institute");
+        $data['book'] = $this->book_model->getAllBooks();
         $this->load->view('includes/header', $data);
+        $this->db->close();
         $this->load->view('includes/ad_portion');
         $this->load->view('contents/ad_details_view');
         $this->load->view('includes/footer');
@@ -27,9 +35,14 @@ class Ad_details extends CI_Controller {
         }
         $data['option'] = "";
         $data['page'] = "home";
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['author'] = $this->category_model->getFullList("author");
+        $data['district'] = $this->category_model->getFullList("district");
+        $data['institute'] = $this->category_model->getFullList("institute");
+        $data['book'] = $this->book_model->getAllBooks();
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
-        $this->load->database();
         $data['book_info'] = $this->book_model->getBookInfo($bid);
         $this->load->view('contents/ad_details_view', $data);
 

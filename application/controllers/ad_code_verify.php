@@ -12,7 +12,14 @@ class Ad_code_verify extends CI_Controller {
 
     public function index() { //complete it
         $book_error = NULL;
-        $book_name = $_POST['book_name'];
+        $phone = $_POST['phone'];
+    if (preg_match("/^01(6|5|7|9|1|8)\d{8}$/", $phone)) {
+        echo "ok";
+    }else{
+        echo "invalid";
+    }
+       
+      /*  $book_name = $_POST['book_name'];
         $book_des = $_POST['book_des'];
         $author_name = $_POST['author_name'];
       //  echo $img_file = $_POST['img_file'];
@@ -32,14 +39,14 @@ class Ad_code_verify extends CI_Controller {
        /* if (!isset($img_file) || trim($img_file) == 0) {
             $book_error = "Required";
         }*/
-        $data['option'] = "";
+       /* $data['option'] = "";
         $data['page'] = "";
 
         if ($book_error == NULL) {
             redirect('check');
         } else {
             redirect('post_free_ad/check/' . $book_error);
-        }
+        }*/
     }
 
 }

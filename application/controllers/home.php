@@ -13,23 +13,27 @@ class Home extends CI_Controller {
     }
 
     public function index() {
-        if ($this->agent->is_referral())
-        {
+        if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
         } else {
             $data['agent'] = NULL;
         }
         $data['option'] = "";
         $data['page'] = "home";
-        $this->load->view('includes/header', $data);
+
         $this->load->database();
-        $data['category'] = $this->category_model->getFullList("category");
-        $data['division'] = $this->category_model->getFullList("division");
-        $data['author'] = $this->category_model->getFullList("author");
         $data['recently_added_book'] = $this->book_model->getFullRecentlyAddedBookList();
         $data['mostly_viewed_book'] = $this->book_model->getMostlyViewedBookList();
+        $data['division'] = $this->category_model->getFullList("division");
+
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['author'] = $this->category_model->getFullList("author");
+        $data['district'] = $this->category_model->getFullList("district");
+        $data['institute'] = $this->category_model->getFullList("institute");
+        $data['book'] = $this->book_model->getAllBooks();
+        $this->load->view('includes/header', $data);
         $this->load->view('contents/home_view', $data);
-        
+
         $this->db->close();
         $this->load->view('includes/footer');
     }

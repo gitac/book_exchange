@@ -1,8 +1,9 @@
 <?php
 $count = 0;
 $d_count = 0;
-$l_count = 0;
+$dis_count = 0;
 $a_count = 0;
+$l_count = 0;
 foreach ($division as $r) {
     $d_ids[] = $r['division_id'];
     $d_names[] = $r['division_name'];
@@ -25,12 +26,23 @@ foreach ($category as $r) {
 }
 if ($count > 5)
     $c = 5;
-if ($type != "categories" && $type != "authors") {
+if ($type != "categories" && $type != "authors" && $type != "districts") {
     foreach ($list as $r) {
         $l_ids[] = $r['institute_id'];
         $l_types[] = $r['institute_type'];
         $l_names[] = $r['institute_name'];
         $l_count++;
+    }
+} else if ($type == "districts") {
+    if ($districts != NULL) {
+        foreach ($districts as $r) {
+            $dis_ids[] = $r['district_id'];
+            $dis_names[] = $r['district_name'];
+            $dis_count++;
+        }
+        if ($dis_count > 5) {
+            $dis = 5;
+        }
     }
 }
 ?>
@@ -49,7 +61,7 @@ if ($type != "categories" && $type != "authors") {
                             <?php
                             for ($i = 0; $i < $c; $i++) {
                                 ?>
-                                <li><a href="<?php echo base_url() ?>index.php/category_books/category/<?php echo $ids[$i];?>"><?php echo $names[$i]; ?></a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/category_books/category/<?php echo $ids[$i]; ?>"><?php echo $names[$i]; ?></a></li>
                                 <?php
                             }
                             ?>
@@ -77,7 +89,7 @@ if ($type != "categories" && $type != "authors") {
                             <?php
                             for ($i = 0; $i < $d_count; $i++) {
                                 ?>
-                                <li><a href="#"><?php echo $d_names[$i]; ?></a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/show_category/location/<?php echo $d_ids[$i]; ?>"><?php echo $d_names[$i]; ?></a></li>
                                 <?php
                             }
                             ?>
@@ -104,20 +116,31 @@ if ($type != "categories" && $type != "authors") {
                         ?>
                         <?php for ($i = 0; $i < $count; $i = $i + 2) { ?>
                             <tr>
-                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/category/<?php echo $ids[$i];?>"><?php echo $names[$i]; ?></a></li></ul></td>
+                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/category/<?php echo $ids[$i]; ?>"><?php echo $names[$i]; ?></a></li></ul></td>
                                 <?php if ($i % 2 == 0 && $i < $count - 1) { ?>
-                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/category/<?php echo $ids[$i + 1];?>"><?php echo $names[$i + 1]; ?></a></li></ul></td>
+                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/category/<?php echo $ids[$i + 1]; ?>"><?php echo $names[$i + 1]; ?></a></li></ul></td>
                                 <?php } ?>
                             </tr>
                             <?php
                         }
-                    }else if($type == "authors"){
+                    } else if ($type == "authors") {
                         ?>
                         <?php for ($i = 0; $i < $a_count; $i = $i + 2) { ?>
                             <tr>
                                 <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/author/<?php echo $a_ids[$i]; ?>"><?php echo $a_names[$i]; ?></a></li></ul></td>
                                 <?php if ($i % 2 == 0 && $i < $a_count - 1) { ?>
                                     <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/author/<?php echo $a_ids[$i + 1]; ?>"><?php echo $a_names[$i + 1]; ?></a></li></ul></td>
+                                <?php } ?>
+                            </tr>
+                            <?php
+                        }
+                    } else if ($type == "districts") {
+                        ?>
+                        <?php for ($i = 0; $i < $dis_count; $i = $i + 2) { ?>
+                            <tr>
+                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/district/<?php echo $dis_ids[$i]; ?>"><?php echo $dis_names[$i]; ?></a></li></ul></td>
+                                <?php if ($i % 2 == 0 && $i < $dis_count - 1) { ?>
+                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/district/<?php echo $dis_ids[$i + 1]; ?>"><?php echo $dis_names[$i + 1]; ?></a></li></ul></td>
                                 <?php } ?>
                             </tr>
                             <?php

@@ -23,8 +23,8 @@ if ($book_info != NULL) {
     <body>
         <!-- Main -->
         <div id="main" class="shell">
-            <p><a href="<?php echo $agent;?>" style="font-size: 16px !important; float:left; clear:none; display:block; padding: 8px 1em 0 0;">< Back</a>
-                <a href="#" style="font-size: 16px !important; float:left; clear:none; display:block; padding: 8px 1em 0 85%;">Next ></a></p>
+            <!--<p><a href="<?php echo $agent;?>" style="font-size: 16px !important; float:left; clear:none; display:block; padding: 8px 1em 0 0;">< Back</a>
+                <a href="#" style="font-size: 16px !important; float:left; clear:none; display:block; padding: 8px 1em 0 85%;">Next ></a></p> -->
             <table style="width: 100%; height: 800px">
                 <tr>
                     <td style="width: 65%; height: 100%">            <div id="modal" style="margin-left: 0 !important; height: 100% !important">
@@ -48,8 +48,8 @@ if ($book_info != NULL) {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding-left: .5cm; padding-bottom: .5cm"> <button class="button_style" style="margin-left: 2%; margin-bottom: .2cm">Add to my favorite</button></td>
-                                    <td style="padding-left: .5cm; padding-bottom: .5cm"> <button class="button_style" style="margin-bottom: .2cm">Share this Ad</button></td>
+                                    <td style="padding-left: .5cm; padding-bottom: .5cm"> <button class="button_style" style="margin-left: 1%; margin-bottom: .2cm">Add to my favorite</button></td>
+                                    <td style="padding-left: .0cm; padding-bottom: .5cm"> <button class="button_style" style="margin-bottom: .2cm">Ad for this book</button></td>
                                 </tr>
                             </table>
                         </div></td>

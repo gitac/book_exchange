@@ -66,6 +66,13 @@ foreach ($book as $r) {
             document.getElementById("add_author5").style.display = "block";
         }
     }
+    function checkMblNo(){
+        var phone= document.getElementById("inputPhone").value;
+        var c = /^01(6|5|7|9|1|8)\d{8}$/.test(phone);  
+        if(c == false){
+            document.getElementById('m_error').innerHTML = "Invalid phone number";
+        }
+    }
     function select_div(){
         var l= document.getElementById("division").value;
         alert(l);
@@ -239,7 +246,8 @@ foreach ($book as $r) {
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Phone number</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge" id="inputEmail" placeholder="Phone number" name="email"/>
+                                    <input type="text" class="input-xlarge" id="inputPhone" placeholder="Phone number" name="phone" onblur="checkMblNo()"/>
+                                    <label style="color: red; font-weight: bold" id="m_error"></label>
                                 </div>
                             </div>
                             <div class="control-group">

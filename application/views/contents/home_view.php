@@ -148,7 +148,7 @@ foreach ($mostly_viewed_book as $r) {
                             <?php
                             for ($i = 0; $i < $d_count; $i++) {
                                 ?>
-                                <li><a href="<?php echo base_url() ?>index.php/category_books/location/<?php echo $d_ids[$i]; ?>"><?php echo $d_names[$i]; ?></a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/show_category/location/<?php echo $d_ids[$i]; ?>"><?php echo $d_names[$i]; ?></a></li>
                                 <?php
                             }
                             ?>
