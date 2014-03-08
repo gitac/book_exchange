@@ -75,7 +75,7 @@ foreach ($book as $r) {
     }
     function select_div(){
         var l= document.getElementById("division").value;
-        alert(l);
+       // alert(l);
     }
     function radioFunction(name)
     {
