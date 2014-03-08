@@ -168,7 +168,7 @@ textarea { overflow: auto; }
 #newsletter .submit-btn { margin-top: 4px; display: inline-block; font-size: 10px; line-height: 16px; height: 24px; background: url('http://localhost/book_exchange/assets/images/submit-btn.png') ; padding: 0 8px 0 10px; border: 0; color: #fff; text-transform: uppercase; cursor: pointer; }
 #newsletter .submit-btn:hover { color: #015faa; }
 
-.button_style {
+.btn_22 {
   background: #E3E3E3;
   background-image: -webkit-linear-gradient(top, #E3E3E3, #6f7580);
   background-image: -moz-linear-gradient(top, #E3E3E3, #6f7580);
@@ -188,12 +188,39 @@ textarea { overflow: auto; }
   text-decoration: none;
 }
 
-.button_style:hover {
+.btn_22:hover {
   background: #6f7580;
   background-image: -webkit-linear-gradient(top, #6f7580, #E3E3E3);
   background-image: -moz-linear-gradient(top, #6f7580, #E3E3E3);
   background-image: -ms-linear-gradient(top, #6f7580, #E3E3E3);
   background-image: -o-linear-gradient(top, #6f7580, #E3E3E3);
   background-image: linear-gradient(to bottom, #6f7580, #E3E3E3);
+  text-decoration: none;
+}
+.button_style {
+  background: #DDDDDD;
+  background-image: -webkit-linear-gradient(top, #DDDDDD, #979fa3);
+  background-image: -moz-linear-gradient(top, #DDDDDD, #979fa3);
+  background-image: -ms-linear-gradient(top, #DDDDDD, #979fa3);
+  background-image: -o-linear-gradient(top, #DDDDDD, #979fa3);
+  background-image: linear-gradient(to bottom, #DDDDDD, #979fa3);
+  -webkit-border-radius: 15;
+  -moz-border-radius: 15;
+  border-radius: 15px;
+  text-shadow: 1px 1px 3px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.button_style:hover {
+  background: #41A5CD;
+  background-image: -webkit-linear-gradient(top, #41A5CD, #accfe6);
+  background-image: -moz-linear-gradient(top, #41A5CD, #accfe6);
+  background-image: -ms-linear-gradient(top, #41A5CD, #accfe6);
+  background-image: -o-linear-gradient(top, #41A5CD, #accfe6);
+  background-image: linear-gradient(to bottom, #41A5CD, #accfe6);
   text-decoration: none;
 }

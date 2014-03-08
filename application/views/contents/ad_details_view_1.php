@@ -36,16 +36,26 @@ if ($book_info != NULL) {
                     <td style="width: 65%; height: 100%">            <div id="modal" style="margin-left: 0 !important; height: 100% !important">
                             <table style="width: 100%; height: 100%">
                                 <tr><td colspan="2"><p style="font-size: 24px; font-weight: bold; color: #0252BC; padding-top: .5cm; padding-left: .5cm; padding-bottom: .5cm"><?php echo $book_names[0]?></p>
-                                        <p style="padding-bottom: .5cm"><span style="font-size: 20px; font-weight: bold; font-style: italic; color: #0252BC; padding-left: .5cm;">
-                                                <?php
-                                                $book = $book_ids[0];
-                                                $i = 0;
-                                                while ($i < $book_count && $book == $book_ids[$i]){
-                                                    echo $book_author_names[$i].'<br> &nbsp; &nbsp;';
-                                                    $i++;
-                                                }
-                                                ?>
-                                            </span><span style="font-size: 16px;"><?php echo $book_edition[0]; 
+                                        <p style="padding-bottom: .5cm"><span style="font-size: 20px; font-weight: bold; font-style: italic; color: #0252BC; padding-left: .5cm;"><?php
+                                            $con = mysqli_connect("localhost", "root", "", "book_exchange");
+// Check connection
+                                            if (mysqli_connect_errno()) {
+                                                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                            }
+
+                                            $result = mysqli_query($con, "SELECT * FROM post, book_info, author_book, author 
+    WHERE post_book_id = book_id
+    AND book_id = b_id
+    AND a_id = author_id
+    AND post_id = " . $book_ids[0]);
+
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo $row['author_name'];
+                                                echo "<br> &nbsp; &nbsp;";
+                                            }
+
+                                            mysqli_close($con);
+                                            ?></span><span style="font-size: 16px;"><?php echo $book_edition[0]; 
                                             if($book_edition[0] == 1)
                                                 echo "st";
                                             else if($book_edition[0] == 2)
@@ -61,11 +71,7 @@ if ($book_info != NULL) {
                                         <div id="modal" style="width: 100%; margin-left: .5cm; height: 300px; padding-top: 5%"><img style="width: 200px; height: 280px" src="<?php echo base_url() ?><?php echo $book_images[0]?>" alt="" /></div>
                                     </td>
                                     <td style="width: 30%; text-align: center; padding-left: 5%; padding-right: 2%">
-                                        <div id="modal" style="width: 100%; padding-bottom: .5cm"><p style="font-size: 20px; font-weight: bold; padding-top: .5cm;">
-                                                <?php if($book_prices[0] == NULL){
-     echo 'No';
-                                                } else {?>
-                                                ৳ <?php echo $book_prices[0]; }?> </p>Price</div>
+                                        <div id="modal" style="width: 100%; padding-bottom: .5cm"><p style="font-size: 20px; font-weight: bold; padding-top: .5cm;">৳ <?php echo $book_prices[0]?> </p>Price</div>
                                         <div id="modal" style="width: 100%; padding-bottom: .5cm"><p style="font-size: 16px; font-weight: bold; padding-top: .5cm;"><?php echo $book_post_time[0]?></p>Time posted</div>
                                     </td>
                                 </tr>

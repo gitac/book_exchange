@@ -35,5 +35,13 @@
             </div>
         </div>
         <!-- End Footer -->
+        
+        
+        
+        
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery.jcarousel.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/js/functions.js"></script>
+        <script src="<?php echo base_url() ?>assets/js/script.js"></script>
     </body>
 </html>

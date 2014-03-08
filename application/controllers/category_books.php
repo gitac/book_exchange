@@ -35,7 +35,7 @@ class Category_books extends CI_Controller {
         $this->db->close();
         $this->load->view('includes/footer');
     }
-    public function category($cid){
+    public function category($cid){ //ok
         if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
         } else {
@@ -61,7 +61,7 @@ class Category_books extends CI_Controller {
         $this->db->close();
         $this->load->view('includes/footer');
     }
-    public function author($aid){
+    public function author($aid){ //ok
         if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
         } else {
@@ -89,7 +89,7 @@ class Category_books extends CI_Controller {
         $this->db->close();
         $this->load->view('includes/footer');
     }
-    public function bookname($id){
+    public function bookname($id){ //ok
         
         if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
@@ -116,7 +116,7 @@ class Category_books extends CI_Controller {
         $this->load->view('includes/footer');
     }
 
-    public function authorname($id){
+    public function authorname($id){ //ok
         
         if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
@@ -135,12 +135,36 @@ class Category_books extends CI_Controller {
         $data['book'] = $this->book_model->getAllBooks();
         $data['c_name'] = $this->category_model->getAuthorName($id);
         $data['books_name'] = $this->book_model->getAllBookAuthorList($data['c_name']);
+      /*  $q = $this->db->query("SELECT * 
+FROM author, author_book, book_info, post
+WHERE book_id = ( 
+SELECT book_id
+FROM author, author_book, book_info
+WHERE book_info.book_id = author_book.b_id
+AND post.post_book_id = book_info.book_id
+AND author.author_id = author_book.a_id
+AND author.author_id =23 ) 
+AND book_info.book_id = author_book.b_id
+AND author.author_id = author_book.a_id
+AND post.post_book_id = book_info.book_id
+ORDER BY date_time, post_id");
+       // $query = $q->result();
+        //if ($query->num_rows >= 1) {
+            foreach ($q->result() as $row) {
+                $d[] = $row;
+            }
+            
+        //}
+        $data['books_name'] = $d;
+        */
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
         $this->load->view('contents/category_books_view', $data);
 
         $this->db->close();
         $this->load->view('includes/footer');
+       
+        
     }
     
     public function district($did){//complete it

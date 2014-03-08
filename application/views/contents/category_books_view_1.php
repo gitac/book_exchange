@@ -34,7 +34,6 @@ if ($criteria == "category") {
             $book_images[] = $r['post_image'];
             $book_des[] = $r['post_description'];
             $book_authors[] = $r['author_name'];
-            $book_author_ids[] = $r['author_id'];
             $book_post_time[] = $r['date_time'];
             $book_count++;
         }
@@ -51,8 +50,7 @@ if ($criteria == "category") {
             $book_prices[] = $r['post_book_price'];
             $book_images[] = $r['post_image'];
             $book_des[] = $r['post_description'];
-            $book_authors[] = $r['author_name'];
-            $book_author_ids[] = $r['author_id'];
+            //$book_authors[] = $r['author_name'];
             $book_post_time[] = $r['date_time'];
             $book_count++;
         }
@@ -69,8 +67,7 @@ if ($criteria == "category") {
             $book_prices[] = $r['post_book_price'];
             $book_images[] = $r['post_image'];
             $book_des[] = $r['post_description'];
-            $book_authors[] = $r['author_name'];
-            $book_author_ids[] = $r['author_id'];
+           // $book_authors[] = $r['author_name'];
             $book_post_time[] = $r['date_time'];
             $book_count++;
         }
@@ -87,8 +84,7 @@ if ($criteria == "category") {
             $book_prices[] = $r['post_book_price'];
             $book_images[] = $r['post_image'];
             $book_des[] = $r['post_description'];
-            $book_authors[] = $r['author_name'];
-            $book_author_ids[] = $r['author_id'];
+           // $book_authors[] = $r['author_name'];
             $book_post_time[] = $r['date_time'];
             $book_count++;
         }
@@ -173,7 +169,7 @@ if ($criteria == "category") {
                     <form method="post">
                         <table style="padding-left: 5%; width: 100%">
                             <tr>
-                                <td style="color: #0871b3; font-size: 16px; width: 60%">Search in <?php echo $c_name; ?><?php if ($criteria == "author" || $criteria == "author_name") echo "'s" ?> books &nbsp; &nbsp;</td>
+                                <td style="color: #0871b3; font-size: 16px; width: 60%">Search in <?php echo $c_name; ?><?php if($criteria == "author" || $criteria == "author_name") echo "'s"?> books &nbsp; &nbsp;</td>
                                 <td style="width: 30%"><input type="text" placeholder="Search" name="search" list="suggests_book2"/>
                                     <datalist id="suggests_book2">
                                         <?php for ($i = 0; $i < $book_count; $i++) { ?>
@@ -204,30 +200,38 @@ if ($criteria == "category") {
                             </table>
                         <?php }
                         ?>
-                        <?php
-                        for ($i = 0; $i < $book_count; $i++) {
-                            $book = $book_ids[$i];
-                            //if ($i == $book_count)
-                              //  break;
-                            ?>
-                            <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $book_ids[$i] ?>" target="_blank">
+                        <?php for ($i = 0; $i < $book_count; $i++) { ?>
+                        <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $book_ids[$i]?>" target="_blank">
                                 <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
                                     <tr>
                                         <td style="width: 15%"><img style="width: 120px; height: 200px"src="<?php echo base_url() ?><?php echo $book_images[$i] ?>" alt="" /></td>
                                         <td style="width: 45%; text-align: center">
-                                            <h2 style="font-size: 24px"><a href="<?php echo base_url() ?>index.php/category_books/bookname/<?php echo $book_ids[$i] ?>"><?php echo $book_names[$i] ?></a></h2>
-                                            <h3 style="font-size: 16px !important;">
-                                                <?php
-                                                while ($i < $book_count && $book == $book_ids[$i]) {
-                                                    ?>
-                                                    <a href="<?php echo base_url() ?>index.php/category_books/authorname/<?php echo $book_author_ids[$i] ?>"><?php echo $book_authors[$i] ?></a><br/>
-                                                    <?php
-                                                    $i++;
-                                                    
-                                                }
-                                                $i--;
+                                            <h2 style="font-size: 24px"><a href="<?php echo base_url() ?>index.php/category_books/bookname/<?php echo $book_ids[$i]?>"><?php echo $book_names[$i] ?></a></h2>
+                                            <?php
+                                            $con = mysqli_connect("localhost", "root", "", "book_exchange");
+// Check connection
+                                            if (mysqli_connect_errno()) {
+                                                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                            }
+
+                                            $result = mysqli_query($con, "SELECT * FROM post, book_info, author_book, author 
+    WHERE post_book_id = book_id
+    AND book_id = b_id
+    AND a_id = author_id
+    AND post_id = " . $book_ids[$i]);
+
+                                            while ($row = mysqli_fetch_array($result)) { ?>
+                                            <h3 style="font-size: 16px !important;"><a href="<?php echo base_url() ?>index.php/category_books/authorname/<?php echo $row['author_id']?>">
+                                            <?php
+                                                echo $row['author_name'];
                                                 ?>
-                                            </h3>
+                                                    </a></h3>
+                                                    <?php
+                                            }
+
+                                            mysqli_close($con);
+                                            ?>
+                                            <h3 style="font-size: 16px !important;"><a href="<?php echo base_url() ?>index.php/category_books/authorname/<?php echo $row['author_id']?>">
                                             <!--<p style="font-size: 16px"><a href="#">Dhaka - Buet</a></p> -->
                                         </td>
                                         <td style="width: 15%"><p style="font-size: 16px"><b>৳ <?php echo $book_prices[$i] ?></b></p></td>

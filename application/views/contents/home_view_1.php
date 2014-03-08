@@ -34,7 +34,7 @@ foreach ($recently_added_book as $r) {
     $book_prices[] = $r['post_book_price'];
     $book_images[] = $r['post_image'];
     $book_des[] = $r['post_description'];
-    $book_authors[] = $r['author_name'];
+    //$book_authors[] = $r['author_name'];
     $book_count++;
 }
 foreach ($mostly_viewed_book as $r) {
@@ -43,7 +43,7 @@ foreach ($mostly_viewed_book as $r) {
     $m_v_book_prices[] = $r['post_book_price'];
     $m_v_book_images[] = $r['post_image'];
     $m_v_book_des[] = $r['post_description'];
-    $m_v_book_authors[] = $r['author_name'];
+    //$m_v_book_authors[] = $r['author_name'];
     $mostly_viewed_book_count++;
 }
 ?>
@@ -172,13 +172,7 @@ foreach ($mostly_viewed_book as $r) {
                 <div class="products">
                     <h3>Recently added books</h3>
                     <ul>
-                        <?php 
-                        $c = 0;
-                        for ($i = 0; $i < $book_count;$i++) {
-                            
-                            if($c == 8) break;
-                            $c++;
-                            $b_id = $book_ids[$i];
+                        <?php for ($i = 0; $i < 8; $i++) {
                             ?>
                             <li>
                                 <div class="product">
@@ -186,15 +180,26 @@ foreach ($mostly_viewed_book as $r) {
                                         <span class="holder" style="height: 300px">
                                             <img src="<?php echo base_url() ?><?php echo $book_images[$i]; ?>" alt="" />
                                             <span class="book-name"><?php echo $book_names[$i]; ?></span>
-                                            <span class="author">by 
-                                                <?php 
-                                                while ($b_id == $book_ids[$i])
-                                                {
-                                                    echo $book_authors[$i].'<br>';
-                                                    $i++;
-                                                }
-                                                $i--;?>
-                                            </span>
+                                            <span class="author">by <?php
+                        $con = mysqli_connect("localhost", "root", "", "book_exchange");
+// Check connection
+                        if (mysqli_connect_errno()) {
+                            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                        }
+
+                        $result = mysqli_query($con, "SELECT * FROM post, book_info, author_book, author 
+    WHERE post_book_id = book_id
+    AND book_id = b_id
+    AND a_id = author_id
+    AND post_id = " . $book_ids[$i]);
+
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo $row['author_name'];
+                            echo "<br>";
+                        }
+
+                        mysqli_close($con);
+                            ?></span>
                                             <!--<span class="description"<br/><br/><br/><br/><br/><br/></span>-->
                                         </span>
                                     </a>
@@ -212,12 +217,7 @@ foreach ($mostly_viewed_book as $r) {
                 <div id="best-sellers">
                     <h3 style="color: #0182B5 !important">Mostly viewed books</h3>
                     <ul>
-                        <?php 
-                        $c = 0;
-                        for ($i = 0; $i < $mostly_viewed_book_count; $i++) {
-                            if($c == 4) break;
-                            $c++;
-                            $b_id = $m_v_book_ids[$i];
+                        <?php for ($i = 0; $i < 4; $i++) {
                             ?>
                             <li>
                                 <div class="product">
@@ -226,14 +226,26 @@ foreach ($mostly_viewed_book as $r) {
                                         <img src="<?php echo base_url() ?><?php echo $m_v_book_images[$i]; ?>" alt="" />
                                         <span class="book-name"><?php echo $m_v_book_names[$i]; ?></span>
                                         <span class="author">by
-                                            <?php 
-                                                while ($b_id == $m_v_book_ids[$i])
-                                                {
-                                                    echo $m_v_book_authors[$i].'<br>';
-                                                    $i++;
-                                                }
-                                                $i--;?>
-                                            </span>
+                                            <?php
+                                            $con = mysqli_connect("localhost", "root", "", "book_exchange");
+// Check connection
+                                            if (mysqli_connect_errno()) {
+                                                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                            }
+
+                                            $result = mysqli_query($con, "SELECT * FROM post, book_info, author_book, author 
+    WHERE post_book_id = book_id
+    AND book_id = b_id
+    AND a_id = author_id
+    AND post_id = " . $m_v_book_ids[$i]);
+
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo $row['author_name'];
+                                                echo "<br>";
+                                            }
+
+                                            mysqli_close($con);
+                                            ?></span>
                                         <span class="price"><span class="low">৳</span><?php echo $m_v_book_prices[$i] ?></span>
                                     </a>
 
@@ -242,31 +254,38 @@ foreach ($mostly_viewed_book as $r) {
                         <?php }
                         ?>
 
-                        <?php 
-                         $c = 0;
-                        for ($i = 0; $i < $mostly_viewed_book_count; $i++) {
-                            if($c == 4) break;
-                            $c++;
-                            $b_id = $m_v_book_ids[$i];
+                        <?php for ($i = 0; $i < 4; $i++) {
                             ?>
                             <li>
-                                <div class="product">
+                                <div class="product" style="height: 100% !important ">
                                     <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $m_v_book_ids[$i] ?>" target="_blank" class="info">
 
                                         <img src="<?php echo base_url() ?><?php echo $m_v_book_images[$i]; ?>" alt="" />
                                         <span class="book-name"><?php echo $m_v_book_names[$i]; ?></span>
-                                        <span class="author">by
-                                            <?php 
-                                                while ($b_id == $m_v_book_ids[$i])
-                                                {
-                                                    echo $m_v_book_authors[$i].'<br>';
-                                                    $i++;
-                                                }
-                                                $i--;?>
-                                            </span>
+                                        <span class="author">by 
+                                            <?php
+                                            $con = mysqli_connect("localhost", "root", "", "book_exchange");
+// Check connection
+                                            if (mysqli_connect_errno()) {
+                                                echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                                            }
+
+                                            $result = mysqli_query($con, "SELECT * FROM post, book_info, author_book, author 
+    WHERE post_book_id = book_id
+    AND book_id = b_id
+    AND a_id = author_id
+    AND post_id = " . $m_v_book_ids[$i]);
+
+                                            while ($row = mysqli_fetch_array($result)) {
+                                                echo $row['author_name'];
+                                                echo "<br>";
+                                            }
+
+                                            mysqli_close($con);
+                                            ?>
+                                        </span>
                                         <span class="price"><span class="low">৳</span><?php echo $m_v_book_prices[$i] ?></span>
                                     </a>
-
                                 </div>
                             </li>
                         <?php }
