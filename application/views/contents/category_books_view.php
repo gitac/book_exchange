@@ -213,7 +213,7 @@ if ($criteria == "category") {
                             <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $book_ids[$i] ?>" target="_blank">
                                 <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
                                     <tr>
-                                        <td style="width: 15%"><img style="width: 120px; height: 200px"src="<?php echo base_url() ?><?php echo $book_images[$i] ?>" alt="" /></td>
+                                        <td style="width: 15%"><img style="width: 120px; height: 200px" src="<?php echo base_url() ?><?php echo $book_images[$i] ?>" alt="" /></td>
                                         <td style="width: 45%; text-align: center">
                                             <h2 style="font-size: 24px"><a href="<?php echo base_url() ?>index.php/category_books/bookname/<?php echo $book_ids[$i] ?>"><?php echo $book_names[$i] ?></a></h2>
                                             <h3 style="font-size: 16px !important;">

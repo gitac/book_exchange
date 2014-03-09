@@ -11,7 +11,7 @@
                             <div class="control-group">
                                 <label class="control-label">Email</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge" name="email" value="sss@gmail.com"/>
+                                    <input type="text" class="input-xlarge" name="email" value=""/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -29,7 +29,8 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <div style="float:left; clear:none;">
-                                    <input type="submit" value="Save" style="float:left; clear:none; margin: 2px 0 0 2px; width: 200px;"/>
+                                        <button class="button_style" style="float:left; clear:none; margin: 2px 0 0 2px; width: 200px;">Save</button>
+                                    
                                     <label style="float:left; clear:none; display:block; padding: 8px 1em 0 0;">&nbsp; &nbsp; or</label>
                                     <a style="float:left; clear:none; margin: 8px 0 0 2px;" href="settings">Cancel</a>
                                    </div>

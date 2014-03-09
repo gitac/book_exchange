@@ -13,8 +13,15 @@ class Ad_details extends CI_Controller {
     }
 
     public function index() {
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $this->load->database();
         $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
@@ -33,8 +40,15 @@ class Ad_details extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $this->load->database();
         $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");

@@ -18,8 +18,15 @@ class Category_books extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $this->load->database();
         $data['division'] = $this->category_model->getFullList("division");
         
@@ -41,8 +48,15 @@ class Category_books extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $data['criteria'] = "category";
         $this->load->database();
         $data['division'] = $this->category_model->getFullList("division");
@@ -67,8 +81,15 @@ class Category_books extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        $data['option'] = "";if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $data['criteria'] = "author";
         
         $this->load->database();
@@ -96,8 +117,15 @@ class Category_books extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $data['criteria'] = "book_name";
         $this->load->database();
         $data['division'] = $this->category_model->getFullList("division");
@@ -123,8 +151,15 @@ class Category_books extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        $data['option'] = "";if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $data['criteria'] = "author_name";
         $this->load->database();
         $data['division'] = $this->category_model->getFullList("division");

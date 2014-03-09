@@ -80,7 +80,7 @@ foreach ($book as $r) {
             <div id="login-details">
                 <p>
                     <?php if ($option == "my_profile") { ?>
-                        Welcome <a href="<?php echo base_url() ?>index.php/my_profile" id="login">My Profile</a> </p> <p><a href="#" id="reg">Log out</a> </p>
+                    Welcome <label style="font-weight: bold; color: #485174;"><?php echo $username;?></label>&nbsp;&nbsp;<a href="<?php echo base_url() ?>index.php/my_profile" id="login">My Profile</a> </p> <p><a href="<?php echo base_url() ?>index.php/log_out" id="reg">Log out</a> </p>
                 <?php } else { ?>
                     <a href="<?php echo base_url() ?>index.php/login" id="login">Log in</a> </p> <p><a href="<?php echo base_url() ?>index.php/register" id="reg">Registration</a> </p>
                 <?php } ?>

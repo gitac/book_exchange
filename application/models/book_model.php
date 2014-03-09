@@ -2,6 +2,29 @@
 
 class Book_model extends CI_Model {
 
+    function getAllPostList($status, $id) {
+
+        $query = $this->db->query("SELECT * 
+FROM post, book_info, ad_giver, author_book, author, customer
+WHERE post_book_id = book_id
+AND post_ad_giver_id = ad_giver_id
+AND ad_giver_id = customer_id
+AND book_id = b_id
+AND author_id = a_id
+AND customer_id = ".$id."
+AND post_status =  '".$status."'
+ORDER BY date_time, post_id
+");
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+
     function getBookInfo($bid) {
         $this->db->select('*');
         $this->db->from('author_book');
@@ -14,6 +37,7 @@ class Book_model extends CI_Model {
         $this->db->join('district', 'district.district_id = ad_giver.ad_giver_dis_id');
         $this->db->join('near_area', 'near_area.near_area_id = ad_giver.ad_giver_near_area_id');
         $this->db->where('post.post_id', $bid);
+        $this->db->where('post.post_status', 'Active');
         $query = $this->db->get();
         if ($query->num_rows >= 1) {
             foreach ($query->result_array() as $row) {
@@ -49,6 +73,7 @@ class Book_model extends CI_Model {
         $this->db->join('post', 'post.post_book_id = book_info.book_id');
         //   $this->db->join('author', 'author.author_id = author_book.a_id');
         // $this->db->join('book', 'book.book_id = author_book.b_id');
+        $this->db->where('post.post_status', 'Active');
         $this->db->order_by("date_time");
         $this->db->order_by("post_id");
         $query = $this->db->get();
@@ -70,6 +95,7 @@ class Book_model extends CI_Model {
         $this->db->join('post', 'post.post_book_id = book_info.book_id');
         //  $this->db->join('author', 'author.author_id = author_book.a_id');
         //$this->db->join('book', 'book.book_id = author_book.b_id');
+        $this->db->where('post.post_status', 'Active');
         $this->db->order_by("post_view_count");
         $this->db->order_by("post_id");
         $query = $this->db->get();
@@ -95,6 +121,7 @@ class Book_model extends CI_Model {
         //$this->db->join('author_book', 'book.book_id = author_book.b_id');
         //$this->db->join('author', 'author.author_id = author_book.a_id');
         $this->db->where('book_info.book_category_id', $cid);
+        $this->db->where('post.post_status', 'Active');
         $this->db->order_by("date_time");
         $this->db->order_by("post_id");
 
@@ -119,6 +146,7 @@ class Book_model extends CI_Model {
         //  $this->db->join('author_book', 'book.book_id = author_book.b_id');
         // $this->db->join('author', 'author.author_id = author_book.a_id');
         $this->db->where('author.author_id', $aid);
+        $this->db->where('post.post_status', 'Active');
         $this->db->order_by("date_time");
         $query = $this->db->get();
         if ($query->num_rows >= 1) {
@@ -156,6 +184,7 @@ class Book_model extends CI_Model {
         //  $this->db->join('author_book', 'book.book_id = author_book.b_id');
         // $this->db->join('author', 'author.author_id = author_book.a_id');
         $this->db->where('book_info.book_name', $name);
+        $this->db->where('post.post_status', 'Active');
         $this->db->order_by("date_time");
         $this->db->order_by("post_id");
         $query = $this->db->get();
@@ -181,7 +210,8 @@ AND author.author_id = author_book.a_id
 AND author.author_name = '" . $name . "' ) 
 AND book_info.book_id = author_book.b_id
 AND author.author_id = author_book.a_id
-AND post.post_book_id = book_info.book_id
+AND post.author_id = author_book.a_id
+AND post.post_status = 'Active'
 ORDER BY date_time, post_id");
         if ($query->num_rows >= 1) {
             foreach ($query->result_array() as $row) {

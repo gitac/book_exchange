@@ -1,13 +1,37 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Change_email_pw extends CI_Controller {
-	public function index()
-	{
-                           $data['option'] = "my_profile";
-                           $data['page'] = "";
-                           $this->load->view('includes/header', $data);
-                           $this->load->view('includes/ad_portion');
-		 $this->load->view('contents/change_email_pw_view');
-                           $this->load->view('includes/footer');
-	}
+    function __construct() {
+        parent::__construct();
+        $this->load->model('book_model');
+        $this->load->model('category_model');
+    }
+
+    public function index() {
+
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+            $id = $data['id'] = $session_data['id'];
+            $data['username'] = $session_data['username'];
+        }
+        $data['option'] = "my_profile";
+        $data['page'] = "";
+        $this->load->database();
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['author'] = $this->category_model->getFullList("author");
+        $data['district'] = $this->category_model->getFullList("district");
+        $data['institute'] = $this->category_model->getFullList("institute");
+        $data['book'] = $this->book_model->getAllBooks();
+        $post_status = "active";
+        $data['post'] = $this->book_model->getAllPostList($post_status, $id);
+        $this->load->view('includes/header', $data);
+        $this->load->view('includes/ad_portion');
+        $this->load->view('contents/change_email_pw_view', $data);
+        $this->db->close();
+        $this->load->view('includes/footer');
+    }
+
 }

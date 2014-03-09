@@ -40,7 +40,8 @@
                                     <label class="checkbox">
                                         <input type="checkbox"/>I agree to the <a href="#">Terms and Conditions</a> of BookExchange
                                         </label>
-                                    <input type="submit" value="Registration" style="width: 200px"/>
+                                    <button class="button_style" style="width: 200px; margin-top: .5cm; margin-bottom: .2cm">Registration</button>
+                                    
                                 </div>
                             </div>
                         </fieldset>

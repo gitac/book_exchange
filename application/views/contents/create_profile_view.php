@@ -66,7 +66,7 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <div style="float:left; clear:none;">
-                                    <input type="submit" value="Submit" style="float:left; clear:none; margin: 2px 0 0 2px; width: 200px;"/>
+                                    <button class="button_style" style="float:left; clear:none; margin: 2px 0 0 2px; width: 200px;">Submit</button>
                                     <label style="float:left; clear:none; display:block; padding: 8px 1em 0 0;">&nbsp; &nbsp; or</label>
                                     <a style="float:left; clear:none; margin: 8px 0 0 2px;" href="settings">Cancel</a>
                                    </div>

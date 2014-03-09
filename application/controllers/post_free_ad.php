@@ -19,7 +19,14 @@ class Post_free_ad extends CI_Controller {
             $data['agent'] = NULL;
         }*/
         $data['book_error'] = NULL;
-        $data['option'] = "";
+        $data['option'] = "";if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
         $data['page'] = "";
         
         $this->load->database();

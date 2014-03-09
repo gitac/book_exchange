@@ -18,8 +18,15 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $data['type'] = "categories";
         
         $this->load->database();
@@ -45,8 +52,15 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $data['type'] = "districts";
         $this->load->database();
         $data['division'] = $this->category_model->getFullList("division");
@@ -71,8 +85,15 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $data['type'] = "authors";
         $this->load->database();
         
@@ -97,8 +118,15 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $data['type'] = "schools";
 
         $this->load->database();
@@ -126,8 +154,15 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $data['type'] = "colleges";
 
         $this->load->database();
@@ -154,8 +189,15 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";
-        $data['page'] = "home";
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+           $data['id'] = $session_data['id'];
+           $data['username'] = $session_data['username'];
+           $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+        $data['page'] = "";
         $data['type'] = "varsities";
 
         $this->load->database();
