@@ -34,6 +34,14 @@ class Verify_login extends CI_Controller {
             $this->db->close();
             $this->load->view('includes/footer');
         } else {
+            if (isset($_POST['rememberme']))  {
+                    $this->session->sess_expire_on_close = FALSE;
+                    $this->session->sess_update();
+                }
+                else{
+                    $this->session->sess_expire_on_close = TRUE;
+                    $this->session->sess_update();
+                }
             $username = $this->input->post('un');
             $password = md5($this->input->post('pw'));
             $this->load->database();

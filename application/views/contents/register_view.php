@@ -6,46 +6,53 @@
             <div id="modal">
                 <header><h1>Registration</h1></header>
                 <section>
-                    <p  class="text-center">In order to <a href="login">login</a> you must be registered</p>
+                    
+                    <?php
+                    $attributes = array('class' => 'form-horizontal', 'id' => 'contact-form', 'method' => 'post');
 
-                    <form action="<?php echo base_url() ?>index.php/registration_confirm" id="contact-form-reg" class="form-horizontal" method="post">
-                        <fieldset style="padding-top: .5cm">
-                            <div class="control-group">
-                                <label class="control-label" for="inputUsername">Username</label>
-                                <div class="controls">
-                                    <input type="text" class="input-xlarge" id="inputUsername" placeholder="Username" name="un">
-                                </div>
+                    echo form_open(base_url() . 'index.php/registration_confirm', $attributes);
+                    ?>
+                    <fieldset style="padding-top: .5cm">
+                        <div class="control-group">
+                            <label class="control-label" for="inputUsername"><b>Username</b></label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" id="inputUsername" placeholder="Username" name="un"/>
+                                <label style="color: red; font-weight: bold; margin-bottom: .5cm"><?php echo form_error('un'); ?></label>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputEmail">Email</label>
-                                <div class="controls">
-                                    <input type="text" class="input-xlarge" id="inputEmail" placeholder="Email" name="email">
-                                </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputEmail"><b>Email</b></label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" id="inputEmail" placeholder="Email" name="email"/>
+                                <label style="color: red; font-weight: bold; margin-bottom: .5cm"><?php echo form_error('email'); ?></label>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="inputPassword">Password</label>
-                                <div class="controls">
-                                    <input type="password" class="input-xlarge" id="inputPassword" placeholder="Password" name="pw">
-                                </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputPassword"><b>Password</b></label>
+                            <div class="controls">
+                                <input type="password" class="input-xlarge" id="inputPassword" placeholder="Password" name="pw"/>
+                                <label style="color: red; font-weight: bold; margin-bottom: .5cm"><?php echo form_error('pw'); ?></label>
                             </div>
+                        </div>
 
-                            <div class="control-group">
-                                <label class="control-label" for="inputPasswordConf">Confirm Password</label>
-                                <div class="controls">
-                                    <input type="password" class="input-xlarge" id="inputPasswordConf" placeholder="Password" name="cpw">
-                                </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputPasswordConf"><b>Confirm Password</b></label>
+                            <div class="controls">
+                                <input type="password" class="input-xlarge" id="inputPasswordConf" placeholder="Password" name="cpw"/>
+                                <label style="color: red; font-weight: bold; margin-bottom: .5cm"><?php echo form_error('cpw'); ?></label>
                             </div>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <label class="checkbox">
-                                        <input type="checkbox"/>I agree to the <a href="#">Terms and Conditions</a> of BookExchange
-                                        </label>
-                                    <button class="button_style" style="width: 200px; margin-top: .5cm; margin-bottom: .2cm">Registration</button>
-                                    
-                                </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <label class="checkbox">
+                                    <input name="agree" type="checkbox"/>I agree to the <a href="#">Terms and Conditions</a> of BookExchange
+                                </label>
+                                <button class="button_style" style="width: 200px; margin-top: .5cm; margin-bottom: .2cm">Registration</button>
                             </div>
-                        </fieldset>
+                        </div>
+                    </fieldset>
                     </form>
+                    <p style="text-align: center; margin-top: .5cm">In order to <a href="login">login</a> you must be registered</p>
                 </section>
             </div>
         </div>

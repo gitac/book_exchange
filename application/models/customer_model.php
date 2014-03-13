@@ -17,6 +17,15 @@ class Customer_model extends CI_Model {
         }
     }
 
+    function updatePw($email, $password) {
+        $data = array(
+            'customer_password' => $password
+        );
+
+        $this->db->where('customer_email', $email);
+        $this->db->update('customer', $data);
+    }
+
     function getUserID($username, $password) {
         $this->db->select('customer_id');
         $this->db->from('customer');
@@ -38,6 +47,19 @@ class Customer_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('customer');
         $this->db->where('customer_username', $username);
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 1) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    function checkEmail($email) {
+        $this->db->select('*');
+        $this->db->from('customer');
+        $this->db->where('customer_email', $email);
         $query = $this->db->get();
 
         if ($query->num_rows() == 1) {

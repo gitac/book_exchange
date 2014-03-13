@@ -1,6 +1,10 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Lost_password extends CI_Controller {
+
     function __construct() {
         parent::__construct();
         $this->load->model('book_model');
@@ -22,4 +26,7 @@ class Lost_password extends CI_Controller {
         $this->db->close();
         $this->load->view('includes/footer');
     }
+
+    
+
 }

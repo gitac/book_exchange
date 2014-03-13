@@ -33,13 +33,11 @@
 
                             <div class="control-group">
                                 <div class="controls">
-<!--                                    <label class="checkbox">
-                                        <input type="checkbox"/>Remember me
-                                    </label>-->
+                                    <label class="checkbox">
+                                        <input name="rememberme" type="checkbox"/>Remember me
+                                    </label>
                                     <button class="button_style" style="width: 200px; margin-top: .5cm; margin-bottom: .2cm">Login</button>
                                     <a href="lost_password" style="margin-left: 30px">Forgot your password?</a>
-                                  <!--  <input type="submit" value="Login"/> -->
-                                  <!--  <input type="submit" value="Login" style="width: 200px"/> -->
                                 </div>
                             </div>
                         </fieldset>

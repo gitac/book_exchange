@@ -27,8 +27,12 @@ class Test extends CI_Controller {
           }
          * */
 
+
+
         $this->load->view('test');
     }
+
+    
     public function page(){
         
         $this->load->library('pagination');
