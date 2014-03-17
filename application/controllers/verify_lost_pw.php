@@ -53,12 +53,9 @@ class Verify_lost_pw extends CI_Controller {
             if ($this->email->send()) {
                 $pw = md5($pw);
                 $this->customer_model->updatePw($rec_email, $pw);
-                echo "send";
+                redirect('login/send_pw_success', 'refresh');
             } else {
-                echo "error";
-                // show_error($this->email->print_debugger());
-                // show_error($this->email->print_debugger());
-                //return false;
+                redirect('lost_password', 'refresh');
             }
         }
     }

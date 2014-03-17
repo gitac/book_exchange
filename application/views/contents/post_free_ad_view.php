@@ -73,6 +73,9 @@ foreach ($book as $r) {
             document.getElementById('m_error').innerHTML = "Invalid phone number";
         }
     }
+    function checkMblNo2(){
+        document.getElementById('m_error').innerHTML = "";
+    }
     function select_div(){
         var l= document.getElementById("division").value;
        // alert(l);
@@ -116,15 +119,14 @@ foreach ($book as $r) {
             <div id="modal" style="width: 90% !important">
                 <header><h1>Post a free Ad</h1></header>
                 <section>
-                    <form action="<?php echo base_url() ?>index.php/ad_code_verify" class="form-horizontal" method="post">
+                    <?php
+                    $attributes = array('class' => 'form-horizontal', 'id' => 'contact-form', 'method' => 'post');
+
+                    echo form_open(base_url().'index.php/ad_code_verify', $attributes);
+                    ?>
+                    
                         <fieldset style="padding-top: .5cm">
-                            <?php
-                            if ($book_error == "Required") {
-                                ?>
-                                <p style="color: red; width: 100%; text-align: center; font-weight: bold;  padding-bottom: .2cm"><?php echo "You did not fill out the required fields."; ?></p>
-                                <?php
-                            }
-                            ?>
+                            
                             <div class="control-group">
                                 <label class="control-label" >Chosen category</label>
                                 <div class="controls">
@@ -136,9 +138,9 @@ foreach ($book as $r) {
                                                 <option value="<?php echo $ids[$i]; ?>"><?php echo $names[$i]; ?></option>
                                             <?php }
                                             ?>
-                                            <option value="0">Others</option> 
+<!--                                            <option value="0">Others</option> -->
                                         </select>
-                                        <input id="c_name" style="display: none" type="text" class="input-xlarge" placeholder="Category name" name="category_name"/>
+<!--                                        <input id="c_name" style="display: none" type="text" class="input-xlarge" placeholder="Category name" name="category_name"/>-->
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +158,7 @@ foreach ($book as $r) {
                             <div class="control-group">
                                 <label class="control-label">Author name</label>
                                 <div class="controls">
-                                    <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="text" class="input-xlarge" placeholder="Author name" name="author_name" list="suggests_author"/>
+                                    <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="text" class="input-xlarge" placeholder="Author name" name="author_name1" list="suggests_author"/>
                                     <datalist id="suggests_author">
                                         <?php for ($i = 0; $i < $a_count; $i++) { ?>
                                             <option value="<?php echo $a_names[$i]; ?>">
@@ -204,6 +206,7 @@ foreach ($book as $r) {
                                 <label class="control-label">Edition (Optional)</label>
                                 <div class="controls">
                                     <input type="text" class="input-xlarge" placeholder="Edition" name="edition"/>
+                                    
                                 </div>
                             </div>
 
@@ -246,7 +249,7 @@ foreach ($book as $r) {
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Phone number</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge" id="inputPhone" placeholder="Phone number" name="phone" onblur="checkMblNo()"/>
+                                    <input type="text" class="input-xlarge" id="inputPhone" placeholder="Phone number" name="phone" onfocus="checkMblNo2()" onblur="checkMblNo()"/>
                                     <label style="color: red; font-weight: bold" id="m_error"></label>
                                 </div>
                             </div>

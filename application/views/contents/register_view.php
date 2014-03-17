@@ -1,5 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+    <head>
+        <script>
+            function btn_enable(){
+                if($("#agree").is(':checked')){
+                    document.getElementById("reg_btn").disabled= false;
+                } else {
+                    document.getElementById("reg_btn").disabled= true;
+                }
+            }
+        </script>
+    </head>
     <body>
         <!-- Main -->
         <div id="main" class="shell">
@@ -45,9 +56,9 @@
                         <div class="control-group">
                             <div class="controls">
                                 <label class="checkbox">
-                                    <input name="agree" type="checkbox"/>I agree to the <a href="#">Terms and Conditions</a> of BookExchange
+                                    <input id="agree" name="agree" type="checkbox" onclick="btn_enable()"/>I agree to the <a href="#">Terms and Conditions</a> of BookExchange
                                 </label>
-                                <button class="button_style" style="width: 200px; margin-top: .5cm; margin-bottom: .2cm">Registration</button>
+                                <button id="reg_btn" class="button_style" style="width: 200px; margin-top: .5cm; margin-bottom: .2cm" disabled >Registration</button>
                             </div>
                         </div>
                     </fieldset>

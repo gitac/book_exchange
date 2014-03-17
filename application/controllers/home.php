@@ -9,6 +9,7 @@ class Home extends CI_Controller {
         parent::__construct();
         $this->load->model('category_model');
         $this->load->model('book_model');
+        $this->load->model('customer_model');
         $this->load->library('user_agent');
     }
 
@@ -20,13 +21,13 @@ class Home extends CI_Controller {
         }
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-           $data['id'] = $session_data['id'];
-           $data['username'] = $session_data['username'];
-           $data['option'] = "my_profile";
+            $data['id'] = $session_data['id'];
+            $data['username'] = $session_data['username'];
+            $data['option'] = "my_profile";
         } else {
             $data['option'] = "";
         }
-        
+
         $data['page'] = "home";
 
         $this->load->database();
@@ -44,6 +45,21 @@ class Home extends CI_Controller {
 
         $this->db->close();
         $this->load->view('includes/footer');
+    }
+
+    function mailcheck($username) {
+        $query = $this->customer_model->updateMailCheck($username);
+        $sess_array = array();
+
+        $sess_array = array(
+            'id' => $query,
+            'username' => $username
+        );
+        $this->session->set_userdata('logged_in', $sess_array);
+
+        $this->session->sess_expire_on_close = TRUE;
+        $this->session->sess_update();
+        redirect('my_profile', 'refresh');
     }
 
 }

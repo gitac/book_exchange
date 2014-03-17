@@ -34,14 +34,13 @@ class Verify_login extends CI_Controller {
             $this->db->close();
             $this->load->view('includes/footer');
         } else {
-            if (isset($_POST['rememberme']))  {
-                    $this->session->sess_expire_on_close = FALSE;
-                    $this->session->sess_update();
-                }
-                else{
-                    $this->session->sess_expire_on_close = TRUE;
-                    $this->session->sess_update();
-                }
+            if (isset($_POST['rememberme'])) {
+                $this->session->sess_expire_on_close = FALSE;
+                $this->session->sess_update();
+            } else {
+                $this->session->sess_expire_on_close = TRUE;
+                $this->session->sess_update();
+            }
             $username = $this->input->post('un');
             $password = md5($this->input->post('pw'));
             $this->load->database();
@@ -82,11 +81,17 @@ class Verify_login extends CI_Controller {
         $this->load->database();
         $result = $this->customer_model->checkPassword($username, $password);
 
-        if ($result != FALSE) {
-            return TRUE;
-        } else {
+        if ($result == FALSE) {
             $this->form_validation->set_message('check_password', 'Wrong password');
             return false;
+        } else {
+            $valid = $this->customer_model->checkValidUser($username, $password);
+            if ($valid == FALSE) {
+                $this->form_validation->set_message('check_password', 'Invalid username and password.Please check out your mail.');
+                return false;
+            } else {
+                return TRUE;
+            }
         }
         $this->db->close();
     }
