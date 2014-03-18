@@ -27,9 +27,8 @@ class Test extends CI_Controller {
           }
          * */
 
-
-
-        $this->load->view('test');
+        echo $this->input->post('email');
+        //$this->load->view('test');
     }
 
     

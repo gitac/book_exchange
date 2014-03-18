@@ -54,6 +54,9 @@ class Category_model extends CI_Model {
         } else if ($type == "district") {
             $this->db->from('DISTRICT');
             $this->db->order_by("DISTRICT_NAME");
+        } else if($type == "near_area"){
+            $this->db->from('near_area');
+            $this->db->order_by("near_area_name");
         } else if ($type == "institute") {
             $this->db->from('institute');
             $this->db->order_by("institute_name");
