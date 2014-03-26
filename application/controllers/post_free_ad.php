@@ -18,11 +18,8 @@ class Post_free_ad extends CI_Controller {
             $session_data = $this->session->userdata('logged_in');
             $data['id'] = $session_data['id'];
             $data['username'] = $session_data['username'];
-            $data['option'] = "my_profile";
-        } else {
-            $data['option'] = "";
-        }
-        $data['page'] = "";
+            $data['option'] = "my_profile";        
+            $data['page'] = "";
 
         $this->load->database();
         $data['division'] = $this->category_model->getFullList("division");
@@ -41,6 +38,10 @@ class Post_free_ad extends CI_Controller {
 
         $this->db->close();
         $this->load->view('includes/footer');
+        } else {
+            redirect('login', 'refresh');
+        }
+        
     }
 
     public function ad_verify() {

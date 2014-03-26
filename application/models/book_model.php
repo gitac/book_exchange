@@ -2,19 +2,17 @@
 
 class Book_model extends CI_Model {
 
-    function getAllPostList($status, $id) {
-
+    function getAllPostList($status, $u_id) {
+        
         $query = $this->db->query("SELECT * 
-FROM post, book_info, ad_giver, author_book, author, customer
-WHERE post_book_id = book_id
-AND post_ad_giver_id = ad_giver_id
-AND ad_giver_id = customer_id
-AND book_id = b_id
-AND author_id = a_id
-AND customer_id = " . $id . "
-AND post_status =  '" . $status . "'
-ORDER BY date_time, post_id
-");
+        FROM post, book_info, author_book, author, customer
+        WHERE post_book_id = book_id
+        AND post_ad_giver_id = customer_id
+        AND book_id = b_id
+        AND author_id = a_id
+        AND customer_id = " . $u_id . "
+        AND post_status =  '" . $status . "'
+        ORDER BY date_time, post_id");
         if ($query->num_rows >= 1) {
             foreach ($query->result_array() as $row) {
                 $data[] = $row;
@@ -25,6 +23,30 @@ ORDER BY date_time, post_id
             return null;
     }
     
+    function RequestedUser($p_id){
+        $query = $this->db->query("SELECT * 
+        FROM customer, near_area, district, division, institute
+        WHERE customer_id
+        IN (
+        SELECT post_req_c_id
+        FROM post_request
+        WHERE post_req_p_id =" . $p_id . " )
+        AND customer.customer_near_area_id = near_area.near_area_id
+        AND near_area.near_area_dis_id = district.district_id
+        AND district.district_div_id = division.division_id
+        AND customer.customer_ins_id = institute.institute_id
+");
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+
+
     function insertRequest($pid, $cid){
         $req_insert_data = array(
             'post_req_p_id' => $pid,

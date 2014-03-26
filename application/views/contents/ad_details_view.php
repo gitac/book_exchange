@@ -118,7 +118,7 @@ if ($book_info != NULL) {
                                 </tr>
                             </table>
                         </div></td>
-                    <td style="width: 35; height: 80%"><div id="modal" style="width: 100% !important; height: 65% !important">
+                    <td style="width: 35%; height: 80%"><div id="modal" style="width: 100% !important; height: 65% !important">
                             <div style="height: 45%">
                                 <p style="font-size: 20px; padding: .5cm .5cm .5cm .5cm;"><?php echo $book_customer_first_names[0] ?> <?php echo $book_customer_last_names[0] ?></p>
                                 <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_customer_addresses[0] ?>,</p>

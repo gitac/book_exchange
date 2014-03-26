@@ -59,7 +59,7 @@ class Home extends CI_Controller {
 
         $this->session->sess_expire_on_close = TRUE;
         $this->session->sess_update();
-        redirect('my_profile', 'refresh');
+        redirect('create_profile', 'refresh');
     }
 
 }
