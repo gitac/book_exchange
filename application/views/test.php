@@ -1,5 +1,5 @@
 <?php
-$password="sss48";
+$password="farhin";
 
 echo md5($password);
 ?>

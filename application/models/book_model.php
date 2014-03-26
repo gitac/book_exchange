@@ -24,6 +24,51 @@ ORDER BY date_time, post_id
         else
             return null;
     }
+    
+    function insertRequest($pid, $cid){
+        $req_insert_data = array(
+            'post_req_p_id' => $pid,
+            'post_req_c_id' => $cid
+        );
+
+        $insert = $this->db->insert('post_request',$req_insert_data );
+    }
+    
+    function deleteRequest($pid, $cid){
+        $this->db->where('post_req_p_id', $pid);
+        $this->db->where('post_req_c_id', $cid);
+        $this->db->delete('post_request'); 
+    }
+    
+    function getNumberOfRequest($pid){
+        $query = $this->db->query("
+            SELECT COUNT(*) as num_req
+            FROM post_request
+            WHERE post_request.post_req_p_id = " . $pid );
+        $num_req = NULL;
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $num_req = $row->num_req;
+            }
+        }
+        return $num_req;
+    }
+    
+    function isRequested($pid, $c_id){
+        $query = $this->db->query("
+            SELECT *
+            FROM post_request
+            WHERE post_request.post_req_c_id = " . $c_id .
+                " AND post_request.post_req_p_id = " . $pid );
+        $num_req = NULL;
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $num_req = "yes";
+            }
+        }
+        return $num_req;
+    }
+
 
     function getBookInfo($bid) {
         $query = $this->db->query("SELECT * 
