@@ -5,6 +5,7 @@ class My_wishlist extends CI_Controller {
         parent::__construct();
         $this->load->model('book_model');
         $this->load->model('category_model');
+        $this->load->model('wishlist_model');
     }
 
     public function index() {
@@ -21,9 +22,11 @@ class My_wishlist extends CI_Controller {
         $data['district'] = $this->category_model->getFullList("district");
         $data['institute'] = $this->category_model->getFullList("institute");
         $data['book'] = $this->book_model->getAllBooks();
+        $data['wishlist_book']= $this->wishlist_model->getWishlistBook($id);
+        
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');
-        $this->load->view('contents/my_wishlist_view');
+        $this->load->view('contents/my_wishlist_view',$data);
         $this->db->close();
         $this->load->view('includes/footer');
     }
