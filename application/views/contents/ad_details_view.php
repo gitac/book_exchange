@@ -19,16 +19,6 @@ if ($book_info != NULL) {
         $book_customer_emails[] = $r['customer_email'];
         $book_customer_phn_nos[] = $r['customer_phn_no'];
         $book_customer_addresses[] = $r['customer_address'];
-        
-        
-        
-        
-        $book_ad_giver_ins_id = $r['ad_giver_ins_id'];
-        $book_ad_giver_office_id = $r['ad_giver_office_id'];
-        $book_ad_giver_names[] = $r['ad_giver_name'];
-        $book_ad_giver_emails[] = $r['ad_giver_email'];
-        $book_ad_giver_phn_nos[] = $r['ad_giver_phn_no'];
-        $book_ad_giver_addresses[] = $r['ad_giver_address'];
         $book_count++;
     }
 }
