@@ -30,6 +30,7 @@ if ($book_info != NULL) {
         <script>
             function request(){
                 window.location.href = "<?php echo base_url() ?>index.php/ad_details/request";
+                alert("sss");
             }
         </script>
     </head> 
