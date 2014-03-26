@@ -99,9 +99,9 @@ if ($type != "categories" && $type != "authors" && $type != "districts") {
                     <li>
                         <h4>Institutes</h4>
                         <ul>
-                            <li><a href="schools">Schools</a></li>
-                            <li><a href="colleges">Colleges</a></li>
-                            <li><a href="varsities">Varsities</a></li>   
+                            <li><a href="<?php echo base_url() ?>index.php/show_category/schools">Schools</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/show_category/colleges">Colleges</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/show_category/varsities">Varsities</a></li>   
                         </ul>
                     </li>
                 </ul>

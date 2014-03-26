@@ -11,8 +11,8 @@ AND post_ad_giver_id = ad_giver_id
 AND ad_giver_id = customer_id
 AND book_id = b_id
 AND author_id = a_id
-AND customer_id = ".$id."
-AND post_status =  '".$status."'
+AND customer_id = " . $id . "
+AND post_status =  '" . $status . "'
 ORDER BY date_time, post_id
 ");
         if ($query->num_rows >= 1) {
@@ -26,19 +26,19 @@ ORDER BY date_time, post_id
     }
 
     function getBookInfo($bid) {
-        $this->db->select('*');
-        $this->db->from('author_book');
-        $this->db->join('author', 'author.author_id = author_book.a_id');
-        $this->db->join('book_info', 'book_info.book_id = author_book.b_id');
-        $this->db->join('post', 'post.post_book_id = book_info.book_id');
-        $this->db->join('category', 'category.category_id = book_info.book_category_id');
-        $this->db->join('ad_giver', 'post.post_ad_giver_id = ad_giver.ad_giver_id');
-        $this->db->join('division', 'division.division_id = ad_giver.ad_giver_div_id');
-        $this->db->join('district', 'district.district_id = ad_giver.ad_giver_dis_id');
-        $this->db->join('near_area', 'near_area.near_area_id = ad_giver.ad_giver_near_area_id');
-        $this->db->where('post.post_id', $bid);
-        $this->db->where('post.post_status', 'Active');
-        $query = $this->db->get();
+        $query = $this->db->query("SELECT * 
+        FROM author, author_book, book_info, post, category, customer, near_area, district, division,institute
+        WHERE post.post_book_id = book_info.book_id
+        AND post.post_ad_giver_id = customer.customer_id
+        AND book_info.book_category_id = category.category_id
+        AND book_id = b_id
+        AND author_id = a_id
+        AND post_id = " . $bid . "
+        AND customer.customer_near_area_id = near_area.near_area_id
+        AND near_area.near_area_dis_id = district.district_id
+        AND district.district_div_id = division.division_id
+        AND customer.customer_ins_id = institute.institute_id
+        AND post_status =  'active'");
         if ($query->num_rows >= 1) {
             foreach ($query->result_array() as $row) {
                 $data[] = $row;

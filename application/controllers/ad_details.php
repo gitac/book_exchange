@@ -63,6 +63,18 @@ class Ad_details extends CI_Controller {
         $this->db->close();
         $this->load->view('includes/footer');
     }
+    
+    function request($bid){
+        if ($this->agent->is_referral()) {
+           $data['agent'] = $this->agent->referrer();
+        } else {
+            $data['agent'] = NULL;
+        }
+        
+        $this->load->database();
+        $this->book_model->insertRequest($bid);
+        $this->db->close();
+    }
 
 }
 

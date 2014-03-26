@@ -2,7 +2,7 @@
 $book_count = 0;
 if ($book_info != NULL) {
     foreach ($book_info as $r) {
-        $post_ids[] = $r['post_id'];
+        $book_ids[] = $r['post_id'];
         $book_names[] = $r['book_name'];
         $book_edition[] = $r['post_book_edition'];
         $book_prices[] = $r['post_book_price'];
@@ -13,13 +13,22 @@ if ($book_info != NULL) {
         $book_author_names[] = $r['author_name'];
         $book_near_area[] = $r['near_area_name'];
         $book_post_time[] = $r['date_time'];
-        $book_customer_ins_name[] = $r['institute_name'];
+        $book_customer_ins_ids = $r['customer_ins_id'];
         $book_customer_first_names[] = $r['customer_first_name'];
         $book_customer_last_names[] = $r['customer_last_name'];
         $book_customer_emails[] = $r['customer_email'];
         $book_customer_phn_nos[] = $r['customer_phn_no'];
         $book_customer_addresses[] = $r['customer_address'];
         
+        
+        
+        
+        $book_ad_giver_ins_id = $r['ad_giver_ins_id'];
+        $book_ad_giver_office_id = $r['ad_giver_office_id'];
+        $book_ad_giver_names[] = $r['ad_giver_name'];
+        $book_ad_giver_emails[] = $r['ad_giver_email'];
+        $book_ad_giver_phn_nos[] = $r['ad_giver_phn_no'];
+        $book_ad_giver_addresses[] = $r['ad_giver_address'];
         $book_count++;
     }
 }
@@ -27,13 +36,6 @@ if ($book_info != NULL) {
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
-    <head>
-        <script>
-            function request(){
-                window.location.href = "<?php echo base_url() ?>index.php/ad_details/request";
-            }
-        </script>
-    </head> 
     <body>
         <!-- Main -->
         <div id="main" class="shell">
@@ -46,9 +48,9 @@ if ($book_info != NULL) {
                                 <tr style="width: 100%"><td><p style="font-size: 24px; font-weight: bold; color: #0252BC; padding-top: .5cm; padding-left: .5cm; padding-bottom: .5cm"><?php echo $book_names[0] ?></p>
                                         <p style="padding-bottom: .5cm"><span style="font-size: 20px; font-weight: bold; font-style: italic; color: #0252BC; padding-left: .5cm;">
                                                 <?php
-                                                $book = $post_ids[0];
+                                                $book = $book_ids[0];
                                                 $i = 0;
-                                                while ($i < $book_count && $book == $post_ids[$i]) {
+                                                while ($i < $book_count && $book == $book_ids[$i]) {
                                                     echo $book_author_names[$i] . '<br> &nbsp; &nbsp;';
                                                     $i++;
                                                 }
@@ -65,6 +67,11 @@ if ($book_info != NULL) {
                                                     echo 'th';
                                                 }
                                                 ?> edition</span></p></td>
+<!--                                    <td style="width: 50%">
+                                        <button class="button_style" style="width: 250px; margin-bottom: .2cm">Add to wishlist</button>
+                                        <button class="button_style" style="width: 250px; margin-bottom: .2cm">Request for this book</button>
+                                        <button class="button_style" style="width: 250px; margin-bottom: .2cm">Ad for this book</button>
+                                    </td>-->
                                 </tr>
                                 <tr>
                                     <td style="width: 60%; text-align: center">
@@ -89,27 +96,36 @@ if ($book_info != NULL) {
                                         <p style="font-size: 14px; padding: .5cm .5cm .5cm .5cm; height: 90%"><?php echo $book_des[0] ?></p>
                                     </td>
                                 </tr>
+<!--                                <tr>
+                                    <td style="padding-left: .5cm;"> <button class="button_style" style="margin-left: 1%; margin-bottom: .2cm">Add to wishlist</button></td>
+                                    <td style="padding-left: .0cm; padding-bottom: .5cm"> <button class="button_style" style="margin-bottom: .2cm">Request for this book</button></td>
+                                    <td style="padding-left: .0cm; padding-bottom: .5cm"> <button class="button_style" style="margin-bottom: .2cm">Ad for this book</button></td>
+                                </tr>-->
                             </table>
                         </div></td>
                     <td style="width: 35; height: 80%"><div id="modal" style="width: 100% !important; height: 65% !important">
-                            <div style="height: 45%">
-                                <p style="font-size: 20px; padding: .5cm .5cm .5cm .5cm;"><?php echo $book_customer_first_names[0] ?> <?php echo $book_customer_last_names[0] ?></p>
-                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_customer_addresses[0] ?>,</p>
-                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_near_area[0] ?>,</p>
+                            <div style="height: 55%">
+                                <p style="font-size: 20px; padding: .5cm .5cm .5cm .5cm;"><?php echo $book_ad_giver_names[0] ?></p>
+                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_ad_giver_addresses[0] ?>, <?php echo $book_near_area[0] ?>,</p>
                                 <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_div[0] ?>, <?php echo $book_dis[0] ?></p>
-                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_customer_ins_name[0]?></p>
-                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .2cm; font-weight: bold"><?php echo $book_customer_emails[0] ?></p>
-                                <p style="font-size: 14px; font-weight: bold; padding-left: .5cm; padding-right: .5cm; padding-bottom: .3cm"><?php echo $book_customer_phn_nos[0]; ?></p>
+                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .2cm; font-weight: bold"><?php echo $book_ad_giver_emails[0] ?></p>
+                                <p style="font-size: 14px; font-weight: bold; padding-left: .5cm; padding-right: .5cm; padding-bottom: .3cm"><?php echo $book_ad_giver_phn_nos[0]; ?></p>
                             </div>
                             <!--<p style="font-size: 20px; font-weight: bold; padding-left: .5cm; padding-right: .5cm; padding-bottom: .3cm">Send an Email</p>-->
                             <hr></hr>
-                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-top: .5cm;"><b>Message</b></p>
-                            <textarea class="xxlarge" rows="8" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"></textarea>
+                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-top: .5cm;">Message</p>
+                            <textarea class="xxlarge" rows="5" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"></textarea>
+<!--                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm;">Name</p>
+                            <input type="text" class="input-xlarge" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"/>
+                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm;">Email</p>
+                            <input type="text" class="input-xlarge" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"/>
+                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm;">Mobile no (optional)</p>
+                            <input type="text" class="input-xlarge" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .5cm"/>-->
                             <button class="button_style" style="width: 80%; margin-left: 10%;">Send</button>
                         </div>
                         <div id="modal" style="width: 100% !important; height: 32% !important">
                             <button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-top: 1cm; margin-left: .3cm">Add to wishlist</button>
-                            <button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-left: .3cm" onclick="request(<?php echo $post_ids[0]?>)">Request for this book</button>
+                            <button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-left: .3cm">Request for this book</button>
                             <button class="button_style" style="width: 250px; margin-left: .3cm">Ad for this book</button>
                         </div>
                     </td>
