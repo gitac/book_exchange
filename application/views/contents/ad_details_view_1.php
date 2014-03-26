@@ -115,6 +115,12 @@ if ($book_info != NULL) {
                             <hr></hr>
                             <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-top: .5cm;">Message</p>
                             <textarea class="xxlarge" rows="5" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"></textarea>
+<!--                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm;">Name</p>
+                            <input type="text" class="input-xlarge" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"/>
+                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm;">Email</p>
+                            <input type="text" class="input-xlarge" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"/>
+                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm;">Mobile no (optional)</p>
+                            <input type="text" class="input-xlarge" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .5cm"/>-->
                             <button class="button_style" style="width: 80%; margin-left: 10%;">Send</button>
                         </div>
                         <div id="modal" style="width: 100% !important; height: 32% !important">
