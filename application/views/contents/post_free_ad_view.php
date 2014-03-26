@@ -1,52 +1,15 @@
 <?php
 $count = 0;
-$d_count = 0;
 $a_count = 0;
 $b_count = 0;
-$s_count = 0;
-$clg_count = 0;
-$v_count = 0;
-$dis_count = 0;
-$n_count = 0;
-foreach ($near_area as $r) {
-    $n_ids[] = $r['near_area_id'];
-    $n_names[] = $r['near_area_name'];
-    $n_count++;
-}
-
-foreach ($district as $r) {
-    $dis_ids[] = $r['district_id'];
-    $dis_names[] = $r['district_name'];
-    $dis_count++;
-}
-
-foreach ($division as $r) {
-    $d_ids[] = $r['division_id'];
-    $d_names[] = $r['division_name'];
-    $d_count++;
-}
 
 foreach ($author as $r) {
     $a_ids[] = $r['author_id'];
     $a_names[] = $r['author_name'];
     $a_count++;
 }
-foreach ($school as $r) {
-    $s_ids[] = $r['institute_id'];
-    $s_names[] = $r['institute_name'];
-    $s_count++;
-}
 
-foreach ($college as $r) {
-    $clg_ids[] = $r['institute_id'];
-    $clg_names[] = $r['institute_name'];
-    $clg_count++;
-}
-foreach ($varsity as $r) {
-    $v_ids[] = $r['institute_id'];
-    $v_names[] = $r['institute_name'];
-    $v_count++;
-}
+
 
 foreach ($category as $r) {
     $ids[] = $r['category_id'];
@@ -91,20 +54,6 @@ foreach ($book as $r) {
         var a_name = document.getElementById("author_name1").value;
         if(a_name == "" || a_name == null){
             document.getElementById('a_error').innerHTML = "Fill the author name field";
-        }
-    }
-    
-    function check_u_name(){
-        var n_name = document.getElementById("u_name").value;
-        if(n_name == "" || n_name == null){
-            document.getElementById('n_error').innerHTML = "Fill the name field";
-        }
-    }
-    
-    function check_email(){
-        var e_name = document.getElementById("email").value;
-        if(e_name == "" || e_name == null){
-            document.getElementById('e_error').innerHTML = "Fill the email field";
         }
     }
     
@@ -156,22 +105,16 @@ foreach ($book as $r) {
             check_book_name();
             check_author_name();
             check_book_des();
-            check_u_name();
         } else if(error == "m_error"){
             check_file_img();
             check_book_name();
             check_author_name();
             check_book_des();
-            check_u_name();
-            check_email();  
         } else if(error == "add_error"){
             check_file_img();
             check_book_name();
             check_author_name();
             check_book_des();
-            check_u_name();
-            check_email();  
-            checkMblNo();
         }
         document.getElementById(error).innerHTML = "";
     }
@@ -181,55 +124,6 @@ foreach ($book as $r) {
         check_book_name();
         check_author_name();
         check_book_des();
-        check_u_name();
-        check_email();  
-        checkMblNo();
-    }
-    function checkMblNo(){
-        var phone= document.getElementById("inputPhone").value;
-        if(phone == "" || phone == null){
-            document.getElementById('m_error').innerHTML = "Fill the phone number field";
-        } else {
-            var c = /^01(6|5|7|9|1|8)\d{8}$/.test(phone);  
-            if(c == false){
-                document.getElementById('m_error').innerHTML = "Invalid phone number";
-            }
-        }
-    }
-    function select_div(){
-        var l= document.getElementById("division").value;
-        // alert(l);
-    }
-    
-    function radioFunction(name)
-    {
-        if(name == "student"){
-            document.getElementById('service_holder').checked = false;
-            document.getElementById('srv').style.display = "none";
-            document.getElementById('ins').style.display = "block";
-        } else if(name == "service_holder"){
-            document.getElementById('student').checked = false;
-            document.getElementById('ins').style.display = "none";
-            document.getElementById('srv').style.display = "block";
-        } else if(name == "school"){
-            document.getElementById('scl').style.display = "block";
-            document.getElementById('clg').style.display = "none";
-            document.getElementById('vrsty').style.display = "none";
-            document.getElementById('college').checked = false;
-            document.getElementById('varsity').checked = false;
-        }else if(name == "college"){
-            document.getElementById('scl').style.display = "none";
-            document.getElementById('clg').style.display = "block";
-            document.getElementById('vrsty').style.display = "none";
-            document.getElementById('school').checked = false;
-            document.getElementById('varsity').checked = false;
-        }else if(name == "varsity"){
-            document.getElementById('scl').style.display = "none";
-            document.getElementById('clg').style.display = "none";
-            document.getElementById('vrsty').style.display = "block";
-            document.getElementById('school').checked = false;
-            document.getElementById('college').checked = false;
-        }
     }
 </script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -240,12 +134,9 @@ foreach ($book as $r) {
             <div id="modal" style="width: 90% !important">
                 <header><h1>Post a free Ad</h1></header>
                 <section>
-                    <?php
-                    $attributes = array('class' => 'form-horizontal', 'id' => 'contact-form', 'method' => 'post', 'enctype' => 'multipart/form-data');
-
-                    echo form_open(base_url() . 'index.php/post_free_ad/ad_verify', $attributes);
-                    ?>
-
+               
+                    <form action="<?php echo base_url()?>index.php/post_free_ad/ad_verify" class="form-horizontal" id="contact-form" method="post"
+                  enctype="multipart/form-data">
                     <fieldset style="padding-top: .5cm">
                         <label style="margin-left: 30%; padding-bottom: .5cm; color: red; font-weight: bold"><?php echo $book_error; ?></label>
                         <div class="control-group" style="padding-top: .5cm">
@@ -355,151 +246,7 @@ foreach ($book as $r) {
                                 <input type="text" name="price" class="input-xlarge" placeholder="Bangladeshi Taka" onfocus="check_error('p_error')"/>
                             </div>
                         </div>
-
-
-
-                        <header><h1>Seller information</h1></header>
-                        <div class="control-group" style="padding-top: .5cm">
-                            <label class="control-label" for="name"><b>Name</b></label>
-                            <div class="controls">
-                                <input type="text" class="input-xlarge" placeholder="Name" name="name" id="u_name" onfocus="check_error('n_error')" onblur="check_u_name()"/>
-                                <label style="color: red; font-weight: bold" id="n_error"></label>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="inputEmail"><b>Email</b></label>
-                            <div class="controls">
-                                <input type="text" class="input-xlarge" placeholder="Email" name="email" id="email" onfocus="check_error('e_error')" onblur="check_email()"/>
-                                <label style="color: red; font-weight: bold" id="e_error"></label>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="inputEmail"><b>Phone number</b></label>
-                            <div class="controls">
-                                <input type="text" class="input-xlarge" id="inputPhone" placeholder="Phone number" name="phone" onfocus="check_error('m_error')" onblur="checkMblNo()"/>
-                                <label style="color: red; font-weight: bold" id="m_error"></label>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" ><b>Location</b></label>
-                            <div class="controls">
-                                <div class="input">
-                                    <select style="text-align: center" id="division" onchange="select_div()">
-                                        <?php for ($i = 0; $i < $d_count; $i++) {
-                                            ?>
-                                            <option value="<?php echo $d_ids[$i]; ?>"><?php echo $d_names[$i]; ?></option>
-                                        <?php }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="input" id="district">
-                                    <select  style="text-align: center" id="selected_district">
-                                        <?php for ($i = 0; $i < $dis_count; $i++) {
-                                            ?>
-                                            <option value="<?php echo $dis_ids[$i]; ?>"><?php echo $dis_names[$i]; ?></option>
-                                        <?php }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="input" id="neighborhood">
-                                    <select  style="text-align: center" id="selected_neighborhood">
-                                        <?php for ($i = 0; $i < $n_count; $i++) {
-                                            ?>
-                                            <option value="<?php echo $n_ids[$i]; ?>"><?php echo $n_names[$i]; ?></option>
-                                        <?php }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label"><b>Add address</b></label>
-                            <div class="controls">
-                                <input type="text" class="input-xlarge" placeholder="Address" name="address" id="address" onfocus="check_error('add_error')"/>
-                                <label style="color: red; font-weight: bold" id="add_error"></label>
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label"><b>Occupation</b></label>
-                            <div class="controls">
-                                <div style="float:left; clear:none;">
-                                    <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="occupation" value="student" id="student" onclick="radioFunction('student')"/>
-                                    <label for="student" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">Student</label>
-                                    <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="occupation" value="service_holder" id="service_holder" onclick="radioFunction('service_holder')"/>
-                                    <label for="service_holder" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">Service Holder</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="ins" style="display: none">
-                            <div class="control-group">
-                                <label class="control-label"><b>Institutes</b></label>
-                                <div class="controls">
-                                    <div style="float:left; clear:none;">
-                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="institute" value="school" id="school" onclick="radioFunction('school')"/>
-                                        <label for="school" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">School</label>
-                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="institute" value="college" id="college" onclick="radioFunction('college')"/>
-                                        <label for="college" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">College</label>
-                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="institute" value="varsity" id="varsity" onclick="radioFunction('varsity')"/>
-                                        <label for="varsity" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">Varsity</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="control-group" id="scl" style="display: none">
-                                <label class="control-label"><b>School</b></label>
-                                <div class="controls">
-                                    <div class="input">
-                                        <input type="text" class="input-xlarge" placeholder="School name" name="school_name" list="suggests_school"/>
-                                        <datalist id="suggests_school">
-                                            <?php for ($i = 0; $i < $s_count; $i++) { ?>
-                                                <option value="<?php echo $s_names[$i]; ?>">
-                                                <?php } ?>
-                                        </datalist>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="control-group" id="clg" style="display: none">
-                                <label class="control-label"><b>College</b></label>
-                                <div class="controls">
-                                    <div class="input">
-                                        <input type="text" class="input-xlarge" placeholder="College name" name="college_name" list="suggests_college"/>
-                                        <datalist id="suggests_college">
-                                            <?php for ($i = 0; $i < $clg_count; $i++) { ?>
-                                                <option value="<?php echo $clg_names[$i]; ?>">
-                                                <?php } ?>
-                                        </datalist>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="control-group" id="vrsty" style="display: none">
-                                <label class="control-label" ><b>Varsity</b></label>
-                                <div class="controls">
-                                    <div class="input">
-                                        <input type="text" class="input-xlarge" placeholder="Varsity name" name="varsity_name" list="suggests_varsity"/>
-                                        <datalist id="suggests_varsity">
-                                            <?php for ($i = 0; $i < $v_count; $i++) { ?>
-                                                <option value="<?php echo $v_names[$i]; ?>">
-                                                <?php } ?>
-                                        </datalist>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="srv" style="display: none">
-
-                            <div class="control-group">
-                                <label class="control-label"><b>Office name</b></label>
-                                <div class="controls">
-                                    <input type="text" class="input-xlarge" placeholder="Address" name="office_name"/>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label"><b>Office address</b></label>
-                                <div class="controls">
-                                    <input type="text" class="input-xlarge" placeholder="Address" name="office_address"/>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div class="control-group">
                             <div class="controls">
                                 <button type="submit" class="button_style" style="width: 200px; margin-top: .2cm; margin-bottom: .2cm" onmouseover="post()">Post</button>

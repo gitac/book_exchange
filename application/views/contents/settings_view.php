@@ -19,7 +19,7 @@
                 <a href="create_profile">Create a Profile</a><br/>
                 <a href="create_profile">Edit profile</a><br/>
                 <a href="change_email_pw">Change email address or password</a><br/>
-                <a href="#">Privacy Settings</a><br/><br/>
+                <br/>
                 <hr></hr>
             </div>
         </div>
