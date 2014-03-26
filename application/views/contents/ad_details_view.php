@@ -19,7 +19,6 @@ if ($book_info != NULL) {
         $book_customer_emails[] = $r['customer_email'];
         $book_customer_phn_nos[] = $r['customer_phn_no'];
         $book_customer_addresses[] = $r['customer_address'];
-        
         $book_count++;
     }
 }
