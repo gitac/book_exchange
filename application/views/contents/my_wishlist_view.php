@@ -23,7 +23,7 @@ if ($wishlist_book != NULL) {
        <script>
          function  create_wishlist()
          {
-             window.location.href="<?php echo base_url() ?>index.php/create_wishlist"
+             window.location.href="<?php echo base_url() ?>index.php/create_wishlist";
          }
        </script>
        </head>
