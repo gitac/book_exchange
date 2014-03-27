@@ -133,24 +133,6 @@ if ($criteria == "category") {
         $res = intval($res);
         $mod = $book_count % 5;
     }
-}else if ($criteria == "search") {
-    if ($search != NULL) {
-        foreach ($search as $r) {
-            $book_ids[] = $r['post_id'];
-            $book_names[] = $r['book_name'];
-            $book_prices[] = $r['post_book_price'];
-            $book_images[] = $r['post_image'];
-            $book_des[] = $r['post_description'];
-            $book_authors[] = $r['author_name'];
-            $book_author_ids[] = $r['author_id'];
-            $book_post_time[] = $r['date_time'];
-            $book_count++;
-        }
-        $page = 1;
-        $res = $book_count / 5;
-        $res = intval($res);
-        $mod = $book_count % 5;
-    }
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -227,11 +209,23 @@ if ($criteria == "category") {
                     <form method="post">
                         <table style="padding-left: 5%; width: 100%">
                             <tr>
-                                <td style="color: #0871b3; font-size: 16px; width: 60%"><?php echo $c_name; ?><?php if ($criteria == "author" || $criteria == "author_name") echo "'s" ?> <?php if ($criteria == "area") echo " area " ?>books &nbsp; &nbsp;</td>
-                                
+                                <td style="color: #0871b3; font-size: 16px; width: 60%">Search in <?php echo $c_name; ?><?php if ($criteria == "author" || $criteria == "author_name") echo "'s" ?> <?php if ($criteria == "area") echo " area " ?>books &nbsp; &nbsp;</td>
+                                <td style="width: 30%"><input type="text" placeholder="Search" name="search" list="suggests_book2"/>
+                                    <datalist id="suggests_book2">
+                                        <?php for ($i = 0; $i < $book_count; $i++) { ?>
+                                            <option value="<?php echo $book_names[$i]; ?>">
+                                            <?php } ?>
+                                    </datalist></td>
+                                <td style="width: 10%"><input type="button" id="searchButton" /></td>
                             </tr>
                         </table>
-                    </form>
+                    </form><!-- do it
+                    <div style="width: 100%; padding-left: 72%">
+                        <p style="font-size: 16px; float:left; clear:none; display:block; padding: 8px 1em 0 0;">page <b><?php $page ?></b> of <b><?php echo $res + 1; ?></b></p>
+                        <input style="float:left; clear:none; margin: 0px 0 0 2px; width: 30px; font-weight:bold; font-size: 24px" type="button" value="<"/>
+                        <input style="float:left; clear:none; margin: 0px 0 0 2px; width: 30px; font-weight:bold; font-size: 24px" type="button" value=">"/>
+                        <br/>
+                    </div>-->
                     <div id="modal" >
                         <header><a style="padding-left: 65%">Price</a><a style="padding-left: 18%">Date</a></header>
                     </div>

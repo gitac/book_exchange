@@ -13,7 +13,7 @@ class Admin_home extends CI_Controller {
         $data['page'] = "";
         
         $this->load->database();
-        $this->load->view('includes/admin_header', $data);   
+        $this->load->view('includes/header_admin', $data);   
         $data['post'] = $this->post_model->getPostList();
  
         $this->load->view('contents/admin_home_view',$data);     

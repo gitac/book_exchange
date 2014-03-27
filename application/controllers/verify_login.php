@@ -34,6 +34,7 @@ class Verify_login extends CI_Controller {
             $this->db->close();
             $this->load->view('includes/footer');
         } else {
+
             if (isset($_POST['rememberme'])) {
                 $this->session->sess_expire_on_close = FALSE;
                 $this->session->sess_update();
@@ -45,16 +46,20 @@ class Verify_login extends CI_Controller {
             $password = md5($this->input->post('pw'));
             $this->load->database();
             $result = $this->customer_model->getUserID($username, $password);
-            $result['customer_id'];
-
+            $as = $this->customer_model->getUserType($username, $password);
             $this->db->close();
             $sess_array = array();
 
             $sess_array = array(
                 'id' => $result['customer_id'],
-                'username' => $username
+                'username' => $username,
+                'logged_as' => $as['user_type']
             );
             $this->session->set_userdata('logged_in', $sess_array);
+            
+            if($as['user_type'] == "admin"){
+                redirect('admin_home', 'refresh');
+            }else
             //Go to private area
             redirect('my_profile', 'refresh');
         }

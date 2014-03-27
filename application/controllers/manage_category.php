@@ -14,7 +14,7 @@ class Manage_category extends CI_Controller {
         $data['option'] = "";
         $data['page'] = "";
         
-        $this->load->view('includes/admin_header', $data);
+        $this->load->view('includes/header_admin');
                         
         $this->load->view('contents/manage_category_view');
         

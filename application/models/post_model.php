@@ -29,17 +29,19 @@ class Post_model extends CI_Model {
         $p_status="pending";
         $this->db->select('*');
         $this->db->from('post');
+        $this->db->join('book_info', 'post.post_book_id = book_info.book_id');
         $this->db->where('post_status',$p_status);
         
         $query = $this->db->get();
+        
         if ($query->num_rows >= 1) {
             foreach ($query->result_array() as $row) {
                 $data[] = $row;
-                
-                
             }
               return $data;
         }
+        else
+            return null;
       
     }
     

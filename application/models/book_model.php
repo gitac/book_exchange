@@ -327,7 +327,7 @@ class Book_model extends CI_Model {
         //  $this->db->join('author', 'author.author_id = author_book.a_id');
         //$this->db->join('book', 'book.book_id = author_book.b_id');
         $this->db->where('post.post_status', 'Active');
-        $this->db->order_by("post_view_count");
+        $this->db->order_by("post_view_count DESC");
         $this->db->order_by("post_id");
         $query = $this->db->get();
         if ($query->num_rows >= 1) {

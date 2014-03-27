@@ -30,9 +30,7 @@ class Admin_login extends CI_Controller {
         
         if($result)
          { 
-            
-                    
-          
+            $this->load->db();
             $data['option'] = "";
             $data['page'] = "";
             
@@ -40,6 +38,8 @@ class Admin_login extends CI_Controller {
             
             $data['post'] = $this->post_model->getPostList();
             $this->load->view('contents/admin_home_view',$data);
+            
+            $this->close->db();
            
         }
         else{ // incorrect username or password
@@ -50,8 +50,8 @@ class Admin_login extends CI_Controller {
     
     function check_admin($uname,$pass) 
     {
-        $admin_uname = 'admin';
-        $admin_pass = '12345';
+        $admin_uname = 'esha';
+        $admin_pass = '56tf389sfhlwnjc1';
         
         if($uname == $admin_uname && $pass == $admin_pass)
             {
