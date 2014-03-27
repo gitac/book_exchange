@@ -10,6 +10,7 @@ class Category_books extends CI_Controller {
         $this->load->model('category_model');
         $this->load->model('book_model');
         $this->load->library('user_agent');
+        $this->load->model('customer_model');
     }
 
     public function index() {
@@ -18,16 +19,18 @@ class Category_books extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
            $data['id'] = $session_data['id'];
            $data['username'] = $session_data['username'];
            $data['option'] = "my_profile";
+           $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
-        $this->load->database();
+        
         $data['division'] = $this->category_model->getFullList("division");
         
         $data['category'] = $this->category_model->getFullList("category");
@@ -48,17 +51,18 @@ class Category_books extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
            $data['id'] = $session_data['id'];
            $data['username'] = $session_data['username'];
            $data['option'] = "my_profile";
+           $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
         $data['criteria'] = "category";
-        $this->load->database();
         $data['division'] = $this->category_model->getFullList("division");
         
         $data['category'] = $this->category_model->getFullList("category");
@@ -81,18 +85,19 @@ class Category_books extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";if ($this->session->userdata('logged_in')) {
+        $data['option'] = "";
+        $this->load->database();
+        if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
            $data['id'] = $session_data['id'];
            $data['username'] = $session_data['username'];
            $data['option'] = "my_profile";
+           $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
         $data['criteria'] = "author";
-        
-        $this->load->database();
         $data['division'] = $this->category_model->getFullList("division");
         
         $data['category'] = $this->category_model->getFullList("category");
@@ -117,17 +122,18 @@ class Category_books extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
            $data['id'] = $session_data['id'];
            $data['username'] = $session_data['username'];
            $data['option'] = "my_profile";
+           $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
         $data['criteria'] = "book_name";
-        $this->load->database();
         $data['division'] = $this->category_model->getFullList("division");
         $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
@@ -151,17 +157,20 @@ class Category_books extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        $data['option'] = "";if ($this->session->userdata('logged_in')) {
+        $data['option'] = "";
+        $this->load->database();
+        if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
            $data['id'] = $session_data['id'];
            $data['username'] = $session_data['username'];
            $data['option'] = "my_profile";
+           $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
         $data['criteria'] = "author_name";
-        $this->load->database();
+        
         $data['division'] = $this->category_model->getFullList("division");
         $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
@@ -178,28 +187,5 @@ class Category_books extends CI_Controller {
         $this->load->view('includes/footer');
        
         
-    }
-    
-    public function district($did){//complete it
-       /* if ($this->agent->is_referral()) {
-            $data['agent'] = $this->agent->referrer();
-        } else {
-            $data['agent'] = NULL;
-        }
-        $data['option'] = "";
-        $data['page'] = "home";
-        $data['criteria'] = "district";
-        $this->load->view('includes/header', $data);
-        $this->load->view('includes/ad_portion');
-        $this->load->database();
-        $data['category'] = $this->category_model->getFullList("category");
-        $data['division'] = $this->category_model->getFullList("division");
-        $data['author'] = $this->category_model->getFullList("author");
-        $data['c_name'] = $this->category_model->getDistrictName($aid);
-        $data['district_book'] = $this->book_model->getDistrictAllBookList($aid);
-        $this->load->view('contents/category_books_view', $data);
-
-        $this->db->close();
-        $this->load->view('includes/footer'); */
     }  
     }

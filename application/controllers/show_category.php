@@ -10,6 +10,7 @@ class Show_category extends CI_Controller {
         $this->load->model('category_model');
         $this->load->model('book_model');
         $this->load->library('user_agent');
+        $this->load->model('customer_model');
     }
 
     public function categories() {
@@ -18,18 +19,18 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-           $data['id'] = $session_data['id'];
-           $data['username'] = $session_data['username'];
-           $data['option'] = "my_profile";
+            $u_id = $data['id'] = $session_data['id'];
+            $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($u_id);
+            $data['option'] = "my_profile";
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
         $data['type'] = "categories";
-        
-        $this->load->database();
         
         $data['division'] = $this->category_model->getFullList("division");
         
@@ -52,17 +53,18 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-           $data['id'] = $session_data['id'];
-           $data['username'] = $session_data['username'];
-           $data['option'] = "my_profile";
+            $u_id = $data['id'] = $session_data['id'];
+            $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($u_id);
+            $data['option'] = "my_profile";
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
         $data['type'] = "districts";
-        $this->load->database();
         $data['division'] = $this->category_model->getFullList("division");
         
         $data['category'] = $this->category_model->getFullList("category");
@@ -85,18 +87,18 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-           $data['id'] = $session_data['id'];
-           $data['username'] = $session_data['username'];
-           $data['option'] = "my_profile";
+            $u_id = $data['id'] = $session_data['id'];
+            $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($u_id);
+            $data['option'] = "my_profile";
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
         $data['type'] = "authors";
-        $this->load->database();
-        
         $data['division'] = $this->category_model->getFullList("division");
         
         $data['category'] = $this->category_model->getFullList("category");
@@ -118,18 +120,18 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-           $data['id'] = $session_data['id'];
-           $data['username'] = $session_data['username'];
-           $data['option'] = "my_profile";
+            $u_id = $data['id'] = $session_data['id'];
+            $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($u_id);
+            $data['option'] = "my_profile";
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
         $data['type'] = "schools";
-
-        $this->load->database();
         
         $data['list'] = $this->category_model->getFullList("school");
         
@@ -154,18 +156,18 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-           $data['id'] = $session_data['id'];
-           $data['username'] = $session_data['username'];
-           $data['option'] = "my_profile";
+            $u_id = $data['id'] = $session_data['id'];
+            $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($u_id);
+            $data['option'] = "my_profile";
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
         $data['type'] = "colleges";
-
-        $this->load->database();
         $data['list'] = $this->category_model->getFullList("college");
         $data['division'] = $this->category_model->getFullList("division");
         
@@ -189,18 +191,18 @@ class Show_category extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-           $data['id'] = $session_data['id'];
-           $data['username'] = $session_data['username'];
-           $data['option'] = "my_profile";
+            $u_id = $data['id'] = $session_data['id'];
+            $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($u_id);
+            $data['option'] = "my_profile";
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
         $data['type'] = "varsities";
-
-        $this->load->database();
         $data['list'] = $this->category_model->getFullList("varsity");
         $data['division'] = $this->category_model->getFullList("division");
         

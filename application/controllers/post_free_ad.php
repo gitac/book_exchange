@@ -9,19 +9,23 @@ class Post_free_ad extends CI_Controller {
         parent::__construct();
         $this->load->model('category_model');
         $this->load->model('book_model');
+        $this->load->model('customer_model');
     }
 
     public function index() {
         $data['book_error'] = NULL;
         $data['option'] = "";
+        
         if ($this->session->userdata('logged_in')) {
+            $this->load->database();
             $session_data = $this->session->userdata('logged_in');
-            $data['id'] = $session_data['id'];
+            $u_id = $data['id'] = $session_data['id'];
             $data['username'] = $session_data['username'];
             $data['option'] = "my_profile";        
             $data['page'] = "";
+            $data['pro_pic'] = $this->customer_model->getProPic($u_id);
 
-        $this->load->database();
+        
         $data['division'] = $this->category_model->getFullList("division");
         $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
@@ -72,6 +76,8 @@ class Post_free_ad extends CI_Controller {
 
 
 
+        //check phn no
+        
         if ($book_name == NULL || $book_name == ""
                 || $author_name1 == NULL || $author_name1 == ""
                 || $book_des == NULL || $book_des == ""
@@ -111,7 +117,7 @@ class Post_free_ad extends CI_Controller {
             $this->db->close();
             $this->load->view('includes/footer');
         } else {
-            //save image
+//            save image
 //            $allowedExts = array("gif", "jpeg", "jpg", "png", "JPG", "JPEG", "GIF", "PNG");
 //            $extension = end(explode(".", $_FILES["img_file"]["name"]));
 //            $image_name = time().".".$extension;

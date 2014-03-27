@@ -8,18 +8,20 @@ class Change_email_pw extends CI_Controller {
         parent::__construct();
         $this->load->model('book_model');
         $this->load->model('category_model');
+        $this->load->model('customer_model');
     }
 
     public function index() {
-
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
             $id = $data['id'] = $session_data['id'];
             $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($id);
         }
         $data['option'] = "my_profile";
         $data['page'] = "";
-        $this->load->database();
+        
         $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
         $data['district'] = $this->category_model->getFullList("district");
