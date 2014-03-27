@@ -66,6 +66,7 @@ class Category_model extends CI_Model {
         } else {
             $this->db->from('INSTITUTE');
             $this->db->where('INSTITUTE_TYPE', $type);
+            $this->db->order_by("institute_name");
         }
         $query = $this->db->get();
         if ($query->num_rows >= 1) {
