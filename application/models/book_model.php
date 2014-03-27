@@ -9,7 +9,7 @@ class Book_model extends CI_Model {
         $this->db->where('book_name', $book_name);
         
         $query = $this->db->get();
-
+        $id = NULL;
         if ($query->result() > 0) {
             foreach ($query->result() as $row) {
                 $id = $row->book_id;

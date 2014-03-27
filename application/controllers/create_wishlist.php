@@ -41,18 +41,17 @@ class Create_wishlist extends CI_Controller {
                
     }
     
-    function saveWishlist(){
+    function save_wishlist(){
             
          if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
             $data['id'] = $session_data['id'];
             
-            $id = array_shift($data);
+         }
             $cid = $this->input->post('selected_category');
             $book_name = $this->input->post('book_name');
-        $author_name1 = $this->input->post('author_name1');
-        echo $book_name;
-        echo $cid;
+            $author_name1 = $this->input->post('author_name1');
+        
     
           if ($book_name == NULL || $book_name == ""
                 || $author_name1 == NULL || $author_name1 == ""
@@ -92,19 +91,18 @@ class Create_wishlist extends CI_Controller {
         $this->load->view('includes/footer');
         }
  else {
-         $b['id'] = $this->wishlist_model->Book($cid,$book_name);
-        $bookid= array_shift($b);
-           $result =  $this->wishlist_model->insertBookInfo($book_name,$id,$cid);
-           if($result){
+     
+            $this->load->model('wishlist_model');
+       echo $bookid = $this->wishlist_model->getBookId($book_name,$cid);
+               
+       if($this->wishlist_model->insertBookInfo($bookid,$id)){
                $this->load->view('success-view');
            }
            
  }
        
-        
-  }
- }
- 
+    $this->db->close();      
+  } 
     
 }
 

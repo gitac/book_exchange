@@ -133,7 +133,7 @@ foreach ($book as $r) {
                 <header><h1>Create Wishlist</h1></header>
                 <section>
                
-                    <form action="<?php echo base_url()?>index.php/create_wishlist/saveWishlist" class="form-horizontal" id="contact-form" method="post"
+                    <form action="<?php echo base_url()?>index.php/create_wishlist/save_wishlist" class="form-horizontal" id="contact-form" method="post"
                   enctype="multipart/form-data">
                     <fieldset style="padding-top: .5cm">
                         <label style="margin-left: 30%; padding-bottom: .5cm; color: red; font-weight: bold"><?php echo $book_error; ?></label>
