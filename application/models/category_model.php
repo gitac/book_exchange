@@ -16,6 +16,47 @@ class Category_model extends CI_Model {
             return null;
     }
 
+    function getAllNearAreaList($did) {
+        $this->db->select('*');
+        $this->db->from('near_area');
+        $this->db->where('near_area_dis_id', $did);
+        $query = $this->db->get();
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+
+    function getAreaName($i_id) {
+        $this->db->select('near_area_name');
+        $this->db->from('near_area');
+        $this->db->where('near_area_id', $i_id);
+        $query = $this->db->get();
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $title = $row->near_area_name;
+            }
+        }
+        return $title;
+    }
+    
+    function getInstituteName($i_id) {
+        $this->db->select('institute_name');
+        $this->db->from('institute');
+        $this->db->where('institute_id', $i_id);
+        $query = $this->db->get();
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $title = $row->institute_name;
+            }
+        }
+        return $title;
+    }
+    
     function getCategoryName($cid) {
         $this->db->select('category_name');
         $this->db->from('category');

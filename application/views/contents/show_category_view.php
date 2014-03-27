@@ -4,6 +4,7 @@ $d_count = 0;
 $dis_count = 0;
 $a_count = 0;
 $l_count = 0;
+$near_count = 0;
 foreach ($division as $r) {
     $d_ids[] = $r['division_id'];
     $d_names[] = $r['division_name'];
@@ -26,7 +27,7 @@ foreach ($category as $r) {
 }
 if ($count > 5)
     $c = 5;
-if ($type != "categories" && $type != "authors" && $type != "districts") {
+if ($type != "categories" && $type != "authors" && $type != "districts" && $type != "areas") {
     foreach ($list as $r) {
         $l_ids[] = $r['institute_id'];
         $l_types[] = $r['institute_type'];
@@ -42,6 +43,14 @@ if ($type != "categories" && $type != "authors" && $type != "districts") {
         }
         if ($dis_count > 5) {
             $dis = 5;
+        }
+    }
+} else if ($type == "areas") {
+    if ($near_areas != NULL) {
+        foreach ($near_areas as $r) {
+            $near_ids[] = $r['near_area_id'];
+            $near_names[] = $r['near_area_name'];
+            $near_count++;
         }
     }
 }
@@ -138,9 +147,20 @@ if ($type != "categories" && $type != "authors" && $type != "districts") {
                         ?>
                         <?php for ($i = 0; $i < $dis_count; $i = $i + 2) { ?>
                             <tr>
-                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/district/<?php echo $dis_ids[$i]; ?>"><?php echo $dis_names[$i]; ?></a></li></ul></td>
+                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/show_category/district/<?php echo $dis_ids[$i]; ?>"><?php echo $dis_names[$i]; ?></a></li></ul></td>
                                 <?php if ($i % 2 == 0 && $i < $dis_count - 1) { ?>
-                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/district/<?php echo $dis_ids[$i + 1]; ?>"><?php echo $dis_names[$i + 1]; ?></a></li></ul></td>
+                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/show_category/district/<?php echo $dis_ids[$i + 1]; ?>"><?php echo $dis_names[$i + 1]; ?></a></li></ul></td>
+                                <?php } ?>
+                            </tr>
+                            <?php
+                        }
+                    }else if ($type == "areas") {
+                        ?>
+                        <?php for ($i = 0; $i < $near_count; $i = $i + 2) { ?>
+                            <tr>
+                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/area/<?php echo $near_ids[$i]; ?>"><?php echo $near_names[$i]; ?></a></li></ul></td>
+                                <?php if ($i % 2 == 0 && $i < $near_count - 1) { ?>
+                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/area/<?php echo $near_ids[$i + 1]; ?>"><?php echo $near_names[$i + 1]; ?></a></li></ul></td>
                                 <?php } ?>
                             </tr>
                             <?php
@@ -149,9 +169,9 @@ if ($type != "categories" && $type != "authors" && $type != "districts") {
                         ?>
                         <?php for ($i = 0; $i < $l_count; $i = $i + 2) { ?>
                             <tr>
-                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="#"><?php echo $l_names[$i]; ?></a></li></ul></td>
+                                <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/institute/<?php echo $l_ids[$i]; ?>"><?php echo $l_names[$i]; ?></a></li></ul></td>
                                 <?php if ($i % 2 == 0 && $i < $l_count - 1) { ?>
-                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="#"><?php echo $l_names[$i + 1]; ?></a></li></ul></td>
+                                    <td style="width: 50%; padding-left: 5%; font-size: 16px"><ul><li><a href="<?php echo base_url() ?>index.php/category_books/institute/<?php echo $l_ids[$i + 1]; ?>"><?php echo $l_names[$i + 1]; ?></a></li></ul></td>
                                 <?php } ?>
                             </tr>
                             <?php

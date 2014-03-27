@@ -75,7 +75,9 @@ if ($book_info != NULL) {
                                                     $i++;
                                                 }
                                                 ?>
-                                            </span><span style="font-size: 16px;"><?php
+                                            </span><?php if($book_edition[0] != 0 && $book_edition[0] != NULL){?>
+                                            <span style="font-size: 16px;"><?php
+                                            
                                                 echo $book_edition[0];
                                                 if ($book_edition[0] == 1)
                                                     echo "st";
@@ -86,7 +88,8 @@ if ($book_info != NULL) {
                                                 else {
                                                     echo 'th';
                                                 }
-                                                ?> edition</span></p></td>
+                                            
+                                                ?> edition</span><?php }?></p></td>
                                 </tr>
                                 <tr>
                                     <td style="width: 60%; text-align: center">
@@ -125,7 +128,7 @@ if ($book_info != NULL) {
                                 <p style="font-size: 20px; padding: .5cm .5cm .5cm .5cm;"><?php echo $book_customer_first_names[0] ?> <?php echo $book_customer_last_names[0] ?></p>
                                 <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_customer_addresses[0] ?>,</p>
                                 <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_near_area[0] ?>,</p>
-                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_div[0] ?>, <?php echo $book_dis[0] ?></p>
+                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_dis[0] ?>, <?php echo $book_div[0] ?></p>
                                 <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_customer_ins_names[0]?></p>
                                 <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .2cm; font-weight: bold"><?php echo $book_customer_emails[0] ?></p>
                                 <p style="font-size: 14px; font-weight: bold; padding-left: .5cm; padding-right: .5cm; padding-bottom: .3cm"><?php echo $book_customer_phn_nos[0]; ?></p>

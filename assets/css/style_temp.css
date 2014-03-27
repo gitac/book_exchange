@@ -29,7 +29,7 @@ textarea { overflow: auto; }
     background:url('http://localhost/book_exchange/assets/images/search.png') no-repeat  no-repeat;
     width: 35px;
     border: 0px;
-    padding: 5px 5px 5px 5px;
+    padding: 20px 5px 9px 5px;
 }
 
 #add_Button

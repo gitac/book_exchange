@@ -91,41 +91,41 @@ foreach ($book as $r) {
         <div id="header" class="ad">
             <div id="search" style="padding: 0; height: 25%">
                 <table border="1" bgcolor="#dddddd">
+                    <form action="<?php echo base_url()?>index.php/search" method="post">
                     <tr>
-                        <td><input type="text" placeholder="Search" name="search" list="suggests_book"/>
+                        <td><input type="text" placeholder="Search" name="book_name" list="suggests_book"/>
                                     <datalist id="suggests_book">
                                         <?php for ($i = 0; $i < $b_count; $i++) { ?>
                                             <option value="<?php echo $b_names[$i]; ?>">
                                             <?php } ?>
                                     </datalist></td>
-                        <td><select style="width: 150px !important; height: 100% !important">
+                        <td><select style="width: 150px !important; height: 100% !important" name="category">
                                 <option value="0">--All category--</option>
                                 <?php for($i = 0; $i < $c_count; $i++){?>
                                 <option value="<?php echo $c_ids[$i]; ?>"><?php echo $c_names[$i]?></option>
                                 <?php }?>
                             </select></td>
-                        <td><select style="width: 150px !important">
-                                <option>--All Authors--</option>
+                        <td><select style="width: 150px !important" name="author">
+                                <option value="0">--All Authors--</option>
                                 <?php for($i = 0; $i < $a_count; $i++){?>
                                 <option value="<?php echo $a_ids[$i]; ?>"><?php echo $a_names[$i]?></option>
                                 <?php }?>
                             </select></td>
-                        <td><select style="width: 130px !important">
-                                <option>--All Campus--</option>
+                        <td><select style="width: 130px !important" name="campus">
+                                <option value="0">--All Campus--</option>
                                 <?php for($i = 0; $i < $i_count; $i++){?>
                                 <option value="<?php echo $i_ids[$i]; ?>"><?php echo $i_names[$i]?></option>
                                 <?php }?>
                             </select></td>
-                        <td><select style="width: 170px !important">
-                                <option>--All of Bangladesh--</option>
+                        <td><select style="width: 170px !important" name="district">
+                                <option value="0">--All of Bangladesh--</option>
                                <?php for($i = 0; $i < $dis_count; $i++){?>
                                 <option value="<?php echo $dis_ids[$i]; ?>"><?php echo $dis_names[$i]?></option>
                                 <?php }?>
                             </select></td>
-                        
-
-                        <td><input type="button" value="" id="searchButton" /></td>
+                        <td><button id="searchButton"/></td>
                     </tr>
+                        </form>
                 </table>
             </div>
             <!--   <div id="post-ad" style="padding: 0; height: 75%; margin-top: 10px">

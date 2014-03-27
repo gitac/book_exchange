@@ -1,6 +1,99 @@
 <?php
 
 class Book_model extends CI_Model {
+    
+    function search($book_name, $category, $author, $campus, $district){
+        if($category == 0 && $author == 0 && $campus == 0 && $district ==0 ){
+            $query = $this->db->query("SELECT * 
+            FROM author, author_book, book_info, post
+            WHERE post.post_book_id = book_info.book_id
+            AND book_info.book_name LIKE '%" .$book_name. "%'
+            AND book_info.book_id = author_book.b_id
+            AND author.author_id = author_book.a_id
+            AND author.author_id = author_book.a_id
+            AND post.post_status =  'Active'
+            ORDER BY date_time, post_id");
+        } else if($category == 0 && $author == 0 && $campus == 0 && $district !=0 ){
+            $query = $this->db->query("SELECT * 
+            FROM author, author_book, book_info, post, customer, near_area, district
+            WHERE post.post_book_id = book_info.book_id
+            AND post.post_ad_giver_id = customer.customer_id
+            AND customer_near_area_id = near_area_id
+            AND near_area_dis_id = district_id
+            AND district_id = ". $district ."
+            AND book_info.book_name LIKE '%" .$book_name. "%'
+            AND book_info.book_id = author_book.b_id
+            AND author.author_id = author_book.a_id
+            AND author.author_id = author_book.a_id
+            AND post.post_status =  'Active'
+            ORDER BY date_time, post_id");
+        } else if($category == 0 && $author == 0 && $campus != 0 && $district ==0 ){
+            $query = $this->db->query("SELECT * 
+            FROM author, author_book, book_info, post, customer, near_area, district
+            WHERE post.post_book_id = book_info.book_id
+            AND post.post_ad_giver_id = customer.customer_id
+            AND customer_near_area_id = near_area_id
+            AND near_area_dis_id = district_id
+            AND district_id = ". $district ."
+            AND book_info.book_name LIKE '%" .$book_name. "%'
+            AND book_info.book_id = author_book.b_id
+            AND author.author_id = author_book.a_id
+            AND author.author_id = author_book.a_id
+            AND post.post_status =  'Active'
+            ORDER BY date_time, post_id");
+        }
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+
+
+    function getAllBookArea($id){
+        $query = $this->db->query("SELECT * 
+FROM author, author_book, book_info, post, customer
+WHERE post.post_ad_giver_id = customer.customer_id
+AND customer_near_area_id = " . $id . "
+AND post.post_book_id = book_info.book_id
+AND book_info.book_id = author_book.b_id
+AND author.author_id = author_book.a_id
+AND author.author_id = author_book.a_id
+AND post.post_status =  'Active'
+ORDER BY date_time, post_id");
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+    
+    function getAllBookInstitute($id){
+        $query = $this->db->query("SELECT * 
+FROM author, author_book, book_info, post, customer
+WHERE post.post_ad_giver_id = customer.customer_id
+AND customer_ins_id = " . $id . "
+AND post.post_book_id = book_info.book_id
+AND book_info.book_id = author_book.b_id
+AND author.author_id = author_book.a_id
+AND author.author_id = author_book.a_id
+AND post.post_status =  'Active'
+ORDER BY date_time, post_id");
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
 
     function getBookId($book_name, $cateogry_id) {
         $this->db->select('book_id');
@@ -297,7 +390,7 @@ ORDER BY date_time DESC , post_id");
         //  $this->db->join('author', 'author.author_id = author_book.a_id');
         //$this->db->join('book', 'book.book_id = author_book.b_id');
         $this->db->where('post.post_status', 'Active');
-        $this->db->order_by("post_view_count");
+        $this->db->order_by("post_view_count DESC");
         $this->db->order_by("post_id");
         $query = $this->db->get();
         if ($query->num_rows >= 1) {
