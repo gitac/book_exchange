@@ -105,7 +105,8 @@ class Customer_model extends CI_Model {
             'customer_phn_no' => $phone,
             'customer_near_area_id' => $n_id,
             'customer_address' => $address,
-            'customer_ins_id' => $i_id
+            'customer_ins_id' => $i_id,
+            'user_type' => "customer"
         );
         $this->db->where('customer_id', $u_id);
         $this->db->update('customer', $new_member_insert_data);
@@ -164,6 +165,23 @@ class Customer_model extends CI_Model {
 
     function getUserID($username, $password) {
         $this->db->select('customer_id');
+        $this->db->from('customer');
+        $this->db->where('customer_username', $username);
+        $this->db->where('customer_password', $password);
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 1) {
+            foreach ($query->result_array() as $row) {
+                return $row;
+            }
+        } else {
+            return NULL;
+        }
+    }
+    
+    function getUserType($username, $password) {
+        $this->db->select('user_type');
         $this->db->from('customer');
         $this->db->where('customer_username', $username);
         $this->db->where('customer_password', $password);
