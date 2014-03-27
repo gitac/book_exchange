@@ -16,6 +16,13 @@ if ($post != NULL) {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+    <head>
+        <script>
+            function delete_ad(post_id){
+                window.location.href = "<?php echo base_url() ?>index.php/my_profile/delete_ad/removed_ads/"+post_id;
+            }
+        </script>
+    </head>
     <body>
         <!-- Main -->
         <div id="main" class="shell">
@@ -51,16 +58,16 @@ if ($post != NULL) {
                         //if ($i == $book_count)
                         //  break;
                         ?>
-                        <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $book_ids[$i] ?>" target="_blank">
+                        
                             <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
                                 <tr>
                                     <td style="width: 15%"><img style="width: 120px; height: 200px" src="<?php echo base_url() ?><?php echo $book_images[$i] ?>" alt="" /></td>
                                     <td style="width: 35%; text-align: center">
-                                        <h2 style="font-size: 24px"><a href="<?php echo base_url() ?>index.php/category_books/bookname/<?php echo $book_ids[$i] ?>"><?php echo $book_names[$i] ?></a></h2>
+                                        <h2 style="font-size: 24px"><?php echo $book_names[$i] ?></h2>
                                         <h3 style="font-size: 16px !important;"><?php
                                                 while ($i < $book_count && $book == $book_ids[$i]) {
                                                     ?>
-                                                    <a href="<?php echo base_url() ?>index.php/category_books/authorname/<?php echo $book_author_ids[$i] ?>"><?php echo $book_authors[$i] ?></a><br/>
+                                                    <?php echo $book_authors[$i] ?><br/>
                                                     <?php
                                                     $i++;
                                                     
@@ -71,8 +78,8 @@ if ($post != NULL) {
                                     </td>
                                     <td style="width: 15%"><p style="font-size: 16px"><b>৳ <?php echo $book_prices[$i] ?><br/> price</b></p></td>
                                     <td style="width: 15%"><p style="font-size: 12px"><?php echo $book_post_time[$i] ?><br/>Time posted</p></td>
-                                    <td style="width: 20%"><button class="button_style" style="margin-left: .5cm">Edit</button><br/>
-                                    <button class="button_style">Remove</button></td>
+                                    <td style="width: 20%"><button class="button_style" style="width: 150px" onclick="delete_ad(<?php echo $book_ids[$i] ?>)">Delete</button><br/>
+                                        <button class="button_style" style="width: 150px">Active</button></td>
                                 </tr>
                             </table></a>
                         <hr style="margin-bottom: .5cm"></hr>

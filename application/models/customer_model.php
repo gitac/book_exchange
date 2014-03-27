@@ -19,6 +19,22 @@ class Customer_model extends CI_Model {
             return $q->customer_id;
         }
     }
+    function getCustomerInfo($id){
+        $this->db->select('*');
+        $this->db->from('customer');
+        $this->db->where('customer_id', $id);
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+                return $data;
+            }
+        } else {
+            return NULL;
+        }
+    }
 
     function getNearAreaId($selected_neighborhood) {
         $this->db->select('near_area_id');

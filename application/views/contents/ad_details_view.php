@@ -43,6 +43,8 @@ if ($book_info != NULL) {
                     document.getElementById("btn_remove_request").disabled = true; 
                     document.getElementById("btn_wishlist").disabled = true; 
                     document.getElementById("btn_msg").disabled = true; 
+                } else if(u_id == null){
+                    document.getElementById("btn_remove_request").disabled = true; 
                 }
                 
                 var req = <?php echo(json_encode($request)); ?>;

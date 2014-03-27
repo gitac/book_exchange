@@ -104,6 +104,24 @@ class Book_model extends CI_Model {
         $insert = $this->db->insert('post', $new_post_insert_data);
     }
 
+    function getRequestCount($u_id) {
+        $query = $this->db->query("SELECT post_id
+FROM post, post_request
+WHERE post_req_p_id = post_id
+AND post_ad_giver_id = " . $u_id . "
+AND post_status =  'active'
+ORDER BY date_time DESC , post_id");
+
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+
     function getAllPostList($status, $u_id) {
 
         $query = $this->db->query("SELECT * 
@@ -125,6 +143,22 @@ class Book_model extends CI_Model {
             return null;
     }
 
+    function remove_ad($post_id){
+        $data = array(
+            'post_status' => "removed"
+        );
+        $this->db->where('post_id', $post_id);
+        $this->db->update('post', $data);
+    }
+    
+    function delete_ad($post_id){
+        $data = array(
+            'post_status' => "deleted"
+        );
+        $this->db->where('post_id', $post_id);
+        $this->db->update('post', $data);
+    }
+    
     function RequestedUser($p_id) {
         $query = $this->db->query("SELECT * 
         FROM customer, near_area, district, division, institute
@@ -377,7 +411,7 @@ AND author.author_id = author_book.a_id
 AND author.author_name = '" . $name . "' ) 
 AND book_info.book_id = author_book.b_id
 AND author.author_id = author_book.a_id
-AND post.author_id = author_book.a_id
+AND author.author_id = author_book.a_id
 AND post.post_status = 'Active'
 ORDER BY date_time, post_id");
         if ($query->num_rows >= 1) {
