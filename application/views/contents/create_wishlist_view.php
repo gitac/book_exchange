@@ -9,8 +9,6 @@ foreach ($author as $r) {
     $a_count++;
 }
 
-
-
 foreach ($category as $r) {
     $ids[] = $r['category_id'];
     $names[] = $r['category_name'];
@@ -24,7 +22,6 @@ foreach ($book as $r) {
 }
 ?>
 <script> 
-   
     function add_category_name(){
         var v= document.getElementById("selected_category").value;
         if(v == 0){
@@ -126,12 +123,6 @@ foreach ($book as $r) {
         check_author_name();
         check_book_des();
     }
-    
-    function delivery(x){
-      var c = x.value;
-      document.getElementById('selected_category').innerHTML = country;
-}
-    
 </script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
@@ -139,10 +130,10 @@ foreach ($book as $r) {
         <!-- Main -->
         <div id="main" class="shell">
             <div id="modal" style="width: 90% !important">
-                
+                <header><h1>Create Wishlist</h1></header>
                 <section>
                
-                    <form action="<?php echo base_url()?>index.php/create_wishlist" class="form-horizontal" id="contact-form" method="post"
+                    <form action="<?php echo base_url()?>index.php/create_wishlist/saveWishlist" class="form-horizontal" id="contact-form" method="post"
                   enctype="multipart/form-data">
                     <fieldset style="padding-top: .5cm">
                         <label style="margin-left: 30%; padding-bottom: .5cm; color: red; font-weight: bold"><?php echo $book_error; ?></label>
@@ -150,9 +141,8 @@ foreach ($book as $r) {
                             <label class="control-label" ><b>Chosen category</b></label>
                             <div class="controls">
                                 <div class="input">
-                                 
-                                    <select  style="text-align: center !important" id="selected_category" name="selected_category" >
-                                     
+                                    <select  style="text-align: center !important" id="selected_category" name="selected_category">
+
                                         <?php for ($i = 0; $i < $count; $i++) {
                                             ?>
                                             <option value="<?php echo $ids[$i]; ?>"><?php echo $names[$i]; ?></option>
@@ -167,13 +157,17 @@ foreach ($book as $r) {
                         <div class="control-group">
                             <label class="control-label"><b>Book name</b></label>
                             <div class="controls">
-                                <input type="text" class="input-xlarge" placeholder="Book name" id="book_name" name="book_name" list="suggests_book" onfocus="check_error('b_error')" onblur="check_book_name()"/>
+                              
+                              <input type="text" class="input-xlarge" placeholder="Book name" id="book_name" name="book_name" list="suggests_book" onfocus="check_error('b_error')" onblur="check_book_name()"/>
                                 <label style="color: red; font-weight: bold" id="b_error"></label>
-                                <datalist id="suggests_book">
+                                
+                                    <datalist>
                                     <?php for ($i = 0; $i < $b_count; $i++) { ?>
-                                        <option value="<?php echo $book_names[$i]; ?>">
+                                        <option value="<?php echo $book_ids[$i]; ?>"><?php echo $book_names[$i]; ?></option>
                                         <?php } ?>
-                                </datalist>
+                                        </datalist>
+                           
+                            
                             </div>
                         </div>
                         <div class="control-group">
@@ -224,8 +218,7 @@ foreach ($book as $r) {
                                 </div>
                             </div>
                         </div>
-                       
-
+                        
 
                         <div class="control-group">
                             <label class="control-label"><b>Photo</b></label>
@@ -235,11 +228,12 @@ foreach ($book as $r) {
                             </div>
                         </div>
                         
-                        
+
+                       
                         
                         <div class="control-group">
                             <div class="controls">
-                                <button type="submit" class="button_style" style="width: 200px; margin-top: .2cm; margin-bottom: .2cm" onmouseover="post()">Ok</button>
+                                <button type="submit" class="button_style" style="width: 200px; margin-top: .2cm; margin-bottom: .2cm" onmouseover="post()">Create</button>
                             </div>
                         </div>
                     </fieldset>
