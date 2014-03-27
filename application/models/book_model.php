@@ -2,8 +2,83 @@
 
 class Book_model extends CI_Model {
 
-    function getAllPostList($status, $u_id) {
+    function getBookId($book_name, $cateogry_id) {
+        $this->db->select('book_id');
+        $this->db->from('book_info');
+        $this->db->where('book_category_id', $cateogry_id);
+        $this->db->where('book_name', $book_name);
         
+        $query = $this->db->get();
+
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $id = $row->book_id;
+            }
+            return $id;
+        } else {
+            $new_book_insert_data = array(
+                'book_category_id' => $cateogry_id,
+                'book_name' => $book_name
+            );
+
+            $this->db->trans_start();
+            $this->db->insert('book_info', $new_book_insert_data);
+            $insert_id = $this->db->insert_id();
+            $this->db->trans_complete();
+            return $insert_id;
+        }
+    }
+    
+    function getAuthorId($author_name) {
+        $this->db->select('author_id');
+        $this->db->from('author');
+        $this->db->where('author_name', $author_name);
+        
+        $query = $this->db->get();
+
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $id = $row->author_id;
+            }
+            return $id;
+        } else {
+            $new_author_insert_data = array(
+                'author_name' => $author_name
+            );
+
+            $this->db->trans_start();
+            $this->db->insert('author', $new_author_insert_data);
+            $insert_id = $this->db->insert_id();
+            $this->db->trans_complete();
+            return $insert_id;
+        }
+    }
+    
+    function getCategoryId($selected_category){
+        $this->db->select('category_id');
+        $this->db->from('category');
+        $this->db->where('category_name', $selected_category);
+        $query = $this->db->get();
+
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $id = $row->near_area_id;
+            }
+        }
+        return $id;
+    }
+
+    function insertPost($book_name, $selected_category, $author_name1, $author_name2, $author_name3, $author_name4, $author_name5, $edition, $book_des, $book_price, $image_path, $u_id) {
+        $c_id = $this->getCategoryId($selected_category);
+        $b_id = $this->getBookId($book_name, $c_id);
+        $a_id_1 = $this->getAuthorId($author_name1);
+        if($author_name2 != NULL && $author_name2 != ""){
+            
+        }
+    }
+
+    function getAllPostList($status, $u_id) {
+
         $query = $this->db->query("SELECT * 
         FROM post, book_info, author_book, author, customer
         WHERE post_book_id = book_id
@@ -22,8 +97,8 @@ class Book_model extends CI_Model {
         else
             return null;
     }
-    
-    function RequestedUser($p_id){
+
+    function RequestedUser($p_id) {
         $query = $this->db->query("SELECT * 
         FROM customer, near_area, district, division, institute
         WHERE customer_id
@@ -46,27 +121,26 @@ class Book_model extends CI_Model {
             return null;
     }
 
-
-    function insertRequest($pid, $cid){
+    function insertRequest($pid, $cid) {
         $req_insert_data = array(
             'post_req_p_id' => $pid,
             'post_req_c_id' => $cid
         );
 
-        $insert = $this->db->insert('post_request',$req_insert_data );
+        $insert = $this->db->insert('post_request', $req_insert_data);
     }
-    
-    function deleteRequest($pid, $cid){
+
+    function deleteRequest($pid, $cid) {
         $this->db->where('post_req_p_id', $pid);
         $this->db->where('post_req_c_id', $cid);
-        $this->db->delete('post_request'); 
+        $this->db->delete('post_request');
     }
-    
-    function getNumberOfRequest($pid){
+
+    function getNumberOfRequest($pid) {
         $query = $this->db->query("
             SELECT COUNT(*) as num_req
             FROM post_request
-            WHERE post_request.post_req_p_id = " . $pid );
+            WHERE post_request.post_req_p_id = " . $pid);
         $num_req = NULL;
         if ($query->result() > 0) {
             foreach ($query->result() as $row) {
@@ -75,13 +149,13 @@ class Book_model extends CI_Model {
         }
         return $num_req;
     }
-    
-    function isRequested($pid, $c_id){
+
+    function isRequested($pid, $c_id) {
         $query = $this->db->query("
             SELECT *
             FROM post_request
             WHERE post_request.post_req_c_id = " . $c_id .
-                " AND post_request.post_req_p_id = " . $pid );
+                " AND post_request.post_req_p_id = " . $pid);
         $num_req = NULL;
         if ($query->result() > 0) {
             foreach ($query->result() as $row) {
@@ -90,7 +164,6 @@ class Book_model extends CI_Model {
         }
         return $num_req;
     }
-
 
     function getBookInfo($bid) {
         $query = $this->db->query("SELECT * 

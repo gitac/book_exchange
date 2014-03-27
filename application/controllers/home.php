@@ -21,8 +21,9 @@ class Home extends CI_Controller {
         }
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
-            $data['id'] = $session_data['id'];
+            $id = $data['id'] = $session_data['id'];
             $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($id);
             $data['option'] = "my_profile";
         } else {
             $data['option'] = "";

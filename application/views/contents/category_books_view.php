@@ -145,7 +145,7 @@ if ($criteria == "category") {
                             <?php
                             for ($i = 0; $i < $d_count; $i++) {
                                 ?>
-                                <li><a href="#"><?php echo $d_names[$i]; ?></a></li>
+                                <li><a href="<?php echo base_url() ?>index.php/show_category/location/<?php echo $d_ids[$i]; ?>"><?php echo $d_names[$i]; ?></a></li>
                                 <?php
                             }
                             ?>
@@ -191,7 +191,7 @@ if ($criteria == "category") {
                         <br/>
                     </div>-->
                     <div id="modal" >
-                        <header><a href="#" style="padding-left: 65%">Price</a><a href="#" style="padding-left: 18%">Date</a></header>
+                        <header><a style="padding-left: 65%">Price</a><a style="padding-left: 18%">Date</a></header>
                     </div>
                     <div>
                         <?php
@@ -228,8 +228,7 @@ if ($criteria == "category") {
                                                 $i--;
                                                 ?>
                                             </h3>
-                                            <!--<p style="font-size: 16px"><a href="#">Dhaka - Buet</a></p> -->
-                                        </td>
+                                            </td>
                                         <td style="width: 15%"><p style="font-size: 16px"><b>৳ <?php echo $book_prices[$i] ?></b></p></td>
                                         <td style="width: 25%"><p style="font-size: 12px"><?php echo $book_post_time[$i] ?></p></td>
                                     </tr>

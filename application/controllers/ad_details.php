@@ -7,19 +7,21 @@ class Ad_details extends CI_Controller {
         $this->load->model('book_model');
         $this->load->model('category_model');
         $this->load->library('user_agent');
+        $this->load->model('customer_model');
     }
 
     public function index() {
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
            $data['id'] = $session_data['id'];
            $data['username'] = $session_data['username'];
            $data['option'] = "my_profile";
+           $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
-        $this->load->database();
         $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
         $data['district'] = $this->category_model->getFullList("district");
@@ -43,6 +45,7 @@ class Ad_details extends CI_Controller {
            $data['id'] = $session_data['id'];
            $data['username'] = $session_data['username'];
            $data['option'] = "my_profile";
+          $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
            $data['request'] = $this->book_model->isRequested($bid, $data['id']);
         } else {
             $data['option'] = "";
@@ -79,6 +82,7 @@ class Ad_details extends CI_Controller {
            $data['username'] = $session_data['username'];
            $data['option'] = "my_profile";
            $data['request'] = $this->book_model->isRequested($bid, $data['id']);
+           $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
         } else {
             $data['option'] = "";
             $data['request'] = NULL;

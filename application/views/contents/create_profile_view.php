@@ -66,6 +66,23 @@ foreach ($varsity as $r) {
                     document.getElementById('college').checked = false;
                 }
             }
+            
+            function checkMblNo(){
+        var phone= document.getElementById("inputPhone").value;
+        if(phone == "" || phone == null){
+            document.getElementById('m_error').innerHTML = "Fill the phone number field";
+        } else {
+            var c = /^01(6|5|7|9|1|8)\d{8}$/.test(phone);  
+            if(c == false){
+                document.getElementById('m_error').innerHTML = "Invalid phone number";
+            }
+        }
+    }
+    
+    
+    function check_error(error){
+        document.getElementById(error).innerHTML = "";
+    }
         </script>
     </head>
     <body>
@@ -74,8 +91,11 @@ foreach ($varsity as $r) {
             <div id="modal" style="width: 90% !important">
                 <header><h1>Create a Profile</h1></header>
                 <section>
-                    <form action="<?php echo base_url() ?>index.php/my_profile/create_profile" class="form-horizontal" method="post">
+                    <form action="<?php echo base_url() ?>index.php/my_profile/create_profile" class="form-horizontal" id="contact-form" method="post"
+                  enctype="multipart/form-data">
                         <fieldset style="overflow:hidden; padding-top: .5cm">
+                            <label style="margin-left: 30%; padding-bottom: .5cm; color: red; font-weight: bold"><?php echo $create_pro_error; ?><br/></label>
+                        
                             <span style="margin-left: 40%; font-weight: bold; font-size: 16px; color: red">* Required fields</span>
                             <div class="control-group" style="margin-top: .5cm">
                                 <label class="control-label"><b><span style="color: red">*</span>First name</b></label>
@@ -101,7 +121,7 @@ foreach ($varsity as $r) {
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="inputEmail"><b><span style="color: red">*</span>Phone number</b></label>
+                                <label class="control-label" for="inputPhn"><b><span style="color: red">*</span>Phone number</b></label>
                                 <div class="controls">
                                     <input type="text" class="input-xlarge" id="inputPhone" placeholder="Phone number" name="phone" onfocus="check_error('m_error')" onblur="checkMblNo()"/>
                                     <label style="color: red; font-weight: bold" id="m_error"></label>
@@ -110,24 +130,7 @@ foreach ($varsity as $r) {
                             <div class="control-group">
                                 <label class="control-label" ><b><span style="color: red">*</span>Location</b></label>
                                 <div class="controls">
-                                    <div class="input">
-                                        <select style="text-align: center" id="division" onchange="select_div()">
-                                            <?php for ($i = 0; $i < $d_count; $i++) {
-                                                ?>
-                                                <option value="<?php echo $d_ids[$i]; ?>"><?php echo $d_names[$i]; ?></option>
-                                            <?php }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="input" id="district">
-                                        <select  style="text-align: center" id="selected_district">
-                                            <?php for ($i = 0; $i < $dis_count; $i++) {
-                                                ?>
-                                                <option value="<?php echo $dis_ids[$i]; ?>"><?php echo $dis_names[$i]; ?></option>
-                                            <?php }
-                                            ?>
-                                        </select>
-                                    </div>
+                                    
                                     <div class="input" id="neighborhood">
                                         <select  style="text-align: center" id="selected_neighborhood">
                                             <?php for ($i = 0; $i < $n_count; $i++) {
@@ -164,7 +167,7 @@ foreach ($varsity as $r) {
                                     <label class="control-label"><b>School</b></label>
                                     <div class="controls">
                                         <div class="input">
-                                            <input type="text" class="input-xlarge" placeholder="School name" name="school_name" list="suggests_school"/>
+                                            <input type="text" class="input-xlarge" placeholder="School name" name="ins_name" list="suggests_school"/>
                                             <datalist id="suggests_school">
                                                 <?php for ($i = 0; $i < $s_count; $i++) { ?>
                                                     <option value="<?php echo $s_names[$i]; ?>">
@@ -177,7 +180,7 @@ foreach ($varsity as $r) {
                                     <label class="control-label"><b>College</b></label>
                                     <div class="controls">
                                         <div class="input">
-                                            <input type="text" class="input-xlarge" placeholder="College name" name="college_name" list="suggests_college"/>
+                                            <input type="text" class="input-xlarge" placeholder="College name" name="ins_name" list="suggests_college"/>
                                             <datalist id="suggests_college">
                                                 <?php for ($i = 0; $i < $clg_count; $i++) { ?>
                                                     <option value="<?php echo $clg_names[$i]; ?>">
@@ -190,7 +193,7 @@ foreach ($varsity as $r) {
                                     <label class="control-label" ><b>Varsity</b></label>
                                     <div class="controls">
                                         <div class="input">
-                                            <input type="text" class="input-xlarge" placeholder="Varsity name" name="varsity_name" list="suggests_varsity"/>
+                                            <input type="text" class="input-xlarge" placeholder="Varsity name" name="ins_name" list="suggests_varsity"/>
                                             <datalist id="suggests_varsity">
                                                 <?php for ($i = 0; $i < $v_count; $i++) { ?>
                                                     <option value="<?php echo $v_names[$i]; ?>">
@@ -200,43 +203,29 @@ foreach ($varsity as $r) {
                                     </div>
                                 </div>
                             </div>
-                            <div id="srv" style="display: none">
-
-                                <div class="control-group">
-                                    <label class="control-label"><b>Office name</b></label>
-                                    <div class="controls">
-                                        <input type="text" class="input-xlarge" placeholder="Address" name="office_name"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label"><b>Office address</b></label>
-                                    <div class="controls">
-                                        <input type="text" class="input-xlarge" placeholder="Address" name="office_address"/>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="control-group">
                                 <label class="control-label"><b>Photo</b></label>
                                 <div class="controls">
-                                    <input type="file"></input>
+                                    <input type="file" name="img_file"></input>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" ><b>About me</b></label>
                                 <div class="controls">
-                                    <textarea class="xxlarge" rows="3" style="width: 272px !important"></textarea>
+                                    <textarea name="about_me" class="xxlarge" rows="3" style="width: 272px !important"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" ><b>Interests</b></label>
                                 <div class="controls">
-                                    <textarea class="xxlarge" rows="3" style="width: 272px !important"></textarea>
+                                    <textarea name="interests" class="xxlarge" rows="3" style="width: 272px !important"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="controls">
                                     <div style="float:left; clear:none;">
-                                        <button class="button_style" style="width: 200px" onclick="submit()">Submit</button>                               
+                                        <button class="button_style" style="width: 200px">Submit</button>                               
                                     </div>
                                 </div>
                             </div>
