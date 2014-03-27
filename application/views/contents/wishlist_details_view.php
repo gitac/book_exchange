@@ -79,7 +79,8 @@ if ($wishlist_book != NULL) {
                                            
                                     </td>
                                     
-                                    
+                                       <td style="width: 25%; text-align: center"><p style="font-size: 16px"><?php echo $available_book; ?></p></td>
+                                
                                  <td style ="width: 30%"></td>
                                  </tr>
                             </table>

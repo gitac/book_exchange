@@ -421,11 +421,13 @@ ORDER BY date_time, post_id");
     }
     
        function getWishlistPostBook($id){
+      
             $count =0;
             $this->db->select('*');
             $this->db->from('post');
             $this->db->join('wishlist', 'wishlist.w_book_id = post.post_book_id');
             $this->db->where('wishlist.w_customer_id', $id);
+            
             
             $query = $this->db->get();
          if ($query->num_rows >= 1) {

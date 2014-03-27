@@ -63,8 +63,8 @@ class Wishlist_details extends CI_Controller {
    
         $this->load->view('includes/ad_portion');
         $data['wishlist_book']= $this->wishlist_model->getWishlistBookDetail($data['id'],$bid);
-      
-       
+        $data['available_book'] = $this->book_model->getWishlistPostBook($data['id'],$bid);
+        
         $this->load->view('contents/wishlist_details_view', $data);
 
         $this->db->close();

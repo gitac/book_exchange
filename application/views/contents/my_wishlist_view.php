@@ -70,8 +70,7 @@ if ($wishlist_book != NULL) {
                     <?php
                     for ($i = 0; $i < $book_count; $i++) {
                         $book = $book_ids[$i];
-                        //if ($i == $book_count)
-                        //  break;
+                        
                         ?>
                         <a href="<?php echo base_url() ?>index.php/wishlist_details/wishlist_book/<?php echo $book_ids[$i] ?>" target="_blank">
                             <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
