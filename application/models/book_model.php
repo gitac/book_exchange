@@ -3,7 +3,7 @@
 class Book_model extends CI_Model {
     
     function search($book_name, $category, $author, $campus, $district){
-        if($category == 0 && $author == 0 && $campus == 0 && $district ==0 ){
+        if($category == 0 && $author == 0 && $campus == 0 && $district ==0 ){ //0 0 0 0
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post
             WHERE post.post_book_id = book_info.book_id
@@ -13,7 +13,7 @@ class Book_model extends CI_Model {
             AND author.author_id = author_book.a_id
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        } else if($category == 0 && $author == 0 && $campus == 0 && $district !=0 ){
+        } else if($category == 0 && $author == 0 && $campus == 0 && $district !=0 ){ // 0 0 0 1
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post, customer, near_area, district
             WHERE post.post_book_id = book_info.book_id
@@ -27,18 +27,55 @@ class Book_model extends CI_Model {
             AND author.author_id = author_book.a_id
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        } else if($category == 0 && $author == 0 && $campus != 0 && $district ==0 ){
+        } else if($category == 0 && $author == 0 && $campus != 0 && $district ==0 ){//0 0 1 0
             $query = $this->db->query("SELECT * 
-            FROM author, author_book, book_info, post, customer, near_area, district
+            FROM author, author_book, book_info, post, customer, institute
+            WHERE post.post_book_id = book_info.book_id
+            AND post.post_ad_giver_id = customer.customer_id
+            AND customer_ins_id = institute_id
+            AND institute_id = ". $campus ."
+            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND book_info.book_id = author_book.b_id
+            AND author.author_id = author_book.a_id
+            AND author.author_id = author_book.a_id
+            AND post.post_status =  'Active'
+            ORDER BY date_time, post_id");
+        }else if($category == 0 && $author == 0 && $campus != 0 && $district !=0 ){//0 0 1 1
+            $query = $this->db->query("SELECT * 
+            FROM author, author_book, book_info, post, customer, institute, near_area, district
             WHERE post.post_book_id = book_info.book_id
             AND post.post_ad_giver_id = customer.customer_id
             AND customer_near_area_id = near_area_id
             AND near_area_dis_id = district_id
             AND district_id = ". $district ."
-            AND book_info.book_name LIKE '%" .$book_name. "%'
+            AND customer_ins_id = institute_id
+            AND institute_id = ". $campus ."
+            AND book_info.book_name LIKE  '%".$book_name."%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author.author_id = author_book.a_id
+            AND post.post_status =  'Active'
+            ORDER BY date_time, post_id");
+        } else if($category == 0 && $author != 0 && $campus == 0 && $district ==0 ){//0 1 0 0
+            $query = $this->db->query("SELECT * 
+            FROM author, author_book, book_info, post
+            WHERE post.post_book_id = book_info.book_id
+            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND book_info.book_id = author_book.b_id
+            AND author.author_id = author_book.a_id
+            AND author.author_id = author_book.a_id
+            AND author_id = $author
+            AND post.post_status =  'Active'
+            ORDER BY date_time, post_id");
+        } else if($category != 0 && $author == 0 && $campus == 0 && $district ==0 ){//1 0 0 0
+            $query = $this->db->query("SELECT * 
+            FROM author, author_book, book_info, post
+            WHERE post.post_book_id = book_info.book_id
+            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND book_info.book_id = author_book.b_id
+            AND author.author_id = author_book.a_id
+            AND author.author_id = author_book.a_id
+            AND book_category_id = $category
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
         }

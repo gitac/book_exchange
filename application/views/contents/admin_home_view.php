@@ -1,12 +1,12 @@
 <?php
-$count = 0;
 $book_count = 0;
 foreach ($post as $r) {
     $book_ids[] = $r['post_id'];
+    $book_names[] = $r['book_name'];
     $book_prices[] = $r['post_book_price'];
     $book_images[] = $r['post_image'];
     $book_post_time[] = $r['date_time'];
-    $count++;
+    $book_count++;
 }
 //
 //foreach ($names as $r) {
@@ -55,7 +55,7 @@ if ($book_count == 0) {
                                 <tr>
                                     <td style="width: 10%"><img style="width: 120px; height: 200px"src="<?php echo base_url() ?><?php echo $book_images[$i] ?>" alt="" /></td>
                                     <td style="width: 25%; text-align: center">
-                                        <h2 style="font-size: 18px"><?php echo $book_name[$i] ?></a></h2>
+                                        <h2 style="font-size: 18px"><?php echo $book_names[$i] ?></a></h2>
     <?php
     $con = mysqli_connect("localhost", "root", "", "book_exchange");
 // Check connection
