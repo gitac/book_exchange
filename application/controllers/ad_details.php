@@ -48,6 +48,7 @@ class Ad_details extends CI_Controller {
           $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
            $data['request'] = $this->book_model->isRequested($bid, $data['id']);
         } else {
+            $data['id'] = NULL;
             $data['option'] = "";
             $data['request'] = NULL;
         }

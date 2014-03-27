@@ -17,7 +17,7 @@
                         </ul>
                     </div>
                 </div>
-                <a href="#">Edit profile</a><br/>
+                <a href="edit_profile">Edit profile</a><br/>
                 <a href="change_email_pw">Change email address or password</a><br/>
                 <br/>
                 <hr></hr>
