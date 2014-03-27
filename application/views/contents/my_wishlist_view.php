@@ -3,7 +3,8 @@ $book_count = 0;
 $count = 0;
 if ($wishlist_book != NULL) {
     foreach ($wishlist_book as $r) {
-        $book_ids[] = $r['book_id'];
+        $book_ids[] = $r['wishlist_id'];
+        $wishlist_book_ids[] = $r['w_book_id'];
         $book_names[] = $r['book_name'];
        // $book_prices[] = $r['post_book_price'];
         $book_images[] = $r['w_book_image'];
@@ -14,8 +15,13 @@ if ($wishlist_book != NULL) {
         $book_count++;
     }
 }
-
-
+$available_book_count = 0;
+if ($available_book != NULL) {
+    foreach ($available_book as $r) {
+        $avaiable_ids[] = $r['post_book_id'];
+        $available_book_count++;
+    }
+}
 ?>
 
 
@@ -68,21 +74,21 @@ if ($wishlist_book != NULL) {
                         </tr>
                     </table>
                     <?php
-                    for ($i = 0; $i < $book_count; $i++) {
+                    for ($i = 0, $j = 0; $i < $book_count; $i++) {
                         $book = $book_ids[$i];
                         
                         ?>
-                        <a href="<?php echo base_url() ?>index.php/wishlist_details/wishlist_book/<?php echo $book_ids[$i] ?>" target="_blank">
+                        
                             <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
                 
                                 <tr>
-                                    <td style="width: 15%"><img style="width: 150px; height: 200px" src="<?php echo base_url() ?><?php echo $book_images[$i] ?>" alt="" /></td>
-                                    <td style="width: 50%; text-align: center">
-                                        <h2 style="font-size: 24px"><a href=""><?php echo $book_names[$i] ?></a></h2>
+                                    <td style="width: 15%"><a href="<?php echo base_url() ?>index.php/wishlist_details/wishlist_book/<?php echo $book_ids[$i] ?>" target="_blank"><img style="width: 150px; height: 200px" src="<?php echo base_url() ?><?php echo $book_images[$i] ?>" alt="" /></a></td>
+                                    <td style="width: 40%; text-align: center">
+                                        <h2 style="font-size: 24px"><?php echo $book_names[$i] ?></h2>
                                         <h3 style="font-size: 16px !important;"> <?php
                                                 while ($i < $book_count && $book == $book_ids[$i]) {                                         
                                                     ?>
-                                                    <a href="#"><?php echo $book_authors[$i] ?></a><br/>
+                                                    <?php echo $book_authors[$i] ?><br/>
                                                  
                                                    <?php
                                                     
@@ -94,14 +100,26 @@ if ($wishlist_book != NULL) {
                                                 ?></h3>
                                            <td style="width: 30%"></td>
                                     </td>
-                      
-                                  <td style="width: 20%"><button class="button_style" style="margin-left: .5cm">Edit</button><br/>
-                                    <button class="button_style">Remove</button></td>
+                                     
+                                    <td style="width: 25%"><p style="font-size: 16px; text-align: center"><b><?php
+                                        $count = 0;
+                                        while ($j < $available_book_count && $wishlist_book_ids[$i] == $avaiable_ids[$j]) {
+                                            $j++;
+                                            $count++;
+                                        }
+                                        if ($count == 0)
+                                            echo "NO";
+                                        else
+                                            echo $count;
+                                            ?><br/> Copy </b></p></td>
+                                    
+                                  <td style="width: 20%"><button class="button_style" style="width: 150px">Edit</button><br/>
+                                      <button class="button_style" style="width: 150px">Remove</button></td>
                                     
                                    
                                 </tr>
                                 
-                            </table></a>
+                            </table>
                         <hr style="margin-bottom: .5cm"></hr>
                     <?php } ?>
                     

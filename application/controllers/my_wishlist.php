@@ -6,6 +6,7 @@ class My_wishlist extends CI_Controller {
         $this->load->model('book_model');
         $this->load->model('category_model');
         $this->load->model('wishlist_model');
+        $this->load->model('customer_model');
     }
 
     public function index() {
@@ -13,6 +14,7 @@ class My_wishlist extends CI_Controller {
            $session_data = $this->session->userdata('logged_in');
            $id = $data['id'] = $session_data['id'];
            $data['username'] = $session_data['username'];
+           $data['pro_pic'] = $this->customer_model->getProPic($id);
         }
         $data['option'] = "my_profile";
         $data['page'] = "";
@@ -23,7 +25,7 @@ class My_wishlist extends CI_Controller {
         $data['institute'] = $this->category_model->getFullList("institute");
         $data['book'] = $this->book_model->getAllBooks();
         $data['wishlist_book']= $this->wishlist_model->getWishlistBook($id);
-       // $data['available_book'] = $this->book_model->getWishlistPostBook($id);
+        $data['available_book'] = $this->book_model->getWishlistPostBook($id);
         
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');

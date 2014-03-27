@@ -136,11 +136,11 @@ class Book_model extends CI_Model {
 
     function getRequestCount($u_id) {
         $query = $this->db->query("SELECT post_id
-FROM post, post_request
-WHERE post_req_p_id = post_id
-AND post_ad_giver_id = " . $u_id . "
-AND post_status =  'active'
-ORDER BY date_time DESC , post_id");
+        FROM post, post_request
+        WHERE post_req_p_id = post_id
+        AND post_ad_giver_id = " . $u_id . "
+        AND post_status =  'active'
+        ORDER BY date_time DESC , post_id");
 
         if ($query->num_rows >= 1) {
             foreach ($query->result_array() as $row) {
@@ -456,25 +456,43 @@ ORDER BY date_time, post_id");
     
        function getWishlistPostBook($id){
       
-            $count =0;
-            $this->db->select('*');
-            $this->db->from('post');
-            $this->db->join('wishlist', 'wishlist.w_book_id = post.post_book_id');
-            $this->db->where('wishlist.w_customer_id', $id);
-            
-            
-            $query = $this->db->get();
-         if ($query->num_rows >= 1) {
+           
+         $query = $this->db->query("SELECT post_book_id 
+            FROM post, wishlist
+            WHERE w_book_id= post_book_id
+            AND w_customer_id = " . $id . "
+            AND post_status =  'active'
+            ORDER BY w_book_id ");
+
+        if ($query->num_rows >= 1) {
             foreach ($query->result_array() as $row) {
                 $data[] = $row;
-                $count = $count +1;
             }
-                   
-       }
-       
-      return $count;
+            return $data;
+        }
+        else
+            return null;
         
-        }    
+        }
+        
+        function getAvailableBooks($wid){
+        
+        $query = $this->db->query("SELECT * 
+            FROM post, wishlist,customer
+            WHERE w_book_id= post_book_id
+            AND wishlist_id = " . $wid . "
+            AND post_status =  'active'
+            ORDER BY w_book_id ");
+
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
 
 }
 

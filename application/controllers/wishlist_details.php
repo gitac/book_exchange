@@ -6,21 +6,24 @@ class Wishlist_details extends CI_Controller {
         parent::__construct();
         $this->load->model('book_model');
         $this->load->model('category_model');
+        $this->load->model('customer_model');
         $this->load->model('wishlist_model');
         $this->load->library('user_agent');
     }
 
     public function index() {
+        $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
            $data['id'] = $session_data['id'];
            $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
            $data['option'] = "my_profile";
         } else {
             $data['option'] = "";
         }
         $data['page'] = "";
-        $this->load->database();
+        
         $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
         $data['district'] = $this->category_model->getFullList("district");
@@ -34,7 +37,7 @@ class Wishlist_details extends CI_Controller {
         
     }
     
-     public function wishlist_book($bid){
+     public function wishlist_book($wid){
        
         if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
@@ -47,7 +50,7 @@ class Wishlist_details extends CI_Controller {
            $data['id'] = $session_data['id'];
            $data['username'] = $session_data['username'];
            $data['option'] = "my_profile";
-           
+           $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
         } else {
             $data['option'] = "";
             $data['request'] = NULL;
@@ -62,8 +65,8 @@ class Wishlist_details extends CI_Controller {
         $this->load->view('includes/header', $data);
    
         $this->load->view('includes/ad_portion');
-        $data['wishlist_book']= $this->wishlist_model->getWishlistBookDetail($data['id'],$bid);
-        $data['available_book'] = $this->book_model->getWishlistPostBook($data['id'],$bid);
+        $data['wishlist_book']= $this->wishlist_model->getWishlistBookDetail($wid);
+        $data['available_book'] = $this->book_model->getWishlistPostBookDetail($wid);
         
         $this->load->view('contents/wishlist_details_view', $data);
 
