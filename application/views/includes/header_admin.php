@@ -16,18 +16,12 @@
 		<!-- Navigation -->
 		<div id="navigation">
 			<ul>
-				
 				<li><a href="<?php echo base_url() ?>index.php/log_out" id="reg">Log out</a></li>
 				
 			</ul>
 		</div>
 		<!-- End Navigation -->
 		<div class="cl">&nbsp;</div>
-		<!-- Login-details -->
-		
-                         
-		<!-- End Login-details -->
-	</div>
 
     </body>
 </html>
