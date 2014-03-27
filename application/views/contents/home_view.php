@@ -199,7 +199,7 @@ foreach ($mostly_viewed_book as $r) {
                                         </span>
                                     </a>
                                     <!--<a href="#" class="buy-btn" style="margin-bottom: 1cm">ADD TO FAVORITE</a>-->
-                                    <a href="#" class="buy-btn">REQUEST<span class="price"><span class="low">৳</span><?php echo $book_prices[$i] ?></span></a>
+                                    <a href="#" class="buy-btn"><span class="price"><span class="low">৳</span><?php echo $book_prices[$i] ?></span></a>
                                 </div>                                
                             </li>
                         <?php }

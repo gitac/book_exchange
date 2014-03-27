@@ -9,8 +9,6 @@ foreach ($author as $r) {
     $a_count++;
 }
 
-
-
 foreach ($category as $r) {
     $ids[] = $r['category_id'];
     $names[] = $r['category_name'];

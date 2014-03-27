@@ -20,7 +20,7 @@ class Create_wishlist extends CI_Controller {
             $data['option'] = "";
         }
     
-        $selected_category = $this->input->post('selected_category');
+        $selected_category = $this->input->post('category_name');
         $book_name = $this->input->post('book_name');
         $author_name1 = $this->input->post('author_name1');
        

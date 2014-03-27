@@ -129,7 +129,7 @@ foreach ($book as $r) {
     
     function delivery(x){
       var c = x.value;
-      document.getElementById('lala').innerHTML = country;
+      document.getElementById('selected_category').innerHTML = country;
 }
     
 </script>
@@ -150,8 +150,9 @@ foreach ($book as $r) {
                             <label class="control-label" ><b>Chosen category</b></label>
                             <div class="controls">
                                 <div class="input">
-                                    <select  style="text-align: center !important" id="selected_category" name="selected_category" onChange="delivery(this)>
-
+                                 
+                                    <select  style="text-align: center !important" id="selected_category" name="selected_category" >
+                                     
                                         <?php for ($i = 0; $i < $count; $i++) {
                                             ?>
                                             <option value="<?php echo $ids[$i]; ?>"><?php echo $names[$i]; ?></option>

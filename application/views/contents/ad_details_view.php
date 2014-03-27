@@ -13,7 +13,8 @@ if ($book_info != NULL) {
         $book_author_names[] = $r['author_name'];
         $book_near_area[] = $r['near_area_name'];
         $book_post_time[] = $r['date_time'];
-        $book_customer_ins_ids = $r['customer_ins_id'];
+        $book_customer_ids[] = $r['customer_id'];
+        $book_customer_ins_names[] = $r['institute_name'];
         $book_customer_first_names[] = $r['customer_first_name'];
         $book_customer_last_names[] = $r['customer_last_name'];
         $book_customer_emails[] = $r['customer_email'];
@@ -29,12 +30,31 @@ if ($book_info != NULL) {
     <head>
         <script>
             function request(){
-                window.location.href = "<?php echo base_url() ?>index.php/ad_details/request";
-                alert("sss");
+                window.location.href = "<?php echo base_url() ?>index.php/ad_details/request/<?php echo $post_ids[0];?>";
+            }
+            function remove_request(){
+                window.location.href = "<?php echo base_url() ?>index.php/ad_details/remove_request/<?php echo $post_ids[0];?>";
+            }
+            function at_first(){
+                var c_id = <?php echo(json_encode($book_customer_ids[0])); ?>;
+                var u_id = <?php echo(json_encode($id)); ?>;
+                if(u_id == c_id){
+                    document.getElementById("btn_request").disabled = true; 
+                    document.getElementById("btn_remove_request").disabled = true; 
+                    document.getElementById("btn_wishlist").disabled = true; 
+                    document.getElementById("btn_msg").disabled = true; 
+                }
+                
+                var req = <?php echo(json_encode($request)); ?>;
+                if(req != null){
+                    document.getElementById("btn_request").style.display="none";
+                } else {
+                    document.getElementById("btn_remove_request").style.display="none";
+                }
             }
         </script>
     </head> 
-    <body>
+    <body onload="at_first()">
         <!-- Main -->
         <div id="main" class="shell">
             <!--<p><a href="<?php echo $agent; ?>" style="font-size: 16px !important; float:left; clear:none; display:block; padding: 8px 1em 0 0;">< Back</a>
@@ -78,6 +98,13 @@ if ($book_info != NULL) {
                                     <td style="width: 30%; text-align: center; padding-left: 5%; padding-right: 2%">
                                         <div id="modal" style="width: 100%; padding-bottom: .5cm"><p style="font-size: 20px; font-weight: bold; padding-top: .5cm;">
                                                 <?php
+                                                if ($num_request == NULL || $num_request == 0) {
+                                                    echo 'No';
+                                                } else {
+                                                    ?><?php echo $num_request;
+                                                } ?> </p>Request</div>
+                                        <div id="modal" style="width: 100%; padding-bottom: .5cm"><p style="font-size: 20px; font-weight: bold; padding-top: .5cm;">
+                                                <?php
                                                 if ($book_prices[0] == NULL) {
                                                     echo 'No';
                                                 } else {
@@ -101,24 +128,28 @@ if ($book_info != NULL) {
                                 </tr>-->
                             </table>
                         </div></td>
-                    <td style="width: 35; height: 80%"><div id="modal" style="width: 100% !important; height: 65% !important">
-                            <div style="height: 55%">
-                                <p style="font-size: 20px; padding: .5cm .5cm .5cm .5cm;"><?php echo $book_ad_giver_names[0] ?></p>
-                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_ad_giver_addresses[0] ?>, <?php echo $book_near_area[0] ?>,</p>
+                    <td style="width: 35%; height: 80%"><div id="modal" style="width: 100% !important; height: 65% !important">
+                            <div style="height: 45%">
+                                <p style="font-size: 20px; padding: .5cm .5cm .5cm .5cm;"><?php echo $book_customer_first_names[0] ?> <?php echo $book_customer_last_names[0] ?></p>
+                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_customer_addresses[0] ?>,</p>
+                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_near_area[0] ?>,</p>
                                 <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_div[0] ?>, <?php echo $book_dis[0] ?></p>
-                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .2cm; font-weight: bold"><?php echo $book_ad_giver_emails[0] ?></p>
-                                <p style="font-size: 14px; font-weight: bold; padding-left: .5cm; padding-right: .5cm; padding-bottom: .3cm"><?php echo $book_ad_giver_phn_nos[0]; ?></p>
+                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_customer_ins_names[0]?></p>
+                                <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .2cm; font-weight: bold"><?php echo $book_customer_emails[0] ?></p>
+                                <p style="font-size: 14px; font-weight: bold; padding-left: .5cm; padding-right: .5cm; padding-bottom: .3cm"><?php echo $book_customer_phn_nos[0]; ?></p>
                             </div>
                             <!--<p style="font-size: 20px; font-weight: bold; padding-left: .5cm; padding-right: .5cm; padding-bottom: .3cm">Send an Email</p>-->
                             <hr></hr>
-                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-top: .5cm;">Message</p>
-                            <textarea class="xxlarge" rows="5" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"></textarea>
-                            <button class="button_style" style="width: 80%; margin-left: 10%;">Send</button>
+                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-top: .5cm;"><b>Message</b></p>
+                            <textarea class="xxlarge" rows="8" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"></textarea>
+                            
+                            <button id="btn_msg" class="button_style" style="width: 80%; margin-left: 10%;">Send</button>
                         </div>
                         <div id="modal" style="width: 100% !important; height: 32% !important">
-                            <button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-top: 1cm; margin-left: .3cm">Add to wishlist</button>
-                            <button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-left: .3cm">Request for this book</button>
-                            <button class="button_style" style="width: 250px; margin-left: .3cm">Ad for this book</button>
+                            <button id="btn_wishlist"class="button_style" style="width: 250px; margin-bottom: .5cm; margin-top: 1cm; margin-left: .3cm">Add to wishlist</button>
+                            <button id="btn_request" class="button_style" style="width: 250px; margin-bottom: .5cm; margin-left: .3cm" onclick="request()">Request for this book</button>
+                             <button id="btn_remove_request" class="button_style" style="width: 250px; margin-bottom: .5cm; margin-left: .3cm" onclick="remove_request()">Remove Request</button>
+                            <button id="btn_ad" class="button_style" style="width: 250px; margin-left: .3cm">Ad for this book</button>
                         </div>
                     </td>
                 </tr>

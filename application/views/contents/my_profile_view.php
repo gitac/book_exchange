@@ -26,6 +26,7 @@ if ($post != NULL) {
                             <li class="active" ><a href="my_profile">Active Ads</a></li>
                             <li><a href="pending_ads">Pending Ads</a></li>
                             <li><a href="removed_ads">Removed Ads</a></li>
+                            <li><a href="requested_ads">Requested Ads</a></li>
                             <li><a href="my_wishlist">My wishlist</a></li>
                             <li><a href="my_messages">My Messages</a></li>
                             <li><a href="settings">Settings</a></li>
@@ -52,7 +53,7 @@ if ($post != NULL) {
                         //if ($i == $book_count)
                         //  break;
                         ?>
-                        <a href="<?php echo base_url() ?>index.php/ad_details/book/<?php echo $book_ids[$i] ?>" target="_blank">
+                        <a href="<?php echo base_url() ?>index.php/ad_details/user_post_details/<?php echo $book_ids[$i] ?>" target="_blank">
                             <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
                                 <tr>
                                     <td style="width: 15%"><img style="width: 120px; height: 200px" src="<?php echo base_url() ?><?php echo $book_images[$i] ?>" alt="" /></td>

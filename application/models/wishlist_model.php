@@ -50,7 +50,7 @@ class Wishlist_model extends CI_Model {
         
         if($query->num_rows() == 1){
             foreach ($query->result_array() as $row) {
-                return $row->category_id;
+                return $row;
             }
     
 }

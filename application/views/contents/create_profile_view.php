@@ -1,6 +1,72 @@
+<?php
+$n_count = 0;
+$dis_count = 0;
+$d_count = 0;
+$v_count = 0;
+$s_count = 0;
+$clg_count = 0;
+foreach ($near_area as $r) {
+    $n_ids[] = $r['near_area_id'];
+    $n_names[] = $r['near_area_name'];
+    $n_count++;
+}
+
+foreach ($district as $r) {
+    $dis_ids[] = $r['district_id'];
+    $dis_names[] = $r['district_name'];
+    $dis_count++;
+}
+
+foreach ($division as $r) {
+    $d_ids[] = $r['division_id'];
+    $d_names[] = $r['division_name'];
+    $d_count++;
+}
+
+foreach ($school as $r) {
+    $s_ids[] = $r['institute_id'];
+    $s_names[] = $r['institute_name'];
+    $s_count++;
+}
+
+foreach ($college as $r) {
+    $clg_ids[] = $r['institute_id'];
+    $clg_names[] = $r['institute_name'];
+    $clg_count++;
+}
+foreach ($varsity as $r) {
+    $v_ids[] = $r['institute_id'];
+    $v_names[] = $r['institute_name'];
+    $v_count++;
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
     <head>
+        <script>
+            function radioFunction(name)
+            {
+                if(name == "school"){
+                    document.getElementById('scl').style.display = "block";
+                    document.getElementById('clg').style.display = "none";
+                    document.getElementById('vrsty').style.display = "none";
+                    document.getElementById('college').checked = false;
+                    document.getElementById('varsity').checked = false;
+                }else if(name == "college"){
+                    document.getElementById('scl').style.display = "none";
+                    document.getElementById('clg').style.display = "block";
+                    document.getElementById('vrsty').style.display = "none";
+                    document.getElementById('school').checked = false;
+                    document.getElementById('varsity').checked = false;
+                }else if(name == "varsity"){
+                    document.getElementById('scl').style.display = "none";
+                    document.getElementById('clg').style.display = "none";
+                    document.getElementById('vrsty').style.display = "block";
+                    document.getElementById('school').checked = false;
+                    document.getElementById('college').checked = false;
+                }
+            }
+        </script>
     </head>
     <body>
         <!-- Main -->
@@ -8,7 +74,7 @@
             <div id="modal" style="width: 90% !important">
                 <header><h1>Create a Profile</h1></header>
                 <section>
-                    <form action="#" class="form-horizontal" method="post">
+                    <form action="<?php echo base_url() ?>index.php/my_profile/create_profile" class="form-horizontal" method="post">
                         <fieldset style="overflow:hidden; padding-top: .5cm">
                             <span style="margin-left: 40%; font-weight: bold; font-size: 16px; color: red">* Required fields</span>
                             <div class="control-group" style="margin-top: .5cm">
@@ -27,9 +93,9 @@
                                 <label class="control-label"><b>Gender</b></label>
                                 <div class="controls">
                                     <div style="float:left; clear:none;">
-                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="male" value="male" id="male" checked />
+                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="gender" value="male" id="male" checked />
                                         <label for="male" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">Male</label>
-                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="female" value="female" id="female" />
+                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="gender" value="female" id="female" />
                                         <label for="female" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">Female</label>
                                     </div>
                                 </div>
@@ -74,25 +140,13 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label"><b>Add address</b></label>
+                                <label class="control-label"><b><span style="color: red">*</span>Add address</b></label>
                                 <div class="controls">
                                     <input type="text" class="input-xlarge" placeholder="Address" name="address" id="address" onfocus="check_error('add_error')"/>
                                     <label style="color: red; font-weight: bold" id="add_error"></label>
                                 </div>
                             </div>
-
-                            <div class="control-group">
-                                <label class="control-label"><b>Occupation</b></label>
-                                <div class="controls">
-                                    <div style="float:left; clear:none;">
-                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="occupation" value="student" id="student" onclick="radioFunction('student')"/>
-                                        <label for="student" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">Student</label>
-                                        <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="occupation" value="service_holder" id="service_holder" onclick="radioFunction('service_holder')"/>
-                                        <label for="service_holder" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">Service Holder</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="ins" style="display: none">
+                            <div id="ins">
                                 <div class="control-group">
                                     <label class="control-label"><b>Institutes</b></label>
                                     <div class="controls">
@@ -101,7 +155,7 @@
                                             <label for="school" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">School</label>
                                             <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="institute" value="college" id="college" onclick="radioFunction('college')"/>
                                             <label for="college" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">College</label>
-                                            <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="institute" value="varsity" id="varsity" onclick="radioFunction('varsity')"/>
+                                            <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="radio" class="radio" name="institute" value="varsity" id="varsity" checked onclick="radioFunction('varsity')"/>
                                             <label for="varsity" style="float:left; clear:none; display:block; padding: 2px 1em 0 0;">Varsity</label>
                                         </div>
                                     </div>
@@ -132,7 +186,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="control-group" id="vrsty" style="display: none">
+                                <div class="control-group" id="vrsty">
                                     <label class="control-label" ><b>Varsity</b></label>
                                     <div class="controls">
                                         <div class="input">
