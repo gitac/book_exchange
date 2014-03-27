@@ -23,6 +23,7 @@ class My_wishlist extends CI_Controller {
         $data['institute'] = $this->category_model->getFullList("institute");
         $data['book'] = $this->book_model->getAllBooks();
         $data['wishlist_book']= $this->wishlist_model->getWishlistBook($id);
+        $data['available_book'] = $this->book_model->getWishlistPostBook($id);
         
         $this->load->view('includes/header', $data);
         $this->load->view('includes/ad_portion');

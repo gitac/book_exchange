@@ -1,5 +1,6 @@
 <?php
 $book_count = 0;
+$count = 0;
 if ($wishlist_book != NULL) {
     foreach ($wishlist_book as $r) {
         $book_ids[] = $r['book_id'];
@@ -13,6 +14,8 @@ if ($wishlist_book != NULL) {
         $book_count++;
     }
 }
+
+
 ?>
 
 
@@ -57,9 +60,11 @@ if ($wishlist_book != NULL) {
                     <hr></hr>
                         <?php }
                         ?>
+                    
+                    
                     <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
                         <tr>
-                            <td style="width: 20%"><button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-top: 1cm; margin-left: 15cm" onclick="wishlist()">Create wishlist</button><br/></td>  
+                            <td style="width: 20%"><button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-top: 1cm; margin-left: 15cm" onclick="wishlist()">Create new wishlist</button><br/></td>  
                         </tr>
                     </table>
                     <?php
@@ -70,27 +75,33 @@ if ($wishlist_book != NULL) {
                         ?>
                         <a href="<?php echo base_url() ?>index.php/wishlist_details/wishlist_book/<?php echo $book_ids[$i] ?>" target="_blank">
                             <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
-                               
-                               
-                                
+                
                                 <tr>
                                     <td style="width: 15%"><img style="width: 150px; height: 200px" src="<?php echo base_url() ?><?php echo $book_images[$i] ?>" alt="" /></td>
                                     <td style="width: 50%; text-align: center">
                                         <h2 style="font-size: 24px"><a href=""><?php echo $book_names[$i] ?></a></h2>
-                                        <h3 style="font-size: 16px !important;"><?php
-                                                while ($i < $book_count && $book == $book_ids[$i]) {
+                                        <h3 style="font-size: 16px !important;"> <?php
+                                                while ($i < $book_count && $book == $book_ids[$i]) {                                         
                                                     ?>
                                                     <a href="#"><?php echo $book_authors[$i] ?></a><br/>
-                                                    <?php
+                                                 
+                                                   <?php
+                                                    
                                                     $i++;
                                                     
                                                 }
+                                    
                                                 $i--;
                                                 ?></h3>
                                            <td style="width: 30%"></td>
                                     </td>
-                                  
+                      
+                                  <td style="width: 20%"><button class="button_style" style="margin-left: .5cm">Edit</button><br/>
+                                    <button class="button_style">Remove</button></td>
+                                    
+                                   
                                 </tr>
+                                
                             </table></a>
                         <hr style="margin-bottom: .5cm"></hr>
                     <?php } ?>
