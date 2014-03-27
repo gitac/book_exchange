@@ -38,6 +38,7 @@ if ($requested_user != NULL) {
         $book_near_area[] = $r['near_area_name'];
         $book_customer_ins_names[] = $r['institute_name'];
         $customer_phn_nos[] = $r['customer_phn_no'];
+        $customer_photos[] = $r['customer_photo'];
         $req_count++;
     }
 }
@@ -112,7 +113,8 @@ if ($requested_user != NULL) {
                                     if ($num_request == NULL || $num_request == 0) {
                                         echo 'No';
                                     } else {
-                                        ?><?php echo $num_request;
+                                        ?><?php
+                                    echo $num_request;
                                 }
                                     ?> </p>Request</div>
                             <div id="modal" style="width: 100%; padding-bottom: .5cm"><p style="font-size: 20px; font-weight: bold; padding-top: .5cm;">
@@ -121,58 +123,67 @@ if ($requested_user != NULL) {
                                         echo 'No';
                                     } else {
                                         ?>
-                                        ৳ <?php echo $book_prices[0];
-                                    }
+                                        ৳ <?php
+                                    echo $book_prices[0];
+                                }
                                     ?> </p>Price</div>
                             <div id="modal" style="width: 100%; padding-bottom: .5cm"><p style="font-size: 16px; font-weight: bold; padding-top: .5cm;"><?php echo $book_post_time[0] ?></p>Time posted</div>
                         </td>
                     </tr>
-                    <?php 
-                    if($req_count != 0){
-                        ?>
-                    <tr>
-                        <td colspan="3">
-                            <p style="font-size: 20px; font-weight: bold;padding-left: .5cm; padding-bottom: .5cm; height: 10%">Requests</p>
-                            
-                        </td>
-                    </tr>
-                    <?php for($i=0; $i < $req_count; $i++){
-                        ?>
-                    <tr>
-                        <td colspan="3">
-                            <hr></hr>
-                        </td>
-                        </tr>
-                    <tr style="width: 100%; height: 300px">
-                        <td colspan="2" style="width: 60%; height: 100%">
-                            <div id="modal" style="width: 100% !important; height: 100% !important">
-                            <p style="font-size: 20px; padding: .5cm .5cm .5cm .5cm;"><a href="#"><?php echo $customer_first_names[$i] ?> <?php echo $customer_last_names[$i] ?></a></p>
-                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $customer_addresses[$i] ?>,</p>
-                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $customer_near_areas[$i] ?>,</p>
-                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_div[$i] ?>, <?php echo $book_dis[$i] ?></p>
-                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_customer_ins_names[$i] ?></p>
-                            <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .2cm; font-weight: bold"><?php echo $customer_emails[$i] ?></p>
-                            <p style="font-size: 14px; font-weight: bold; padding-left: .5cm; padding-right: .5cm; padding-bottom: .3cm"><?php echo $customer_phn_nos[$i]; ?></p>
-                            </div>
-                        </td>
-                        <td style="width: 35%; height: 100%">
-                            <div id="modal" style="width: 100% !important; height: 100% !important">
-                                 <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-top: .5cm;"><b>Message</b></p>
-                            <textarea class="xxlarge" rows="4" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"></textarea>
-                            
-                            <button id="btn_msg" class="button_style" style="width: 80%; margin-left: 10%; margin-bottom: .2cm">Send</button>
-                            
-                            </div>
-                            
-                        </td>
-                        
-                    </tr>
-                        
-                    
-                        <?php
-                    }
-?>
                     <?php
+                    if ($req_count != 0) {
+                        ?>
+                        <tr>
+                            <td colspan="3">
+                                <p style="font-size: 20px; font-weight: bold;padding-left: .5cm; padding-bottom: .5cm; height: 10%">Requests</p>
+
+                            </td>
+                        </tr>
+                        <?php for ($i = 0; $i < $req_count; $i++) {
+                            ?>
+                            <tr>
+                                <td colspan="3">
+                                    <hr></hr>
+                                </td>
+                            </tr>
+                            <tr style="width: 100%; height: 300px">
+                               
+                                    <td style="width: 35%; height: 100%; text-align: center">
+
+                                        <img style="width: 150px; height: 150px" src="<?php echo base_url() ?><?php echo $customer_photos[$i] ?>" alt="" />   
+                                        <button id="btn_msg" class="button_style" style=" margin-left: 20%; margin-bottom: .2cm">Send Message</button>
+
+
+                                    </td>
+                                    <td style="width: 60%; height: 100%" colspan="2">
+                                        <p style="font-size: 20px; padding: .5cm .5cm .5cm .5cm;"><a href="#"><?php echo $customer_first_names[$i] ?> <?php echo $customer_last_names[$i] ?></a></p>
+                                        <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $customer_addresses[$i] ?>,</p>
+                                        <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $customer_near_areas[$i] ?>,</p>
+                                        <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_div[$i] ?>, <?php echo $book_dis[$i] ?></p>
+                                        <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .1cm"><?php echo $book_customer_ins_names[$i] ?></p>
+                                        <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-bottom: .2cm; font-weight: bold"><?php echo $customer_emails[$i] ?></p>
+                                        <p style="font-size: 14px; font-weight: bold; padding-left: .5cm; padding-right: .5cm; padding-bottom: .3cm"><?php echo $customer_phn_nos[$i]; ?></p>
+
+                                    </td>
+                              
+        <!--                        <td style="width: 35%; height: 100%">
+                                <div id="modal" style="width: 100% !important; height: 100% !important">
+                                     <p style="font-size: 14px; padding-left: .5cm; padding-right: .5cm; padding-top: .5cm;"><b>Message</b></p>
+                                <textarea class="xxlarge" rows="4" style="width: 82% !important ;margin-left: .5cm; padding-bottom: .3cm"></textarea>
+                                
+                                <button id="btn_msg" class="button_style" style="width: 80%; margin-left: 10%; margin-bottom: .2cm">Send</button>
+                                
+                                </div>
+                                
+                            </td>-->
+
+                            </tr>
+
+
+                            <?php
+                        }
+                        ?>
+                        <?php
                     }
                     ?>
                 </table>
