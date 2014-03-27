@@ -20,13 +20,13 @@ if ($wishlist_book != NULL) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
    <head>
-       <script>
-         function  create_wishlist()
-         {
-             window.location.href="<?php echo base_url() ?>index.php/create_wishlist";
-         }
-       </script>
-       </head>
+        <script>
+            function wishlist(){
+                window.location.href = "<?php echo base_url() ?>index.php/create_wishlist";
+                //alert("sss");
+            }
+        </script>
+    </head> 
     <body>
         <!-- Main -->
         <div id="main" class="shell">
@@ -59,7 +59,7 @@ if ($wishlist_book != NULL) {
                         ?>
                     <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
                         <tr>
-                            <td style="width: 20%"><button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-top: 1cm; margin-left: 15cm" onclick="create_wishlist">Create wishlist</button><br/></td>  
+                            <td style="width: 20%"><button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-top: 1cm; margin-left: 15cm" onclick="wishlist()">Create wishlist</button><br/></td>  
                         </tr>
                     </table>
                     <?php

@@ -26,6 +26,14 @@ if ($book_info != NULL) {
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+    <head>
+        <script>
+            function request(){
+                window.location.href = "<?php echo base_url() ?>index.php/ad_details/request";
+                alert("sss");
+            }
+        </script>
+    </head> 
     <body>
         <!-- Main -->
         <div id="main" class="shell">
