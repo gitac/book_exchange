@@ -52,10 +52,13 @@ class Post_free_ad extends CI_Controller {
                     move_uploaded_file($_FILES["img_file"]["tmp_name"], $image_path);
                 }
             }
+            $session_data = $this->session->userdata('logged_in');
+            $id = $session_data['id'];
+            
             $this->book_model->insertPost($book_name, $selected_category, $author_name1, $author_name2, 
                     $author_name3, $author_name4, $author_name5, $edition, 
-                        $book_des, $book_price, $image_path, $data['id']);
-                redirect('my_profile', 'refresh');
+                        $book_des, $book_price, $image_path, $id);
+                redirect('pending_ads', 'refresh');
         }
     }
 

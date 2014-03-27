@@ -7,74 +7,101 @@ class Book_model extends CI_Model {
         $this->db->from('book_info');
         $this->db->where('book_category_id', $cateogry_id);
         $this->db->where('book_name', $book_name);
-        
-        $query = $this->db->get();
 
+        $query = $this->db->get();
+        $id = NULL;
         if ($query->result() > 0) {
             foreach ($query->result() as $row) {
                 $id = $row->book_id;
-            }
-            return $id;
-        } else {
-            $new_book_insert_data = array(
-                'book_category_id' => $cateogry_id,
-                'book_name' => $book_name
-            );
-
-            $this->db->trans_start();
-            $this->db->insert('book_info', $new_book_insert_data);
-            $insert_id = $this->db->insert_id();
-            $this->db->trans_complete();
-            return $insert_id;
-        }
-    }
-    
-    function getAuthorId($author_name) {
-        $this->db->select('author_id');
-        $this->db->from('author');
-        $this->db->where('author_name', $author_name);
-        
-        $query = $this->db->get();
-
-        if ($query->result() > 0) {
-            foreach ($query->result() as $row) {
-                $id = $row->author_id;
-            }
-            return $id;
-        } else {
-            $new_author_insert_data = array(
-                'author_name' => $author_name
-            );
-
-            $this->db->trans_start();
-            $this->db->insert('author', $new_author_insert_data);
-            $insert_id = $this->db->insert_id();
-            $this->db->trans_complete();
-            return $insert_id;
-        }
-    }
-    
-    function getCategoryId($selected_category){
-        $this->db->select('category_id');
-        $this->db->from('category');
-        $this->db->where('category_name', $selected_category);
-        $query = $this->db->get();
-
-        if ($query->result() > 0) {
-            foreach ($query->result() as $row) {
-                $id = $row->near_area_id;
             }
         }
         return $id;
     }
 
-    function insertPost($book_name, $selected_category, $author_name1, $author_name2, $author_name3, $author_name4, $author_name5, $edition, $book_des, $book_price, $image_path, $u_id) {
-        $c_id = $this->getCategoryId($selected_category);
-        $b_id = $this->getBookId($book_name, $c_id);
-        $a_id_1 = $this->getAuthorId($author_name1);
-        if($author_name2 != NULL && $author_name2 != ""){
-            
+    function getAuthorId($author_name) {
+
+        $this->db->select('author_id');
+        $this->db->from('author');
+        $this->db->where('author_name', $author_name);
+
+        $query = $this->db->get();
+        $id = NULL;
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                echo $id = $row->author_id;
+                return $id;
+            }
+        } if ($id == NULL) {
+            $new_author_insert_data = array(
+                'author_name' => $author_name
+            );
+
+
+            $q = $this->db->insert('author', $new_author_insert_data);
+            echo $id = $this->db->insert_id();
+
+            return $id;
         }
+    }
+
+    function getBookIdAfterInsert($book_name, $c_id) {
+
+        $new_book_insert_data = array(
+            'book_category_id' => $c_id,
+            'book_name' => $book_name
+        );
+
+        $this->db->trans_start();
+        $this->db->insert('book_info', $new_book_insert_data);
+        $id = $this->db->insert_id();
+        $this->db->trans_complete();
+        return $id;
+    }
+
+    function insertAuthorBook($bid, $aid) {
+        $a_b_insert_data = array(
+            'b_id' => $bid,
+            'a_id' => $aid
+        );
+
+        $this->db->insert('author_book', $a_b_insert_data);
+    }
+
+    function insertPost($book_name, $c_id, $author_name1, $author_name2, $author_name3, $author_name4, $author_name5, $edition, $book_des, $book_price, $image_path, $u_id) {
+        $b_id = $this->getBookId($book_name, $c_id);
+        if ($b_id == NULL) {
+            $b_id = $this->getBookIdAfterInsert($book_name, $c_id);
+            $a_id_1 = $this->getAuthorId($author_name1);
+            $this->insertAuthorBook($b_id, $a_id_1);
+            if ($author_name2 != NULL && $author_name2 != "") {
+                $a_id_2 = $this->getAuthorId($author_name2);
+                $this->insertAuthorBook($b_id, $a_id_2);
+                if ($author_name3 != NULL && $author_name3 != "") {
+                    $a_id_3 = $this->getAuthorId($author_name3);
+                    $this->insertAuthorBook($b_id, $a_id_3);
+                    if ($author_name4 != NULL && $author_name4 != "") {
+                        $a_id_4 = $this->getAuthorId($author_name4);
+                        $this->insertAuthorBook($b_id, $a_id_4);
+                    }
+                    if ($author_name5 != NULL && $author_name5 != "") {
+                        $a_id_5 = $this->getAuthorId($author_name5);
+                        $this->insertAuthorBook($b_id, $a_id_5);
+                    }
+                }
+            }
+        }
+        $new_post_insert_data = array(
+            'post_book_id' => $b_id,
+            'post_book_edition' => $edition,
+            'post_book_price' => $book_price,
+            'post_ad_giver_id' => $u_id,
+            'post_view_count' => 0,
+            'post_image' => $image_path,
+            'post_description' => $book_des,
+            'post_status' => "pending"
+        );
+
+        $insert = $this->db->insert('post', $new_post_insert_data);
     }
 
     function getAllPostList($status, $u_id) {
@@ -87,7 +114,7 @@ class Book_model extends CI_Model {
         AND author_id = a_id
         AND customer_id = " . $u_id . "
         AND post_status =  '" . $status . "'
-        ORDER BY date_time, post_id");
+        ORDER BY date_time DESC, post_id");
         if ($query->num_rows >= 1) {
             foreach ($query->result_array() as $row) {
                 $data[] = $row;

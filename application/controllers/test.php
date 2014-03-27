@@ -6,31 +6,44 @@ if (!defined('BASEPATH'))
 class Test extends CI_Controller {
 
     public function index() {
-        /*   $this->load->library('user_agent');
-
-          if ($this->agent->is_browser()) {
-          $agent = $this->agent->browser() . ' ' . $this->agent->version();
-          } elseif ($this->agent->is_robot()) {
-          $agent = $this->agent->robot();
-          } elseif ($this->agent->is_mobile()) {
-          $agent = $this->agent->mobile();
-          } else {
-          $agent = 'Unidentified User Agent';
-          }
-
-          echo $agent;
-
-          echo $this->agent->platform(); // Platform info (Windows, Linux, Mac, etc.)
-          if ($this->agent->is_referral())
-          {
-          echo $this->agent->referrer();
-          }
-         * */
-
-        //echo $this->input->post('email');
-        $this->load->view('test');
+        $this->load->database();
+//        $u_id = 7;
+//        $status = "pending";
+//        $this->getAllPostList($status, $u_id);
+        $this->insertAuthorBook(18, 24);
     }
 
+    function insertAuthorBook($bid, $aid) {
+        $a_b_insert_data = array(
+            'b_id' => $bid,
+            'a_id' => $aid
+        );
+
+        $this->db->insert('author_book', $a_b_insert_data);
+    }
+
+    
+function getAllPostList($status, $u_id) {
+
+        $query = $this->db->query("SELECT * 
+        FROM post, book_info, author_book, author, customer
+        WHERE post_book_id = book_id
+        AND post_ad_giver_id = customer_id
+        AND book_id = b_id
+        AND author_id = a_id
+        AND customer_id = " . $u_id . "
+        AND post_status =  '" . $status . "'
+        ORDER BY date_time, post_id");
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                echo $data[] = $row;
+            }
+           // return $data;
+        }
+        else
+            ;
+           // return null;
+    }
     
     public function page(){
         

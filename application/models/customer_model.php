@@ -40,13 +40,14 @@ class Customer_model extends CI_Model {
         $this->db->where('institute_type', $institute);
         $this->db->where('institute_name', $ins_name);
         $query = $this->db->get();
-
+        $id = NULL;
         if ($query->result() > 0) {
             foreach ($query->result() as $row) {
                 $id = $row->institute_id;
+                return $id;
             }
-            return $id;
-        } else {
+            
+        } if($id == NULL) {
             $new_institute_insert_data = array(
                 'institute_type' => $institute,
                 'institute_name' => $ins_name
