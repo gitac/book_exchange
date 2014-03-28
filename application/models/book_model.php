@@ -67,7 +67,7 @@ class Book_model extends CI_Model {
             AND author_id = $author
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        } else if($category == 0 && $author != 0 && $campus == 0 && $district !=0 ){//0 1 0 1
+        } else if($category == 0 && $author != 0 && $campus == 0 && $district !=0 ){//0 1 0 1 
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post, customer, institute, near_area, district
             WHERE post.post_book_id = book_info.book_id
@@ -568,6 +568,79 @@ ORDER BY date_time, post_id");
         else
             return null;
     }
+    
+    
+    
+    //esha
+    function insertBookInfo($book_id,$image_path, $id) {
+
+            $data = array(
+                'w_book_id' => $book_id,
+                'w_book_image'=>$image_path,
+                'w_customer_id' => $id
+            );
+
+            $this->db->insert('wishlist', $data);
+        }
+        
+        
+        
+        function getAuthorIdAfterInsert($author_name) {
+
+        $new_author_insert_data = array(
+            //'book_category_id' => $c_id,
+            'author_name' => $author_name
+        );
+
+        $this->db->trans_start();
+        $this->db->insert('author', $new_author_insert_data);
+        $id = $this->db->insert_id();
+        $this->db->trans_complete();
+        return $id;
+    }
+    
+    function getWishlistPostBook($id){
+      
+           
+         $query = $this->db->query("SELECT post_book_id 
+            FROM post, wishlist
+            WHERE w_book_id= post_book_id
+            AND w_customer_id = " . $id . "
+            AND post_status =  'active'
+            ORDER BY w_book_id ");
+
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+        
+        }
+        
+        function getAvailableBooks($wid){
+        
+        $query = $this->db->query("SELECT * 
+            FROM post, wishlist,customer
+            WHERE w_book_id= post_book_id
+            AND wishlist_id = " . $wid . "
+            AND post_status =  'active'
+            ORDER BY w_book_id ");
+
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+        
+        
+        
 
 }
 
