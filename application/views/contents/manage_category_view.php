@@ -14,7 +14,7 @@ if (isset($_POST['add'])) {
     </head>
     <body>
         <!-- Main -->
-        <div id="main" class="shell" style="height: 600px !important">
+        <div id="main" class="shell" style="height: 550px !important">
             <div id="modal" style="width: 90% !important">
                 <div class="navbar">
                     <div class="">

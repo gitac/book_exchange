@@ -2,16 +2,20 @@
 
 class Post_model extends CI_Model {
     
-        function getBookName($bookid) 
+        function get_all_book_info() 
     {
         
-        $this->db->select('book_name');
-        $this->db->from('book_info');
-        $this->db->where('book_id',$bookid);
-     
+           $status = "pending";
                      
-        $query = $this->db->get();
-        
+           $query = $this->db->query("SELECT * 
+            FROM `post`
+            JOIN `book_info` on book_info.book_id = post.post_book_id
+            JOIN `author_book` on author_book.b_id = book_info.book_id
+            JOIN `author` on author.author_id = author_book.a_id
+            JOIN `category` on category_id = book_info.book_category_id
+            JOIN `customer` on customer_id = post.post_ad_giver_id
+            WHERE post_status = '" . $status . "'
+                               ");
              
         if ($query->result() > 0) {
             foreach ($query->result_array() as $row) {
@@ -19,8 +23,7 @@ class Post_model extends CI_Model {
                 
             }
         }
-        
-        
+              
         return $data;                
     }
     
@@ -30,6 +33,8 @@ class Post_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('post');
         $this->db->join('book_info', 'post.post_book_id = book_info.book_id');
+        $this->db->join('author_book', 'author_book.b_id = book_info.book_id');
+        $this->db->join('author', 'author.author_id = author_book.a_id');
         $this->db->where('post_status',$p_status);
         
         $query = $this->db->get();
