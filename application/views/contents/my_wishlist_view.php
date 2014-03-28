@@ -34,6 +34,10 @@ if ($available_book != NULL) {
                 window.location.href = "<?php echo base_url() ?>index.php/create_wishlist";
                 //alert("sss");
             }
+            
+            function remove_wishlist(wish_id){
+                window.location.href = "<?php echo base_url() ?>index.php/create_wishlist/remove_wishlist/"+wish_id;
+            }
         </script>
     </head> 
     <body>
@@ -54,7 +58,11 @@ if ($available_book != NULL) {
                     </div>
                 </div>
                 <div>
-                    
+                    <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
+                        <tr>
+                            <td style="width: 20%"><button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-top: 1cm; margin-left: 15cm" onclick="wishlist()">Create new wishlist</button><br/></td>  
+                        </tr>
+                    </table>
                     <?php
                         if ($book_count == 0) {
                             ?>
@@ -68,11 +76,7 @@ if ($available_book != NULL) {
                         ?>
                     
                     
-                    <table style="width: 95%; margin-left: 5%; margin-bottom: .5cm">
-                        <tr>
-                            <td style="width: 20%"><button class="button_style" style="width: 250px; margin-bottom: .5cm; margin-top: 1cm; margin-left: 15cm" onclick="wishlist()">Create new wishlist</button><br/></td>  
-                        </tr>
-                    </table>
+                    
                     <?php
                     for ($i = 0, $j = 0; $i < $book_count; $i++) {
                         $book = $book_ids[$i];
@@ -114,7 +118,7 @@ if ($available_book != NULL) {
                                             ?><br/> Copy </b></p></td>
                                     
                                   <td style="width: 20%"><button class="button_style" style="width: 150px">Edit</button><br/>
-                                      <button class="button_style" style="width: 150px">Remove</button></td>
+                                      <button class="button_style" style="width: 150px" onclick="remove_wishlist(<?php echo $wishlist_book_ids[$i] ?>)">Remove</button></td>
                                     
                                    
                                 </tr>

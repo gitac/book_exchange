@@ -6,6 +6,7 @@ class Create_wishlist extends CI_Controller {
         $this->load->model('category_model');
         $this->load->model('book_model');
         $this->load->model('wishlist_model');
+        $this->load->model('customer_model');
         $this->load->library('user_agent');
         $this->load->helper('array');
     }
@@ -17,6 +18,7 @@ class Create_wishlist extends CI_Controller {
             $session_data = $this->session->userdata('logged_in');
             $data['id'] = $session_data['id'];
             $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($data['id']);
             $data['option'] = "my_profile";        
             $data['page'] = "";
 
@@ -112,7 +114,6 @@ class Create_wishlist extends CI_Controller {
      $this->load->database();
             //$this->load->model('wishlist_model');
        $bookid = $this->book_model->getBookId($book_name, $cid);
-      // $authorid = $this->book_model->getAuthorId($author_name1);
        if($bookid == NULL){
            $bookid = $this->book_model->getBookIdAfterInsert($book_name, $cid);
            $authorid1 = $this->book_model->getAuthorIdAfterInsert($author_name1);
@@ -134,14 +135,23 @@ class Create_wishlist extends CI_Controller {
                         $this->book_model->insertAuthorBook($bookid, $a_id_5);
                     }
                 }
+                
+                $this->book_model->insertBookInfo($bookid,$image_path,$data['id']); 
+          $this->db->close(); 
             }
                      
-          $this->book_model->insertBookInfo($bookid,$image_path,$data['id']); 
-          $this->db->close(); 
+          
     
           redirect('my_wishlist','refresh');
           
-       }        
+       }
+       
+       function remove_wishlist($post_id) {
+        $this->load->database();
+        $this->book_model->remove_wishlist($post_id);
+        $this->db->close();
+        redirect('my_wishlist', 'refresh');
+    }
  
 }
 

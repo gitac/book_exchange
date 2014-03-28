@@ -6,24 +6,38 @@
             <div id="modal">
                 <header><h1>Edit my personal information</h1></header>
                 <section>
-                    <form action="#" class="form-horizontal" method="post">
+                    <?php
+                    $attributes = array('class' => 'form-horizontal', 'id' => 'contact-form', 'method' => 'post');
+
+                    echo form_open(base_url().'index.php/verify_change', $attributes);
+                    ?>
                         <fieldset style="overflow:hidden; padding-top: .5cm">
                             <div class="control-group">
                                 <label class="control-label">Email</label>
                                 <div class="controls">
-                                    <input type="text" class="input-xlarge" name="email" value=""/>
+                                    <input type="text" class="input-xlarge" name="email" placeholder="Email"/>
+                                    <label style="color: red; font-weight: bold; margin-bottom: .5cm"><?php echo form_error('email'); ?></label>
                                 </div>
                             </div>
                             <div class="control-group">
                                     <label class="control-label" for="currentPassword">Current Password</label>
                                     <div class="controls">
                                         <input type="password" class="input-xlarge" id="currentPassword" placeholder="Password" name="pw"/>
+                                        <label style="color: red; font-weight: bold; margin-bottom: .5cm"><?php echo form_error('pw'); ?></label>
                                     </div>
                                 </div>
                             <div class="control-group">
                                     <label class="control-label" for="currentPassword">New Password</label>
                                     <div class="controls">
-                                        <input type="password" class="input-xlarge" id="newPassword" placeholder="Password" name="pw"/>
+                                        <input type="password" class="input-xlarge" id="newPassword" placeholder="Password" name="npw"/>
+                                        <label style="color: red; font-weight: bold; margin-bottom: .5cm"><?php echo form_error('npw'); ?></label>
+                                    </div>
+                                </div>
+                            <div class="control-group">
+                                    <label class="control-label" for="currentPassword">New Password Confirm</label>
+                                    <div class="controls">
+                                        <input type="password" class="input-xlarge" id="newPassword" placeholder="Password" name="c_npw"/>
+                                        <label style="color: red; font-weight: bold; margin-bottom: .5cm"><?php echo form_error('c_npw'); ?></label>
                                     </div>
                                 </div>
                             <div class="control-group">
@@ -31,8 +45,6 @@
                                     <div style="float:left; clear:none;">
                                         <button class="button_style" style="float:left; clear:none; margin: 2px 0 0 2px; width: 200px;">Save</button>
                                     
-                                    <label style="float:left; clear:none; display:block; padding: 8px 1em 0 0;">&nbsp; &nbsp; or</label>
-                                    <a style="float:left; clear:none; margin: 8px 0 0 2px;" href="settings">Cancel</a>
                                    </div>
                                 </div>
                             </div>

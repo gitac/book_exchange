@@ -6,11 +6,9 @@ if (!defined('BASEPATH'))
 class Test extends CI_Controller {
 
     public function index() {
-        $this->load->database();
-//        $u_id = 7;
-//        $status = "pending";
-//        $this->getAllPostList($status, $u_id);
-        $this->getCustomerInfo(2);
+        $password="sss48";
+
+echo md5($password);
     }
 
     function getCustomerInfo($id) {

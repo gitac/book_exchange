@@ -156,7 +156,7 @@ class Customer_model extends CI_Model {
 
     function updatePw($email, $password) {
         $data = array(
-            'customer_password' => $password
+            'customer_password' => md5($password)
         );
 
         $this->db->where('customer_email', $email);
