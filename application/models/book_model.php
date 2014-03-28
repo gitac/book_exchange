@@ -126,26 +126,16 @@ ORDER BY date_time, post_id");
             return null;
     }
     
-    function getAllBookInstitute($id){
-        $query = $this->db->query("SELECT * 
-FROM author, author_book, book_info, post, customer
-WHERE post.post_ad_giver_id = customer.customer_id
-AND customer_ins_id = " . $id . "
-AND post.post_book_id = book_info.book_id
-AND book_info.book_id = author_book.b_id
-AND author.author_id = author_book.a_id
-AND author.author_id = author_book.a_id
-AND post.post_status =  'Active'
-ORDER BY date_time, post_id");
-        if ($query->num_rows >= 1) {
-            foreach ($query->result_array() as $row) {
-                $data[] = $row;
-            }
-            return $data;
+    function insertBookInfo($book_id,$image_path, $id) {
+
+            $data = array(
+                'w_book_id' => $book_id,
+                'w_book_image'=>$image_path,
+                'w_customer_id' => $id
+            );
+
+            $this->db->insert('wishlist', $data);
         }
-        else
-            return null;
-    }
 
     function getBookId($book_name, $cateogry_id) {
         $this->db->select('book_id');
@@ -202,7 +192,25 @@ ORDER BY date_time, post_id");
         $this->db->trans_complete();
         return $id;
     }
+   
+    
+    
 
+    function getAuthorIdAfterInsert($author_name) {
+
+        $new_author_insert_data = array(
+            //'book_category_id' => $c_id,
+            'author_name' => $author_name
+        );
+
+        $this->db->trans_start();
+        $this->db->insert('author', $new_author_insert_data);
+        $id = $this->db->insert_id();
+        $this->db->trans_complete();
+        return $id;
+    }
+    
+    
     function insertAuthorBook($bid, $aid) {
         $a_b_insert_data = array(
             'b_id' => $bid,
@@ -251,11 +259,11 @@ ORDER BY date_time, post_id");
 
     function getRequestCount($u_id) {
         $query = $this->db->query("SELECT post_id
-FROM post, post_request
-WHERE post_req_p_id = post_id
-AND post_ad_giver_id = " . $u_id . "
-AND post_status =  'active'
-ORDER BY date_time DESC , post_id");
+        FROM post, post_request
+        WHERE post_req_p_id = post_id
+        AND post_ad_giver_id = " . $u_id . "
+        AND post_status =  'active'
+        ORDER BY date_time DESC , post_id");
 
         if ($query->num_rows >= 1) {
             foreach ($query->result_array() as $row) {

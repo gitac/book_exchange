@@ -2,7 +2,7 @@
 $book_count = 0;
 if ($book_info != NULL) {
     foreach ($book_info as $r) {
-        $post_ids[] = $r['post_id'];
+        $book_ids[] = $r['post_id'];
         $book_names[] = $r['book_name'];
         $book_edition[] = $r['post_book_edition'];
         $book_prices[] = $r['post_book_price'];
@@ -68,9 +68,9 @@ if ($book_info != NULL) {
                                 <tr style="width: 100%"><td><p style="font-size: 24px; font-weight: bold; color: #0252BC; padding-top: .5cm; padding-left: .5cm; padding-bottom: .5cm"><?php echo $book_names[0] ?></p>
                                         <p style="padding-bottom: .5cm"><span style="font-size: 20px; font-weight: bold; font-style: italic; color: #0252BC; padding-left: .5cm;">
                                                 <?php
-                                                $book = $post_ids[0];
+                                                $book = $book_ids[0];
                                                 $i = 0;
-                                                while ($i < $book_count && $book == $post_ids[$i]) {
+                                                while ($i < $book_count && $book == $book_ids[$i]) {
                                                     echo $book_author_names[$i] . '<br> &nbsp; &nbsp;';
                                                     $i++;
                                                 }
@@ -121,6 +121,11 @@ if ($book_info != NULL) {
                                         <p style="font-size: 14px; padding: .5cm .5cm .5cm .5cm; height: 90%"><?php echo $book_des[0] ?></p>
                                     </td>
                                 </tr>
+<!--                                <tr>
+                                    <td style="padding-left: .5cm;"> <button class="button_style" style="margin-left: 1%; margin-bottom: .2cm">Add to wishlist</button></td>
+                                    <td style="padding-left: .0cm; padding-bottom: .5cm"> <button class="button_style" style="margin-bottom: .2cm">Request for this book</button></td>
+                                    <td style="padding-left: .0cm; padding-bottom: .5cm"> <button class="button_style" style="margin-bottom: .2cm">Ad for this book</button></td>
+                                </tr>-->
                             </table>
                         </div></td>
                     <td style="width: 35%; height: 80%"><div id="modal" style="width: 100% !important; height: 65% !important">

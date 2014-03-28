@@ -1,15 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Approve_ad extends CI_Controller {
-    
-   
-
 
     function __construct() {
         parent::__construct();
-        $this->load->model('category_model');
+//        $this->load->model('category_model');
         $this->load->model('post_model');
-        $this->load->model('book_model');
+//        $this->load->model('book_model');
         $this->load->library('user_agent');
        
         
@@ -31,7 +28,7 @@ class Approve_ad extends CI_Controller {
         //
       
         $this->load->database();      
-        $data['names']= $this->post_model->getBookNames($p_status);
+        
         $data['post'] = $this->post_model->getPostList();
  
                    
@@ -53,43 +50,35 @@ class Approve_ad extends CI_Controller {
         } else {
             $data['agent'] = NULL;
         }
-        
-        
-
+  
         $data['option'] = "";
         $data['page'] = "home";
         
        $this->load->view('includes/admin_header',$data); 
        $this->load->database();
-       
+
         
       
         
-        $book_id = $this->post_model->getBookId($pid);
-        $book_category_id=$this->post_model->getCategoryId($book_id);
-        $author_id = $this->post_model->getAuthorId($book_id);
-        $post_giver_id = $this->post_model->adGiverId($pid);        
-        $is_student= $this->post_model->isStudent($post_giver_id);
+//        if($is_student == "student")
+//            {
+//              $data['occupation'] = "Student";
+//              $data['institute_name'] = $this->post_model->getInstituteName($post_giver_id);
+//            }
+//         else 
+//         {
+//             $data['occupation'] = "Service holder";
+//             $data['institute_name'] = $this->post_model->getInstituteName($post_giver_id);
+//         }
+//        
+//        $data['location_name']= $this->post_model->getLocationName($post_giver_id);
+//        $data['post_giver_detail']= $this->post_model->postGiverDetail($post_giver_id);                   
+//        $data['book_name']= $this->post_model->getBookName($book_id);        
+//        $data['category_name']= $this->post_model->getCategoryName($book_category_id);
+//        $data['author_name'] = $this->post_model->getAuthorName($author_id);
+//        $data['book_edition'] = $this->post_model->getBookEdition($pid);
         
-        if($is_student == "student")
-            {
-              $data['occupation'] = "Student";
-              $data['institute_name'] = $this->post_model->getInstituteName($post_giver_id);
-            }
-         else 
-         {
-             $data['occupation'] = "Service holder";
-             $data['institute_name'] = $this->post_model->getInstituteName($post_giver_id);
-         }
-        
-        $data['location_name']= $this->post_model->getLocationName($post_giver_id);
-        $data['post_giver_detail']= $this->post_model->postGiverDetail($post_giver_id);                   
-        $data['book_name']= $this->post_model->getBookName($book_id);        
-        $data['category_name']= $this->post_model->getCategoryName($book_category_id);
-        $data['author_name'] = $this->post_model->getAuthorName($author_id);
-        $data['book_edition'] = $this->post_model->getBookEdition($pid);
-        
-      
+          $data['info'] = $this->post_model->get_all_book_info() ;
         
         $this->load->view('contents/approve_ad_view',$data);
 
