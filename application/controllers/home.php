@@ -47,6 +47,39 @@ class Home extends CI_Controller {
         $this->db->close();
         $this->load->view('includes/footer');
     }
+    
+    function about_us(){
+        if ($this->agent->is_referral()) {
+            $data['agent'] = $this->agent->referrer();
+        } else {
+            $data['agent'] = NULL;
+        }
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+            $id = $data['id'] = $session_data['id'];
+            $data['username'] = $session_data['username'];
+            $data['pro_pic'] = $this->customer_model->getProPic($id);
+            $data['option'] = "my_profile";
+        } else {
+            $data['option'] = "";
+        }
+
+        $data['page'] = "about";
+
+        $this->load->database();
+        $data['division'] = $this->category_model->getFullList("division");
+
+        $data['category'] = $this->category_model->getFullList("category");
+        $data['author'] = $this->category_model->getFullList("author");
+        $data['district'] = $this->category_model->getFullList("district");
+        $data['institute'] = $this->category_model->getFullList("institute");
+        $data['book'] = $this->book_model->getAllBooks();
+        $this->load->view('includes/header', $data);
+        $this->load->view('contents/about_us_view', $data);
+
+        $this->db->close();
+        $this->load->view('includes/footer');
+    }
 
     function mailcheck($username) {
         $query = $this->customer_model->updateMailCheck($username);

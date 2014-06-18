@@ -41,14 +41,14 @@ class Registration_confirm extends CI_Controller {
                 $config['protocol'] = 'smtp';
                 $config['smtp_host'] = 'ssl://smtp.googlemail.com';
                 $config['smtp_port'] = 465;
-                $config['smtp_user'] = 'smrity48@gmail.com';
-                $config['smtp_pass'] = '48mum01818733806';
+                $config['smtp_user'] = 'bookexchange4857@gmail.com';
+                $config['smtp_pass'] = 'bookexchange';
 
                 $this->load->library('email', $config);
                 $this->email->set_newline("\r\n");
 
                 $rec_email = $this->input->post('email');
-                $this->email->from('smrity48@gmail.com', 'BookExchange');
+                $this->email->from('bookexchange4857@gmail.com', 'BookExchange');
                 $this->email->to($email);
 
                 $this->email->subject('Registration Confirmation');
@@ -58,7 +58,7 @@ class Registration_confirm extends CI_Controller {
                 if ($this->email->send()) {
                     redirect('register/reg_success', 'refresh');
                 } else {
-                    echo "error";
+                    redirect('register/email_error', 'refresh');
                     // show_error($this->email->print_debugger());
                     // show_error($this->email->print_debugger());
                     //return false;

@@ -2,7 +2,7 @@
 
 class Post_model extends CI_Model {
     
-        function get_all_book_info() 
+        function get_all_book_info($pid) 
     {
         
            $status = "pending";
@@ -15,6 +15,7 @@ class Post_model extends CI_Model {
             JOIN `category` on category_id = book_info.book_category_id
             JOIN `customer` on customer_id = post.post_ad_giver_id
             WHERE post_status = '" . $status . "'
+            AND post_id = " . $pid . "    
                                ");
              
         if ($query->result() > 0) {
@@ -22,9 +23,10 @@ class Post_model extends CI_Model {
                 $data[]=$row;
                 
             }
+            return $data; 
         }
               
-        return $data;                
+        return NULL;                
     }
     
     function getPostList() {
@@ -50,22 +52,23 @@ class Post_model extends CI_Model {
       
     }
     
-    function getBookNames($p_status) {
+  /*  function getBookNames($p_status) {
         
          $this->db->select('book_name');
         $this->db->from('book_info');
         $this->db->join('post', 'post.post_book_id = book_info.book_id');
         $this->db->where('post.post_status', $p_status);
         $query = $this->db->get();
-        if ($query->result() >=1 ) {
+        
+        if ($query->result() > 0) {
             foreach ($query->result_array() as $row) {
-                $title[] = $row;
+                $data[] = $row;
             }
-         
+            return $data;
         }
-           return $title;
+        return NULL;
     }
-    
+    */
     
     function getBookId($pid) 
     {

@@ -30,13 +30,13 @@ if ($post != NULL) {
                 <div class="navbar">
                     <div class="navbar-inner">
                         <ul class="nav">
-                            <li><a href="my_profile">Active Ads</a></li>
-                            <li class="active" ><a href="pending_ads">Pending Ads</a></li>
-                            <li><a href="removed_ads">Removed Ads</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/my_profile">Active Ads</a></li>
+                            <li class="active" ><a href="<?php echo base_url() ?>index.php/pending_ads">Pending Ads</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/removed_ads">Removed Ads</a></li>
                             <!--<li><a href="requested_ads">Requested Ads</a></li>-->
-                            <li><a href="my_wishlist">My wishlist</a></li>
-                            <li><a href="my_messages">My Messages</a></li>
-                            <li><a href="settings">Settings</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/my_wishlist">My wishlist</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/my_messages">My Messages</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/settings">Settings</a></li>
                         </ul>
                     </div>
                 </div>
@@ -78,7 +78,8 @@ if ($post != NULL) {
                                     </td>
                                     <td style="width: 15%"><p style="font-size: 16px"><b>৳ <?php echo $book_prices[$i] ?><br/> price</b></p></td>
                                     <td style="width: 15%"><p style="font-size: 12px"><?php echo $book_post_time[$i] ?><br/>Time posted</p></td>
-                                    <td style="width: 20%"><button class="button_style" style="width: 150px">Edit</button><br/>
+                                    <td style="width: 20%">
+                                        <!--<button class="button_style" style="width: 150px">Edit</button><br/>-->
                                         <button class="button_style" style="width: 150px" onclick="delete_ad(<?php echo $book_ids[$i] ?>)">Delete</button></td>
                                 </tr>
                             </table>

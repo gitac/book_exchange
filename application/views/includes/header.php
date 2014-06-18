@@ -65,12 +65,12 @@ foreach ($book as $r) {
                         <?php if ($page == "home") { ?><a href="<?php echo base_url() ?>index.php/home" class="active">Home</a>
                         <?php } else { ?> <a href="<?php echo base_url() ?>index.php/home">Home</a> <?php } ?>
                     </li>
-                    <li><a href="#">About Us</a></li>
+                    <li><?php if ($page == "about") { ?><a href="<?php echo base_url() ?>index.php/home/about_us" class="active">About Us</a>
+                        <?php } else { ?> <a href="<?php echo base_url() ?>index.php/home/about_us">About Us</a> <?php } ?></li>
                     <li>
                         <?php if ($page == "contact") { ?><a href="<?php echo base_url() ?>index.php/contact" class="active">Contacts</a>
                         <?php } else { ?> <a href="<?php echo base_url() ?>index.php/contact">Contacts</a> <?php } ?>
                     </li>
-                    <li><a href="#">FAQ</a></li>
                 </ul>
             </div>
             <!-- End Navigation -->

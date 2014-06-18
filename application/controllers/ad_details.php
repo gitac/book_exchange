@@ -21,6 +21,7 @@ class Ad_details extends CI_Controller {
         } else {
             $data['option'] = "";
         }
+        $data['msg'] = "";
         $data['page'] = "";
         $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
@@ -34,11 +35,6 @@ class Ad_details extends CI_Controller {
         $this->load->view('includes/footer');
     }
     public function book($bid){
-        if ($this->agent->is_referral()) {
-            $data['agent'] = $this->agent->referrer();
-        } else {
-            $data['agent'] = NULL;
-        }
         $this->load->database();
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
@@ -53,7 +49,7 @@ class Ad_details extends CI_Controller {
             $data['request'] = NULL;
         }
         $data['page'] = "";
-        
+        $data['msg'] = "";
         $data['category'] = $this->category_model->getFullList("category");
         $data['author'] = $this->category_model->getFullList("author");
         $data['district'] = $this->category_model->getFullList("district");
@@ -115,13 +111,11 @@ class Ad_details extends CI_Controller {
            $this->load->database();
            $this->book_model->insertRequest($pid, $data['id']);
            $this->db->close();
-           
-           
+             
            redirect('ad_details/book/'.$pid, 'refresh');
         } else {
             redirect('login', 'refresh');
         }
-        
     }
     
     function remove_request($pid){
@@ -132,15 +126,11 @@ class Ad_details extends CI_Controller {
            
            $this->load->database();
            $this->book_model->deleteRequest($pid, $data['id']);
-           $this->db->close();
-           
-           
+           $this->db->close();      
            redirect('ad_details/book/'.$pid, 'refresh');
         } else {
             redirect('login', 'refresh');
         }
     }
-
 }
-
 ?>

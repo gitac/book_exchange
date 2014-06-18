@@ -137,7 +137,7 @@ class Create_wishlist extends CI_Controller {
                 }
                 
                 $this->book_model->insertBookInfo($bookid,$image_path,$data['id']); 
-          $this->db->close(); 
+                $this->db->close(); 
             }
                      
           

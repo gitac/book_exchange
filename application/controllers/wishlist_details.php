@@ -37,7 +37,7 @@ class Wishlist_details extends CI_Controller {
         
     }
     
-     public function wishlist_book($wid){
+public function wishlist_book($wid){
        
         if ($this->agent->is_referral()) {
             $data['agent'] = $this->agent->referrer();
@@ -62,11 +62,15 @@ class Wishlist_details extends CI_Controller {
         $data['district'] = $this->category_model->getFullList("district");
         $data['institute'] = $this->category_model->getFullList("institute");
         $data['book'] = $this->book_model->getAllBooks();
+
+       
         $this->load->view('includes/header', $data);
    
         $this->load->view('includes/ad_portion');
+        $data['wish_list_info'] = $this->wishlist_model->getWishlistBookInfo($wid);
         $data['wishlist_book']= $this->wishlist_model->getWishlistBookDetail($wid);
-        $data['available_book'] = $this->book_model->getWishlistPostBookDetail($wid);
+        //$data['available_book'] = $this->book_model->getAvailableBooks($wid);
+        //$data['available_user'] = $this->book_model->AvailableUsers($wid);
         
         $this->load->view('contents/wishlist_details_view', $data);
 

@@ -13,8 +13,8 @@
                     ?>
                             <fieldset style="padding-top: .5cm">
                                 <div class="control-group">
-                                    <p style="text-align: center; margin-bottom: .5cm">Please enter the email address you used to register on <b><a href="home">BookExchange</a></b>. We will email you your password.</p>
-                                    <label class="control-label" for="email" style="margin-left: 38px"><b>Email address</b></label>
+                                    <p style="text-align: center; margin-bottom: .5cm">Please enter the email address you used to register on <b><a href="home">BookExchange</a></b>.</p>
+                                    <label class="control-label" for="email" style="margin-left: 120px"><b>Email address</b></label>
                                     <div class="controls">
                                         <input type="text" style="margin-left: 10px" class="input-xlarge" placeholder="Email" name="email"/>
                                         <label style="color: red; font-weight: bold; margin-bottom: .5cm"><?php echo form_error('email'); ?></label>

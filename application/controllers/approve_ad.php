@@ -25,7 +25,7 @@ class Approve_ad extends CI_Controller {
         
        // $this->load->view('includes/admin_header', $data);
         $p_status = "pending";
-        //
+        $this->load->view('includes/header_admin', $data); 
       
         $this->load->database();      
         
@@ -54,31 +54,11 @@ class Approve_ad extends CI_Controller {
         $data['option'] = "";
         $data['page'] = "home";
         
-       $this->load->view('includes/admin_header',$data); 
+       $this->load->view('includes/header_admin', $data); 
        $this->load->database();
 
         
-      
-        
-//        if($is_student == "student")
-//            {
-//              $data['occupation'] = "Student";
-//              $data['institute_name'] = $this->post_model->getInstituteName($post_giver_id);
-//            }
-//         else 
-//         {
-//             $data['occupation'] = "Service holder";
-//             $data['institute_name'] = $this->post_model->getInstituteName($post_giver_id);
-//         }
-//        
-//        $data['location_name']= $this->post_model->getLocationName($post_giver_id);
-//        $data['post_giver_detail']= $this->post_model->postGiverDetail($post_giver_id);                   
-//        $data['book_name']= $this->post_model->getBookName($book_id);        
-//        $data['category_name']= $this->post_model->getCategoryName($book_category_id);
-//        $data['author_name'] = $this->post_model->getAuthorName($author_id);
-//        $data['book_edition'] = $this->post_model->getBookEdition($pid);
-        
-          $data['info'] = $this->post_model->get_all_book_info() ;
+        $data['info'] = $this->post_model->get_all_book_info($pid) ;
         
         $this->load->view('contents/approve_ad_view',$data);
 
@@ -114,10 +94,10 @@ class Approve_ad extends CI_Controller {
             //
 
             $this->load->database();      
-            $data['names']= $this->post_model->getBookNames($p_status);
+            //$data['names']= $this->post_model->getBookNames($p_status);
             $data['post'] = $this->post_model->getPostList();
 
-
+            $this->load->view('includes/header_admin', $data); 
             $this->load->view('contents/admin_home_view',$data);
 
             $this->db->close();
@@ -125,12 +105,12 @@ class Approve_ad extends CI_Controller {
            else if($this->input->post('sbm') == "reject")
                {
                  $this->post_model->rejectAd($id);
-                 $this->load->view('includes/admin_header', $data);
+                 $this->load->view('includes/header_admin', $data); 
                 $p_status = "pending";
-                //
+                
 
                 $this->load->database();      
-                $data['names']= $this->post_model->getBookNames($p_status);
+              //  $data['names']= $this->post_model->getBookNames($p_status);
                 $data['post'] = $this->post_model->getPostList();
 
 

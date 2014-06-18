@@ -1,35 +1,27 @@
 <?php
 
-$count=1;
+$count=0;
+if($info !=NULL){
 foreach ($info as $r) {
-    $giver_name['first_name'] = $r['customer_first_name'];
-    $giver_name['last_name'] = $r['customer_last_name'];
-    $giver_email['email'] = $r['customer_email'];
-    $giver_phn_no['phn_no'] = $r['customer_phn_no'];
-    $giver_address['address'] = $r['customer_address'];
+    $giver_user_name['uname'] = $r['customer_username'];
+//    $giver_name['last_name'] = $r['customer_last_name'];
+//    $giver_email['email'] = $r['customer_email'];
+//    $giver_phn_no['phn_no'] = $r['customer_phn_no'];
+//    $giver_address['address'] = $r['customer_address'];
    
-
-   // $giver_location['location'] = $r['division_name'];  
-
     $b_name['name'] = $r['book_name'];
-   
-
-
-//foreach ($institute_name as $r) {
-//    $giver_institute['institute'] = $r['institute_name'];
-//   
-//}
-
-
    $c_name['name1']= $r['category_name'];  
 
-   $a_name['name2']= $r['author_name'];  
-
+   $a_names[]= $r['author_name'];  
+   
    $post_id['id'] = $r['post_id']; 
    $edition['no']= $r['post_book_edition'];  
    $book_price['price']=$r['post_book_price'];
    $post_description['des']=$r['post_description'];
    $post_image['image'] = $r['post_image'];
+   
+   $count++;
+}
 }
 ?>
 
@@ -46,15 +38,23 @@ foreach ($info as $r) {
                         <fieldset style="padding-top: .5cm">
                             
                             <div class="control-group">
+                            <label class="control-label"  >    given by <b><?php echo $giver_user_name['uname'] ?></b></label>
+<!--                             <label class="control-label" style="font-size: 16px;l" ><?php echo $giver_user_name['uname'] ?></label>-->
+                             </div>
+                            
+                             <div class="control-group">
+                            
+                             <label class="control-label" >  </label>
+                             </div>
+                            <div class="control-group">
+                       
+                                
                                 <label class="control-label" >Category Name</label>
                                 <div class="controls">
                                     <div class="input">
                                         
                                         <input id="c_name"  type="text"  class="input-xlarge" value= "<?php echo $c_name['name1'] ; ?>" name="category_name"/>
-                                     <!--   <button type="submit" class="button_style" style="position: absolute; right: 300px; top: 135px; height: 40px; width: 80px;">Add</button>
-                                        <button type="submit" class="button_style" style="position: absolute; right: 200px; top: 135px;height: 40px; width: 80px;">Edit</button> -->
-                        
-
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -69,8 +69,10 @@ foreach ($info as $r) {
                             <div class="control-group">
                                 <label class="control-label">Author name</label>
                                 <div class="controls">
-                                    <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="text" class="input-xlarge" value="<?php echo   $a_name['name2'] ; ?>" name="author_name" />
-                                    
+                                    <?php for($i = 0;$i <$count; $i++){ ?>
+                                        
+                                    <input style="float:left; clear:none; margin: 2px 0 0 2px;" type="text" class="input-xlarge" value="<?php echo   $a_names[$i] ; ?>" name="author_name" />
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="control-group">

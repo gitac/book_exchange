@@ -6,9 +6,10 @@ if (!defined('BASEPATH'))
 class Test extends CI_Controller {
 
     public function index() {
-        $password="sss48";
+        $this->load->view('contents/test_js');
+       // $password="sss48";
 
-echo md5($password);
+//echo md5($password);
     }
 
     function getCustomerInfo($id) {

@@ -1,73 +1,73 @@
 <?php
 
 class Book_model extends CI_Model {
-    
-    function search($book_name, $category, $author, $campus, $district){
-        if($category == 0 && $author == 0 && $campus == 0 && $district ==0 ){ //0 0 0 0
+
+    function search($book_name, $category, $author, $campus, $district) {
+        if ($category == 0 && $author == 0 && $campus == 0 && $district == 0) { //0 0 0 0
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post
             WHERE post.post_book_id = book_info.book_id
-            AND book_info.book_name LIKE '%" .$book_name. "%'
+            AND book_info.book_name LIKE '%" . $book_name . "%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author.author_id = author_book.a_id
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        } else if($category == 0 && $author == 0 && $campus == 0 && $district !=0 ){ // 0 0 0 1
+        } else if ($category == 0 && $author == 0 && $campus == 0 && $district != 0) { // 0 0 0 1
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post, customer, near_area, district
             WHERE post.post_book_id = book_info.book_id
             AND post.post_ad_giver_id = customer.customer_id
             AND customer_near_area_id = near_area_id
             AND near_area_dis_id = district_id
-            AND district_id = ". $district ."
-            AND book_info.book_name LIKE '%" .$book_name. "%'
+            AND district_id = " . $district . "
+            AND book_info.book_name LIKE '%" . $book_name . "%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author.author_id = author_book.a_id
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        } else if($category == 0 && $author == 0 && $campus != 0 && $district ==0 ){//0 0 1 0
+        } else if ($category == 0 && $author == 0 && $campus != 0 && $district == 0) {//0 0 1 0
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post, customer, institute
             WHERE post.post_book_id = book_info.book_id
             AND post.post_ad_giver_id = customer.customer_id
             AND customer_ins_id = institute_id
-            AND institute_id = ". $campus ."
-            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND institute_id = " . $campus . "
+            AND book_info.book_name LIKE  '%" . $book_name . "%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author.author_id = author_book.a_id
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        }else if($category == 0 && $author == 0 && $campus != 0 && $district !=0 ){//0 0 1 1
+        } else if ($category == 0 && $author == 0 && $campus != 0 && $district != 0) {//0 0 1 1
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post, customer, institute, near_area, district
             WHERE post.post_book_id = book_info.book_id
             AND post.post_ad_giver_id = customer.customer_id
             AND customer_near_area_id = near_area_id
             AND near_area_dis_id = district_id
-            AND district_id = ". $district ."
+            AND district_id = " . $district . "
             AND customer_ins_id = institute_id
-            AND institute_id = ". $campus ."
-            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND institute_id = " . $campus . "
+            AND book_info.book_name LIKE  '%" . $book_name . "%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author.author_id = author_book.a_id
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        } else if($category == 0 && $author != 0 && $campus == 0 && $district ==0 ){//0 1 0 0
+        } else if ($category == 0 && $author != 0 && $campus == 0 && $district == 0) {//0 1 0 0
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post
             WHERE post.post_book_id = book_info.book_id
-            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND book_info.book_name LIKE  '%" . $book_name . "%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author.author_id = author_book.a_id
             AND author_id = $author
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        } else if($category == 0 && $author != 0 && $campus == 0 && $district !=0 ){//0 1 0 1 
+        } else if ($category == 0 && $author != 0 && $campus == 0 && $district != 0) {//0 1 0 1 
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post, customer, near_area, district
             WHERE post.post_book_id = book_info.book_id
@@ -75,64 +75,81 @@ class Book_model extends CI_Model {
             AND customer_near_area_id = near_area_id
             AND near_area_dis_id = district_id
             AND district_id = $district
-            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND book_info.book_name LIKE  '%" . $book_name . "%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author_id = $author
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        }else if($category == 0 && $author != 0 && $campus != 0 && $district ==0 ){//0 1 1 0 
+        } else if ($category == 0 && $author != 0 && $campus != 0 && $district == 0) {//0 1 1 0 
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post, customer, institute
             WHERE post.post_book_id = book_info.book_id
             AND post.post_ad_giver_id = customer.customer_id
             AND customer_ins_id = institute_id
-            AND institute_id = ". $campus ."
-            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND institute_id = " . $campus . "
+            AND book_info.book_name LIKE  '%" . $book_name . "%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author_id = $author
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        }else if($category == 0 && $author != 0 && $campus != 0 && $district !=0 ){//0 1 1 1 
+        } else if ($category == 0 && $author != 0 && $campus != 0 && $district != 0) {//0 1 1 1 
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post, customer, institute, near_area, district
             WHERE post.post_book_id = book_info.book_id
             AND post.post_ad_giver_id = customer.customer_id
             AND customer_ins_id = institute_id
-            AND institute_id = ". $campus ."
+            AND institute_id = " . $campus . "
             AND customer_near_area_id = near_area_id
             AND near_area_dis_id = district_id
-            AND district_id = ". $district ."
-            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND district_id = " . $district . "
+            AND book_info.book_name LIKE  '%" . $book_name . "%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author_id = $author
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
         } // do more
-        else if($category != 0 && $author == 0 && $campus == 0 && $district ==0 ){//1 0 0 0
+        else if ($category != 0 && $author == 0 && $campus == 0 && $district == 0) {//1 0 0 0
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post
             WHERE post.post_book_id = book_info.book_id
-            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND book_info.book_name LIKE  '%" . $book_name . "%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author.author_id = author_book.a_id
             AND book_category_id = $category
             AND post.post_status =  'Active'
             ORDER BY date_time, post_id");
-        }else if($category == 0 && $author != 0 && $campus != 0 && $district !=0 ){//1 1 1 1 
+        } else if ($category != 0 && $author != 0 && $campus != 0 && $district != 0) {//1 1 1 1 
             $query = $this->db->query("SELECT * 
             FROM author, author_book, book_info, post, customer, institute, near_area, district
             WHERE post.post_book_id = book_info.book_id
             AND post.post_ad_giver_id = customer.customer_id
             AND customer_ins_id = institute_id
-            AND institute_id = ". $campus ."
+            AND institute_id = " . $campus . "
             AND customer_near_area_id = near_area_id
             AND near_area_dis_id = district_id
-            AND district_id = ". $district ."
-            AND book_info.book_name LIKE  '%".$book_name."%'
+            AND district_id = " . $district . "
+            AND book_info.book_name LIKE  '%" . $book_name . "%'
+            AND book_info.book_id = author_book.b_id
+            AND author.author_id = author_book.a_id
+            AND author_id = $author
+            AND book_category_id = $category
+            AND post.post_status =  'Active'
+            ORDER BY date_time, post_id");
+        } else if ($category != 0 || $author != 0 || $campus != 0 || $district != 0) {//1 1 1 1 
+            $query = $this->db->query("SELECT * 
+            FROM author, author_book, book_info, post, customer, institute, near_area, district
+            WHERE post.post_book_id = book_info.book_id
+            AND post.post_ad_giver_id = customer.customer_id
+            AND customer_ins_id = institute_id
+            AND institute_id = " . $campus . "
+            AND customer_near_area_id = near_area_id
+            AND near_area_dis_id = district_id
+            AND district_id = " . $district . "
+            AND book_info.book_name LIKE  '%" . $book_name . "%'
             AND book_info.book_id = author_book.b_id
             AND author.author_id = author_book.a_id
             AND author_id = $author
@@ -150,8 +167,30 @@ class Book_model extends CI_Model {
             return null;
     }
 
+    function getAllBookInstitute($institute_id) {
 
-    function getAllBookArea($id){
+        $query = $this->db->query("SELECT * 
+            FROM author, author_book, book_info, post, customer,institute
+            WHERE post.post_ad_giver_id = customer.customer_id
+            AND institute_id = " . $institute_id . "
+            AND customer.customer_ins_id = institute_id
+            AND post.post_book_id = book_info.book_id
+            AND book_info.book_id = author_book.b_id
+            AND author.author_id = author_book.a_id
+            AND author.author_id = author_book.a_id
+            AND post.post_status =  'Active'
+            ORDER BY date_time, post_id");
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+
+    function getAllBookArea($id) {
         $query = $this->db->query("SELECT * 
 FROM author, author_book, book_info, post, customer
 WHERE post.post_ad_giver_id = customer.customer_id
@@ -171,17 +210,17 @@ ORDER BY date_time, post_id");
         else
             return null;
     }
-    
-    function insertBookInfo($book_id,$image_path, $id) {
 
-            $data = array(
-                'w_book_id' => $book_id,
-                'w_book_image'=>$image_path,
-                'w_customer_id' => $id
-            );
+    function insertBookInfo($book_id, $image_path, $id) {
 
-            $this->db->insert('wishlist', $data);
-        }
+        $data = array(
+            'w_book_id' => $book_id,
+            'w_book_image' => $image_path,
+            'w_customer_id' => $id
+        );
+
+        $this->db->insert('wishlist', $data);
+    }
 
     function getBookId($book_name, $cateogry_id) {
         $this->db->select('book_id');
@@ -238,9 +277,6 @@ ORDER BY date_time, post_id");
         $this->db->trans_complete();
         return $id;
     }
-   
-    
-    
 
     function getAuthorIdAfterInsert($author_name) {
 
@@ -255,8 +291,7 @@ ORDER BY date_time, post_id");
         $this->db->trans_complete();
         return $id;
     }
-    
-    
+
     function insertAuthorBook($bid, $aid) {
         $a_b_insert_data = array(
             'b_id' => $bid,
@@ -342,28 +377,28 @@ ORDER BY date_time, post_id");
             return null;
     }
 
-    function remove_wishlist($w_id){
-        
+    function remove_wishlist($w_id) {
+
         $this->db->where('w_book_id', $w_id);
         $this->db->delete('wishlist');
     }
-    
-    function remove_ad($post_id){
+
+    function remove_ad($post_id) {
         $data = array(
             'post_status' => "removed"
         );
         $this->db->where('post_id', $post_id);
         $this->db->update('post', $data);
     }
-    
-    function delete_ad($post_id){
+
+    function delete_ad($post_id) {
         $data = array(
             'post_status' => "deleted"
         );
         $this->db->where('post_id', $post_id);
         $this->db->update('post', $data);
     }
-    
+
     function RequestedUser($p_id) {
         $query = $this->db->query("SELECT * 
         FROM customer, near_area, district, division, institute
@@ -628,14 +663,12 @@ ORDER BY date_time, post_id");
         else
             return null;
     }
-    
-    
-    
+
     //esha
-    function getWishlistPostBook($id){
-      
-           
-         $query = $this->db->query("SELECT post_book_id 
+    function getWishlistPostBook($id) {
+
+
+        $query = $this->db->query("SELECT post_book_id 
             FROM post, wishlist
             WHERE w_book_id= post_book_id
             AND w_customer_id = " . $id . "
@@ -650,17 +683,15 @@ ORDER BY date_time, post_id");
         }
         else
             return null;
-        
-        }
-        
-        function getAvailableBooks($wid){
-        
-        $query = $this->db->query("SELECT * 
-            FROM post, wishlist,customer
+    }
+
+    function getAvailableBooks($wid) {
+
+        $query = $this->db->query("SELECT *
+            FROM post, wishlist,customer, near_area, district, division, institute
             WHERE w_book_id= post_book_id
             AND wishlist_id = " . $wid . "
-            AND post_status =  'active'
-            ORDER BY w_book_id ");
+            AND post_status =  'active'  ");
 
         if ($query->num_rows >= 1) {
             foreach ($query->result_array() as $row) {
@@ -671,9 +702,6 @@ ORDER BY date_time, post_id");
         else
             return null;
     }
-        
-        
-        
 
 }
 

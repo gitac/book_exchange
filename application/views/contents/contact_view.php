@@ -6,10 +6,11 @@
             <div id="modal">
                     <header><h1>Contact us</h1></header>
                     <section>
-                        <form action="#" id="contact-form" class="form-horizontal" method="post">
+                       <form action="<?php echo base_url() ?>index.php/contact/contact_us" class="form-horizontal" id="contact-form" method="post">
                             <fieldset style="padding-top: .5cm">
-
-                                <div class="control-group">
+                                <label style="margin-left: 30%; padding-bottom: .5cm; color: red; font-weight: bold"><?php echo $contact_error; ?><br/></label>
+                        
+                                <div class="control-group" style="padding-top: .5cm">
                                     <label class="control-label" for="fullName"><b>Full name</b></label>
                                     <div class="controls">
                                         <input type="text" class="input-xlarge" id="fullName" placeholder="Full Name" name="fn" />
@@ -19,7 +20,7 @@
                                 <div class="control-group">
                                     <label class="control-label" for="email"><b>Your Email Address</b></label>
                                     <div class="controls">
-                                        <input type="password" class="input-xlarge" id="email" placeholder="Email" name="email">
+                                        <input type="text" class="input-xlarge" id="email" placeholder="Email" name="email">
                                     </div>
                                 </div>
                                 
@@ -33,24 +34,14 @@
                                 <div class="control-group">
                                     <label class="control-label" for="msg"><b>Message</b></label>
                                     <div class="controls">
-                                        <textarea class="xxlarge" rows="3" style="width: 77%"></textarea>
+                                        <textarea name="msg" class="xxlarge" rows="3" style="width: 77%"></textarea>
                                     </div>
                                 </div>
-                                <!--
-                                <div class="control-group">
-                                    <label class="control-label" for="code"><b>Verification code</b></label>
-                                    <div class="controls">
-                                        <!-- add img for code
-                                        verify code and button will show at same row
-                                        <input type="button" value="Reset"style="margin-bottom: .5cm"/>
-                                        <input type="text" class="input-xlarge" id="code" name="code"/>
-                                    </div>
-                                </div>
--->
+                               
 
                                 <div class="control-group">
                                     <div class="controls">
-                                        <input type="submit" value="Send" style="width: 200px"/>
+                                        <button style="width: 200px" type="submit" class="button_style">Send</button>
                                     </div>
                                     </div>
                             </fieldset>

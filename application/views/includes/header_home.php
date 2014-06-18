@@ -23,20 +23,19 @@
             <div id="logo"><h1><a href="home">Book Exchange</a></h1><span>Give books away. Get books you want.</span></div>
 		<!-- Navigation -->
 		<div id="navigation">
-			<ul>
-				<li>
-                                                            <?php if ($page == "home") { ?><a href="home" class="active">Home</a>
-                                                            <?php } else { ?> <a href="home">Home</a> <?php } ?>
-                                                    </li>
-				<li><a href="#">All ads</a></li>
-				<li><a href="#">About Us</a></li>
-				<li>
-                                                            <?php if ($page == "contact") { ?><a href="contact" class="active">Contacts</a>
-                                                            <?php } else { ?> <a href="contact">Contacts</a> <?php } ?>
-                                    </li>
-                                                   <li><a href="#">FAQ</a></li>
-			</ul>
-		</div>
+                <ul>
+                    <li>
+                        <?php if ($page == "home") { ?><a href="<?php echo base_url() ?>index.php/home" class="active">Home</a>
+                        <?php } else { ?> <a href="<?php echo base_url() ?>index.php/home">Home</a> <?php } ?>
+                    </li>
+                    <li><?php if ($page == "about") { ?><a href="<?php echo base_url() ?>index.php/home/about_us" class="active">About Us</a>
+                        <?php } else { ?> <a href="<?php echo base_url() ?>index.php/home/about_us">About Us</a> <?php } ?></li>
+                    <li>
+                        <?php if ($page == "contact") { ?><a href="<?php echo base_url() ?>index.php/contact" class="active">Contacts</a>
+                        <?php } else { ?> <a href="<?php echo base_url() ?>index.php/contact">Contacts</a> <?php } ?>
+                    </li>
+                </ul>
+            </div>
 		<!-- End Navigation -->
 		<div class="cl">&nbsp;</div>
 		<!-- Login-details -->

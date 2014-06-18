@@ -1,6 +1,49 @@
 <?php
 
 class Category_model extends CI_Model {
+
+    function getcategoryId($c_name) {
+        $this->db->select('category_id');
+        $this->db->from('category');
+        $this->db->where('category_name', $c_name);
+
+        $query = $this->db->get();
+        $id = NULL;
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $id = $row->category_id;
+            }
+        }
+        return $id;
+    }
+
+    function getcategoryIdWithBook($c_id) {
+        $query = $this->db->query("SELECT DISTINCT (
+                book_category_id
+                )
+                FROM book_info
+                WHERE book_category_id = $c_id");
+        $id = NULL;
+        if ($query->result() > 0) {
+            foreach ($query->result() as $row) {
+                $id = $row->book_category_id;
+            }
+        }
+        return $id;
+    }
+
+    function addCategoryName($data) {
+        $this->db->insert('category', $data);
+        return true;
+    }
+
+    function deleteCategoryName($cname) {
+        $this->db->where('category_name', $cname);
+        $this->db->delete('category');
+
+        return true;
+    }
+
     function getAllDistrictList($did) {
         $this->db->select('*');
         $this->db->from('district');
@@ -43,7 +86,7 @@ class Category_model extends CI_Model {
         }
         return $title;
     }
-    
+
     function getInstituteName($i_id) {
         $this->db->select('institute_name');
         $this->db->from('institute');
@@ -56,7 +99,7 @@ class Category_model extends CI_Model {
         }
         return $title;
     }
-    
+
     function getCategoryName($cid) {
         $this->db->select('category_name');
         $this->db->from('category');
@@ -95,7 +138,7 @@ class Category_model extends CI_Model {
         } else if ($type == "district") {
             $this->db->from('DISTRICT');
             $this->db->order_by("DISTRICT_NAME");
-        } else if($type == "near_area"){
+        } else if ($type == "near_area") {
             $this->db->from('near_area');
             $this->db->order_by("near_area_name");
         } else if ($type == "institute") {

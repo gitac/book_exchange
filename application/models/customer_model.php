@@ -2,6 +2,108 @@
 
 class Customer_model extends CI_Model {
 
+    function detailInboxMsg($sender_id,$receiver_id){
+             
+                $query = $this->db->query("SELECT * 
+                FROM msg, customer
+                WHERE receiver_id = '". $receiver_id. "'
+                AND sender_id = '". $sender_id. "'
+                AND  sender_id = customer_id
+                ORDER BY msg_time DESC");
+        
+                if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+
+
+    function detailOutboxMsg($id,$receiver_id){
+        
+                $query = $this->db->query("SELECT * 
+                FROM msg, customer
+                WHERE receiver_id = '". $receiver_id. "'
+                AND sender_id = '". $id. "'
+                AND  receiver_id = customer_id
+                ORDER BY msg_time DESC");
+        
+                if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+
+    function getAllReceivemsg($id) {
+        $query = $this->db->query("SELECT * 
+                FROM msg, customer
+                WHERE sender_id
+                IN (
+
+                SELECT DISTINCT (
+                sender_id
+                )
+                FROM msg
+                WHERE receiver_id = '". $id. "'
+                ORDER BY msg_time DESC
+                )
+                AND receiver_id = '". $id. "'
+                AND sender_id = customer_id
+                GROUP BY sender_id");
+
+        if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+    }
+
+    function getAllSendmsg($id) {
+        
+        $query = $this->db->query("SELECT * 
+                FROM msg, customer
+                WHERE receiver_id
+                IN (
+                SELECT DISTINCT (receiver_id)
+                FROM msg
+                WHERE sender_id = '". $id. "'
+                ORDER BY msg_time DESC
+                )
+                AND sender_id = '". $id. "'
+                AND  receiver_id = customer_id
+                GROUP BY  receiver_id");
+        
+                if ($query->num_rows >= 1) {
+            foreach ($query->result_array() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        else
+            return null;
+        
+    }
+
+    function msg($msg, $sender_id, $receiver_id) {
+        $new_msg_insert_data = array(
+            'msg_details' => $msg,
+            'sender_id' => $sender_id,
+            'receiver_id' => $receiver_id
+        );
+
+        $this->db->insert('msg', $new_msg_insert_data);
+    }
+
     function updateMailCheck($username) {
 
         $data = array(
@@ -19,7 +121,8 @@ class Customer_model extends CI_Model {
             return $q->customer_id;
         }
     }
-    function getCustomerInfo($id){
+
+    function getCustomerInfo($id) {
         $this->db->select('*');
         $this->db->from('customer');
         $this->db->where('customer_id', $id);
@@ -62,8 +165,7 @@ class Customer_model extends CI_Model {
                 $id = $row->institute_id;
                 return $id;
             }
-            
-        } if($id == NULL) {
+        } if ($id == NULL) {
             $new_institute_insert_data = array(
                 'institute_type' => $institute,
                 'institute_name' => $ins_name
@@ -76,8 +178,8 @@ class Customer_model extends CI_Model {
             return $insert_id;
         }
     }
-    
-    function getProPic($cid){
+
+    function getProPic($cid) {
         $this->db->select('customer_photo');
         $this->db->from('customer');
         $this->db->where('customer_id', $cid);
@@ -89,6 +191,7 @@ class Customer_model extends CI_Model {
         }
         return $title;
     }
+
     function insertProInfo($f_name, $l_name, $gender, $phone, $selected_neighborhood, $address, $institute, $ins_name, $about_me, $interests, $image_path, $u_id) {
 
         //$n_id
@@ -179,7 +282,7 @@ class Customer_model extends CI_Model {
             return NULL;
         }
     }
-    
+
     function getUserType($username, $password) {
         $this->db->select('user_type');
         $this->db->from('customer');

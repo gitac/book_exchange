@@ -151,7 +151,7 @@ if ($requested_user != NULL) {
                                     <td style="width: 35%; height: 100%; text-align: center">
 
                                         <img style="width: 150px; height: 150px; margin-top: .2cm" src="<?php echo base_url() ?><?php echo $customer_photos[$i] ?>" alt="" />   
-                                        <button id="btn_msg" class="button_style" style="height: 40px !important; margin-left: 20%; margin-top: .2cm; margin-bottom: .2cm">Send Message</button>
+                                        <!--<button id="btn_msg" class="button_style" style="height: 40px !important; margin-left: 20%; margin-top: .2cm; margin-bottom: .2cm">Send Message</button>-->
 
 
                                     </td>

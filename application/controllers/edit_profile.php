@@ -32,9 +32,10 @@ class Edit_profile extends CI_Controller {
         $data['near_area'] = $this->category_model->getFullList("near_area");
         $data['book'] = $this->book_model->getAllBooks();
         $data['customer'] = $this->customer_model->getCustomerInfo($u_id);
-        $this->load->view('includes/header_create_profile');
+        $this->load->view('includes/header', $data);
         $this->load->view('contents/edit_profile_view', $data);
         $this->db->close();
+        $this->load->view('includes/footer');
     }
     
     function send_pw_success(){

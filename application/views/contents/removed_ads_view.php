@@ -30,13 +30,13 @@ if ($post != NULL) {
                 <div class="navbar">
                     <div class="navbar-inner">
                         <ul class="nav">
-                            <li><a href="my_profile">Active Ads</a></li>
-                            <li><a href="pending_ads">Pending Ads</a></li>
-                            <li  class="active" ><a href="removed_ads">Removed Ads</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/my_profile">Active Ads</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/pending_ads">Pending Ads</a></li>
+                            <li  class="active" ><a href="<?php echo base_url() ?>index.php/removed_ads">Removed Ads</a></li>
                             <!--<li><a href="requested_ads">Requested Ads</a></li>-->
-                            <li><a href="my_wishlist">My wishlist</a></li>
-                            <li><a href="my_messages">My Messages</a></li>
-                            <li><a href="settings">Settings</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/my_wishlist">My wishlist</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/my_messages">My Messages</a></li>
+                            <li><a href="<?php echo base_url() ?>index.php/settings">Settings</a></li>
                         </ul>
                     </div>
                 </div>
